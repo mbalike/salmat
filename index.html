@@ -55,6 +55,64 @@
     .images img{width:100%;height:100%;object-fit:cover;border-radius:6px}
     .images img:first-child{grid-column:1/3;height:260px}
 
+    /* ===== DEPARTMENTS ===== */
+    .dept-section{position:relative;padding:110px 40px 140px;background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000') center/cover no-repeat}
+    .dept-section::before{content:'';position:absolute;inset:0;background:rgba(9,31,76,.82)}
+    .dept-section::after{content:'';position:absolute;left:0;right:0;bottom:0;height:46%;min-height:320px;background:rgba(255,255,255,.92)}
+    .dept-inner{position:relative;max-width:1200px;margin:auto}
+    .dept-head{text-align:center;margin-bottom:42px;color:#fff}
+    .dept-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:700;opacity:.85;position:relative;padding-top:16px}
+    .dept-kicker::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:28px;height:2px;background:#e41d24;border-radius:2px}
+    .dept-head h2{font-size:48px;line-height:1.12;margin-top:12px}
+
+    .dept-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:26px}
+    .dept-card{position:relative;background:#fff;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.20);padding:34px 28px 28px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.2s ease}
+    .dept-card:hover{transform:translateY(-3px)}
+    .dept-num{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;background:#fde8ea;color:#e41d24;font-weight:700}
+    .dept-ico{width:54px;height:54px;display:grid;place-items:center;color:#e41d24;margin-bottom:16px}
+    .dept-ico svg{width:52px;height:52px}
+    .dept-card h3{font-size:18px;color:#0a1d3b;font-weight:700;line-height:1.3}
+
+    .dept-slider-area{margin-top:56px;position:relative;z-index:2}
+    .dept-slider-shell{background:#fff;border-radius:0;box-shadow:0 22px 55px rgba(2,8,23,.18);padding:26px 26px 18px}
+    .dept-slider-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .dept-slider-title strong{display:block;color:#0a1d3b;font-size:22px;line-height:1.2}
+    .dept-slider-title small{display:block;color:#6b7280;margin-top:6px}
+    .dept-slider-nav{display:flex;align-items:center;gap:10px}
+    .dept-arrow{width:44px;height:44px;border:none;border-radius:0;display:grid;place-items:center;background:#0b2c6d;color:#fff;cursor:pointer;transition:.15s ease}
+    .dept-arrow:hover{transform:translateY(-1px)}
+    .dept-arrow:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+    .dept-carousel{overflow:hidden}
+    .dept-track{display:flex;gap:18px;overflow:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:14px}
+    .dept-track::-webkit-scrollbar{height:8px}
+    .dept-track::-webkit-scrollbar-thumb{background:rgba(15,23,42,.16);border-radius:20px}
+    .dept-slide{flex:0 0 calc((100% - 54px)/4);min-width:260px;scroll-snap-align:start;background:#fff;border:1px solid rgba(15,23,42,.10);box-shadow:0 14px 30px rgba(15,23,42,.08);padding:18px;border-radius:0}
+    .dept-slide-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .dept-slide-badge{width:54px;height:54px;display:grid;place-items:center;background:#fde8ea;color:#e41d24;border-radius:0;font-weight:800;font-size:18px}
+    .dept-slide h4{font-size:16px;line-height:1.25;color:#0a1d3b;font-weight:800}
+    .dept-slide p{color:#6b7280;font-size:13px;line-height:1.65}
+    .dept-slide a{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#0b2c6d;text-decoration:none;font-weight:700;font-size:13px}
+    .dept-slide a:hover{text-decoration:underline}
+
+    .dept-dots{display:flex;justify-content:center;gap:10px;margin-top:16px}
+    .dept-dot{width:9px;height:9px;border-radius:99px;border:none;background:rgba(15,23,42,.18);cursor:pointer}
+    .dept-dot[aria-current="true"]{background:#e41d24;width:22px}
+
+    @media(max-width:1100px){
+      .dept-grid{grid-template-columns:repeat(2, 1fr)}
+      .dept-head h2{font-size:40px}
+      .dept-slide{flex-basis:calc((100% - 18px)/2)}
+    }
+    @media(max-width:560px){
+      .dept-section{padding:86px 18px}
+      .dept-grid{grid-template-columns:1fr}
+      .dept-head h2{font-size:34px}
+      .dept-section::after{height:54%}
+      .dept-slider-shell{padding:18px 16px 12px}
+      .dept-slide{flex-basis:100%;min-width:0}
+    }
+
     @media(max-width:900px){
       .hero h1{font-size:42px}
       .search-box{width:90%}
@@ -189,6 +247,198 @@
   </div>
 </section>
 
+<section class="dept-section" aria-label="Our Departments">
+  <div class="dept-inner">
+    <div class="dept-head">
+      <div class="dept-kicker">OUR DEPARTMENTS</div>
+      <h2>Explore city government<br/>departments</h2>
+    </div>
+
+    <div class="dept-grid">
+      <a class="dept-card" href="#" aria-label="Business & Industry">
+        <div class="dept-num">1</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21h18v-2H3v2zm2-4h14V3H5v14zm2-2V5h10v10H7z"/>
+            <path d="M9 15h2V9H9v6zm4 0h2V7h-2v8z"/>
+          </svg>
+        </div>
+        <h3>Business &amp; Industry</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Culture & Recreation">
+        <div class="dept-num">2</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2c-2.8 2.8-5.5 4.2-9 5 1.5 7.5 5.6 13.5 9 15 3.4-1.5 7.5-7.5 9-15-3.5-.8-6.2-2.2-9-5zm0 3.3c2.2 1.8 4.7 3 7.5 3.7-1.3 5.6-4.3 10.6-7.5 12-3.2-1.4-6.2-6.4-7.5-12C7.3 8.3 9.8 7.1 12 5.3z"/>
+            <path d="M12 7.5l1.4 2.9 3.2.5-2.3 2.2.6 3.2L12 15l-2.9 1.5.6-3.2-2.3-2.2 3.2-.5L12 7.5z"/>
+          </svg>
+        </div>
+        <h3>Culture &amp; Recreation</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Health & medical">
+        <div class="dept-num">3</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21s-7-4.7-9.5-9.5C.5 7.7 3.1 5 6.2 5c1.7 0 3.2.9 3.8 2.2C10.6 5.9 12.1 5 13.8 5 16.9 5 19.5 7.7 21.5 11.5 19 16.3 12 21 12 21z"/>
+            <path d="M11 10h2v2h2v2h-2v2h-2v-2H9v-2h2v-2z" fill="#ffffff"/>
+          </svg>
+        </div>
+        <h3>Health &amp; medical</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Jobs & Unemployment">
+        <div class="dept-num">4</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4h4a2 2 0 012 2v1h4a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V9a2 2 0 012-2h4V6a2 2 0 012-2zm0 3h4V6h-4v1z"/>
+            <path d="M2 12h20v2H2v-2z"/>
+          </svg>
+        </div>
+        <h3>Jobs &amp; Unemployment</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Justice & safety law">
+        <div class="dept-num">5</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4z"/>
+            <path d="M12 6l4 2v4c0 3-2 6-4 7-2-1-4-4-4-7V8l4-2z" fill="rgba(255,255,255,.92)"/>
+          </svg>
+        </div>
+        <h3>Justice &amp; safety law</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Policing & crimes">
+        <div class="dept-num">6</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2a7 7 0 017 7v4a7 7 0 01-14 0V9a7 7 0 017-7zm-4 7h8v4a4 4 0 11-8 0V9z"/>
+            <path d="M9 20h6v2H9v-2z"/>
+          </svg>
+        </div>
+        <h3>Policing &amp; crimes</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Roads & Transport">
+        <div class="dept-num">7</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16V5a2 2 0 012-2h12a2 2 0 012 2v11H4zm2-2h12V5H6v9z"/>
+            <path d="M7 20a2 2 0 110-4 2 2 0 010 4zm10 0a2 2 0 110-4 2 2 0 010 4z"/>
+          </svg>
+        </div>
+        <h3>Roads &amp; Transport</h3>
+      </a>
+
+      <a class="dept-card" href="#" aria-label="Your governement">
+        <div class="dept-num">8</div>
+        <div class="dept-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3l9 5v2H3V8l9-5z"/>
+            <path d="M5 10h14v10H5V10zm2 2v6h10v-6H7z"/>
+          </svg>
+        </div>
+        <h3>Your governement</h3>
+      </a>
+    </div>
+
+    <div class="dept-slider-area" aria-label="Department Highlights">
+      <div class="dept-slider-shell">
+        <div class="dept-slider-head">
+          <div class="dept-slider-title">
+            <strong>Popular services &amp; resources</strong>
+            <small>Quick links people use most often</small>
+          </div>
+          <div class="dept-slider-nav" aria-label="Carousel controls">
+            <button class="dept-arrow" type="button" data-dept-arrow="prev" aria-label="Previous">‹</button>
+            <button class="dept-arrow" type="button" data-dept-arrow="next" aria-label="Next">›</button>
+          </div>
+        </div>
+
+        <div class="dept-carousel" role="region" aria-label="Services carousel">
+          <div class="dept-track" data-dept-track tabindex="0">
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">01</div>
+                <div>
+                  <h4>Pay bills online</h4>
+                  <p>Fast payments for utilities and city fees.</p>
+                </div>
+              </div>
+              <p>Manage your municipal bills securely and get instant receipts.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">02</div>
+                <div>
+                  <h4>Report an issue</h4>
+                  <p>Road, street light, waste, noise.</p>
+                </div>
+              </div>
+              <p>Send a report in minutes and track updates from the city.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">03</div>
+                <div>
+                  <h4>Permit &amp; licensing</h4>
+                  <p>Apply, renew, and check status.</p>
+                </div>
+              </div>
+              <p>Business permits, construction approvals, and renewals.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">04</div>
+                <div>
+                  <h4>Public transport info</h4>
+                  <p>Routes, schedules, and alerts.</p>
+                </div>
+              </div>
+              <p>Plan your commute with real-time updates and maps.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">05</div>
+                <div>
+                  <h4>Health &amp; community</h4>
+                  <p>Clinics, support, and programs.</p>
+                </div>
+              </div>
+              <p>Find public health programs and community wellbeing services.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="dept-slide">
+              <div class="dept-slide-top">
+                <div class="dept-slide-badge">06</div>
+                <div>
+                  <h4>Jobs &amp; career center</h4>
+                  <p>Workshops and job listings.</p>
+                </div>
+              </div>
+              <p>Discover training programs and opportunities across the city.</p>
+              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+            </article>
+          </div>
+        </div>
+
+        <div class="dept-dots" aria-label="Carousel pagination" data-dept-dots></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer" aria-label="Footer">
   <div class="footer-inner">
     <div class="footer-top">
@@ -288,6 +538,81 @@
     };
     window.addEventListener('scroll', toggle, {passive:true});
     toggle();
+  })();
+
+  (function(){
+    const section = document.querySelector('.dept-section');
+    if(!section) return;
+
+    const track = section.querySelector('[data-dept-track]');
+    const dotsWrap = section.querySelector('[data-dept-dots]');
+    const prevBtn = section.querySelector('[data-dept-arrow="prev"]');
+    const nextBtn = section.querySelector('[data-dept-arrow="next"]');
+    if(!track || !dotsWrap || !prevBtn || !nextBtn) return;
+
+    const slides = Array.from(track.querySelectorAll('.dept-slide'));
+    if(!slides.length) return;
+
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+    const getStep = () => {
+      const first = slides[0];
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+      return first.getBoundingClientRect().width + gap;
+    };
+
+    const pageCount = () => {
+      const step = getStep();
+      const visible = clamp(Math.round(track.getBoundingClientRect().width / step) || 1, 1, slides.length);
+      return Math.max(1, slides.length - visible + 1);
+    };
+
+    const setButtons = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth - 2;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= maxScroll;
+    };
+
+    const scrollToIndex = (i) => {
+      const step = getStep();
+      const maxIndex = pageCount() - 1;
+      const idx = clamp(i, 0, maxIndex);
+      track.scrollTo({ left: idx * step, behavior: 'smooth' });
+    };
+
+    const activeIndex = () => {
+      const step = getStep();
+      return clamp(Math.round(track.scrollLeft / step), 0, pageCount() - 1);
+    };
+
+    const renderDots = () => {
+      const count = pageCount();
+      dotsWrap.innerHTML = '';
+      for(let i=0;i<count;i++){
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'dept-dot';
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', () => scrollToIndex(i));
+        dotsWrap.appendChild(b);
+      }
+      updateDots();
+    };
+
+    const updateDots = () => {
+      const idx = activeIndex();
+      const dots = Array.from(dotsWrap.querySelectorAll('.dept-dot'));
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+      setButtons();
+    };
+
+    prevBtn.addEventListener('click', () => scrollToIndex(activeIndex() - 1));
+    nextBtn.addEventListener('click', () => scrollToIndex(activeIndex() + 1));
+    track.addEventListener('scroll', () => window.requestAnimationFrame(updateDots), {passive:true});
+    window.addEventListener('resize', () => renderDots(), {passive:true});
+
+    renderDots();
+    setButtons();
   })();
 </script>
 
