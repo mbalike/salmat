@@ -7,11 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;color:#0a1d3b;background:#f6f8fb}
+    body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--surface)}
 
     :root{
-      --footer-bg:#041a56;
-      --footer-bg-2:#031548;
+      /* SDH-inspired brand palette (from provided logo) */
+      --brand:#77c34f;
+      --brand-2:#67b744;
+      --brand-dark:#1f6b35;
+      --brand-900:#0b2a1b;
+      --brand-soft:#e9f6e7;
+
+      --ink:var(--brand-900);
+      --surface:#f6f8fb;
+
+      --footer-bg:#0e3e24;
+      --footer-bg-2:#0b321d;
       --footer-text:rgba(255,255,255,.78);
       --footer-muted:rgba(255,255,255,.60);
       --footer-line:rgba(255,255,255,.12);
@@ -19,104 +29,375 @@
     }
 
     /* ===== HEADER ===== */
-    .topbar{background:#0b2c6d;color:#fff;font-size:13px;padding:8px 40px;display:flex;justify-content:space-between}
-    header{background:#fff;padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
-    .logo{background:#e41d24;color:#fff;font-weight:700;font-size:26px;padding:14px 22px}
-    nav ul{list-style:none;display:flex;gap:28px;font-weight:500}
-    nav a{text-decoration:none;color:#0a1d3b}
-    .contact{display:flex;align-items:center;gap:18px}
-    .btn{background:#e41d24;color:#fff;border:none;padding:12px 22px;font-weight:600}
+    .topbar{background:var(--brand-dark);color:#fff;font-size:12px;padding:10px 40px}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .topbar-left,.topbar-right{display:flex;align-items:center;gap:18px}
+    .topbar-item{display:flex;align-items:center;gap:8px;white-space:nowrap;opacity:.95}
+    .topbar-ico{width:14px;height:14px;opacity:.9;flex:0 0 auto}
+    .topbar a{color:inherit;text-decoration:none}
+    .topbar a:hover{opacity:1;text-decoration:underline}
+
+    .topbar-lang{display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .topbar-lang select{appearance:none;background:transparent;border:none;color:#fff;font:600 12px/1.2 'Poppins',sans-serif;padding-right:18px;cursor:pointer}
+    .topbar-lang select:focus-visible{outline:3px solid rgba(255,255,255,.45);outline-offset:3px}
+    .topbar-lang .caret{width:10px;height:10px;opacity:.9}
+
+    .topbar-social{display:flex;align-items:center;gap:10px;margin-left:6px}
+    .topbar-social a{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.12);text-decoration:none}
+    .topbar-social a:hover{background:rgba(255,255,255,.18)}
+    .topbar-social svg{width:14px;height:14px;display:block}
+
+    header{background:#fff;padding:12px 40px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .logo{background:var(--brand);color:#fff;font-weight:800;font-size:26px;padding:12px 22px;display:flex;align-items:center;gap:10px}
+    .logo svg{width:26px;height:26px;display:block}
+    nav ul{list-style:none;display:flex;gap:26px;font-weight:500}
+    nav a{text-decoration:none;color:var(--ink);font-size:14px}
+    nav li.has-submenu a{display:inline-flex;align-items:center;gap:6px}
+    nav li.has-submenu a::after{content:'▾';font-size:12px;opacity:.7;transform:translateY(-1px)}
+
+    .header-actions{display:flex;align-items:center;gap:16px}
+    .contact{display:flex;align-items:center;gap:10px}
+    .contact svg{width:18px;height:18px;color:var(--brand)}
+    .contact strong{font-size:14px;white-space:nowrap}
+    .btn{background:var(--brand);color:#fff;border:none;padding:12px 22px;font-weight:700}
+    .menu-toggle{width:44px;height:44px;border:none;background:transparent;display:grid;place-items:center;cursor:pointer}
+    .menu-toggle .bars{width:22px;height:16px;position:relative}
+    .menu-toggle .bars::before,.menu-toggle .bars::after,.menu-toggle .bars span{content:'';position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:2px}
+    .menu-toggle .bars::before{top:0}
+    .menu-toggle .bars span{top:7px}
+    .menu-toggle .bars::after{bottom:0}
+    .menu-toggle:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+
+    @media(max-width:980px){
+      .topbar{padding:10px 18px}
+      header{padding:14px 18px}
+      nav{display:none}
+    }
 
     /* ===== HERO ===== */
-    .hero{position:relative;height:85vh;background:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=2000') center/cover no-repeat}
-    .hero::before{content:'';position:absolute;inset:0;background:rgba(9,31,76,.75)}
-    .hero-content{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
-    .hero h1{font-size:60px;font-weight:700;margin-bottom:14px}
-    .hero p{opacity:.85;margin-bottom:30px}
-    .search-box{background:#fff;display:flex;width:60%;max-width:760px}
-    .search-box input{flex:1;border:none;padding:18px;font-size:15px}
-    .search-box button{background:#e41d24;color:#fff;border:none;padding:0 28px;font-weight:600}
+    .hero{position:relative;min-height:86vh;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat}
+    .hero::before{content:'';position:absolute;inset:0;background:rgba(12,46,28,.66)}
+    .hero-content{position:relative;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:54px 18px}
+
+    .hero-video{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .hero-video-btn{width:56px;height:56px;border-radius:999px;border:3px solid rgba(255,255,255,.65);background:rgba(255,255,255,.16);display:grid;place-items:center;cursor:pointer;transition:.18s ease}
+    .hero-video-btn svg{width:16px;height:16px;color:var(--brand);transform:translateX(1px)}
+    .hero-video-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.22)}
+    .hero-video-btn:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
+    .hero-video-label{font-weight:600;opacity:.95}
+
+    .hero h1{font-size:72px;line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+    .hero p{opacity:.9;margin-bottom:34px;font-weight:500}
+
+    .search-box{background:#fff;display:flex;align-items:stretch;width:min(920px, 92%);box-shadow:0 22px 55px rgba(2,8,23,.25)}
+    .search-field{flex:1;display:flex;align-items:center;gap:10px;padding:0 18px}
+    .search-ico{width:18px;height:18px;color:rgba(11,42,27,.50);flex:0 0 auto}
+    .search-box input{flex:1;border:none;outline:none;padding:18px 0;font-size:14px;color:var(--ink)}
+    .search-box input::placeholder{color:rgba(11,42,27,.55)}
+    .search-box button{background:var(--brand);color:#fff;border:none;padding:0 40px;font-weight:700;min-width:180px}
+    .search-box button:hover{filter:saturate(1.05)}
+    .search-box button:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
 
     /* ===== SECTION ===== */
     .section{padding:110px 40px;max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px}
-    .section h2{font-size:40px;font-weight:700;margin-bottom:16px;color:#0a1d3b}
+    .section h2{font-size:40px;font-weight:700;margin-bottom:16px;color:var(--ink)}
     .section p{color:#6b7280;margin-bottom:28px}
     .features{position:relative;display:flex;flex-direction:column;gap:22px}
     .features::before{content:'';position:absolute;left:13px;top:10px;bottom:10px;width:2px;background:#e5e7eb;border-radius:2px}
     .feature{position:relative;background:transparent;padding:8px 14px 8px 48px;border-radius:6px}
     .feature > div:not(.check){position:relative;z-index:1}
-    .feature strong{display:block;font-size:18px;font-weight:700;color:#0a1d3b;margin-bottom:2px}
+    .feature strong{display:block;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:2px}
     .feature small{color:#6b7280}
     .feature.active{background:transparent}
     .feature.active::after{content:'';position:absolute;left:38px;right:0;top:0;bottom:0;background:#fff;border-radius:6px;box-shadow:0 14px 30px rgba(15,23,42,.10);z-index:0}
-    .check{position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:#fff;color:#e41d24;border:2px solid rgba(228,29,36,.18);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;z-index:2}
-    .feature.active .check{background:#e41d24;color:#fff;border-color:#e41d24}
+    .check{position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--brand);border:2px solid rgba(119,195,79,.22);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;z-index:2}
+    .feature.active .check{background:var(--brand);color:#fff;border-color:var(--brand)}
     .images{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .images img{width:100%;height:100%;object-fit:cover;border-radius:6px}
     .images img:first-child{grid-column:1/3;height:260px}
 
+    /* ===== DIRECTORY FILTER ===== */
+    .directory-section{padding:110px 40px;background:#fff}
+    .directory-inner{max-width:1140px;margin:auto}
+    .directory-head{text-align:center;margin-bottom:26px}
+    .directory-head .topline{width:28px;height:2px;background:var(--brand);border-radius:2px;margin:0 auto 14px}
+    .directory-kicker{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--brand)}
+    .directory-head h2{font-size:48px;line-height:1.12;margin-top:14px;color:var(--ink)}
+
+    .directory-tabs{display:flex;justify-content:center;gap:30px;margin-top:18px}
+    .directory-tab{background:transparent;border:none;padding:0 2px 10px;cursor:pointer;font:600 14px/1.2 'Poppins',sans-serif;color:var(--ink);position:relative}
+    .directory-tab[aria-selected="true"]{color:var(--brand)}
+    .directory-tab[aria-selected="true"]::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--brand);border-radius:2px}
+    .directory-tab:focus-visible{outline:3px solid rgba(119,195,79,.45);outline-offset:4px}
+
+    .directory-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:26px;margin-top:34px}
+    .directory-card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+    .directory-media{height:190px;overflow:hidden;border-radius:0;background:#eef2f7}
+    .directory-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .directory-body{position:relative;background:#fff;width:calc(100% - 56px);margin:-26px auto 0;padding:26px 24px 22px;display:flex;flex-direction:column;gap:10px;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.08)}
+    .directory-badge{position:absolute;left:24px;top:0;transform:translateY(-50%);background:var(--brand);color:#fff;font-size:11px;font-weight:600;padding:6px 12px;border-radius:0;letter-spacing:.06em;text-transform:uppercase}
+    .directory-title{font-size:20px;font-weight:800;color:var(--ink);line-height:1.2;margin:8px 0 0}
+    .directory-desc{font-size:14px;color:#6b7280;line-height:1.5}
+    .directory-meta{margin-top:12px;padding-top:12px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:8px;font-size:13px;color:#6b7280}
+    .directory-meta svg{width:14px;height:14px;opacity:.85;flex:0 0 auto}
+
+    @media(max-width:900px){
+      .directory-head h2{font-size:40px}
+      .directory-tabs{gap:18px;flex-wrap:wrap}
+      .directory-grid{grid-template-columns:repeat(2, 1fr)}
+    }
+    @media(max-width:560px){
+      .directory-section{padding:86px 18px}
+      .directory-head h2{font-size:34px}
+      .directory-grid{grid-template-columns:1fr}
+    }
+
     /* ===== DEPARTMENTS ===== */
-    .dept-section{position:relative;padding:110px 40px 140px;background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000') center/cover no-repeat}
-    .dept-section::before{content:'';position:absolute;inset:0;background:rgba(9,31,76,.82)}
-    .dept-section::after{content:'';position:absolute;left:0;right:0;bottom:0;height:46%;min-height:320px;background:rgba(255,255,255,.92)}
+    .dept-section{position:relative;padding:110px 40px 140px;background:linear-gradient(180deg, var(--footer-bg) 0%, var(--footer-bg) 56%, #ffffff 56%, #ffffff 100%)}
+    .dept-section::before{content:'';position:absolute;inset:0;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='2'%3E%3Cpath d='M80 420h180v-60h-40v-30h-80v30h-60z'/%3E%3Cpath d='M330 420h160v-120h-50v-30h-60v30h-50z'/%3E%3Cpath d='M560 420h140v-180h-30v-40h-80v40h-30z'/%3E%3Cpath d='M760 420h220v-90h-60v-40h-100v40h-60z'/%3E%3Cpath d='M1030 420h120v-150h-40v-40h-40v40h-40z'/%3E%3Cpath d='M160 180c30-24 64-24 94 0'/%3E%3Cpath d='M420 140c34-26 72-26 106 0'/%3E%3Cpath d='M820 170c34-26 72-26 106 0'/%3E%3C/g%3E%3Cg fill='rgba(255,255,255,0.06)'%3E%3Ccircle cx='1050' cy='90' r='3'/%3E%3Ccircle cx='1120' cy='140' r='2'/%3E%3Ccircle cx='960' cy='120' r='2'/%3E%3Ccircle cx='180' cy='120' r='2'/%3E%3Ccircle cx='250' cy='80' r='3'/%3E%3Ccircle cx='520' cy='90' r='2'/%3E%3C/g%3E%3C/svg%3E") center 110px/1200px 520px no-repeat;
+      opacity:1
+    }
+    .dept-section::after{content:'';position:absolute;left:0;right:0;bottom:0;height:46%;min-height:320px;background:#fff}
     .dept-inner{position:relative;max-width:1200px;margin:auto}
     .dept-head{text-align:center;margin-bottom:42px;color:#fff}
     .dept-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:700;opacity:.85;position:relative;padding-top:16px}
-    .dept-kicker::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:28px;height:2px;background:#e41d24;border-radius:2px}
+    .dept-kicker::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:28px;height:2px;background:var(--brand);border-radius:2px}
     .dept-head h2{font-size:48px;line-height:1.12;margin-top:12px}
 
     .dept-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:26px}
-    .dept-card{position:relative;background:#fff;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.20);padding:34px 28px 28px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.2s ease}
+    .dept-card{position:relative;background:#fff;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.20);padding:34px 28px 28px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.2s ease;text-decoration:none;color:inherit}
     .dept-card:hover{transform:translateY(-3px)}
-    .dept-num{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;background:#fde8ea;color:#e41d24;font-weight:700}
-    .dept-ico{width:54px;height:54px;display:grid;place-items:center;color:#e41d24;margin-bottom:16px}
+    .dept-num{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand-dark);font-weight:700}
+    .dept-ico{width:54px;height:54px;display:grid;place-items:center;color:var(--brand);margin-bottom:16px}
     .dept-ico svg{width:52px;height:52px}
-    .dept-card h3{font-size:18px;color:#0a1d3b;font-weight:700;line-height:1.3}
+    .dept-card h3{font-size:18px;color:var(--ink);font-weight:700;line-height:1.3}
 
-    .dept-slider-area{margin-top:56px;position:relative;z-index:2}
-    .dept-slider-shell{background:#fff;border-radius:0;box-shadow:0 22px 55px rgba(2,8,23,.18);padding:26px 26px 18px}
-    .dept-slider-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
-    .dept-slider-title strong{display:block;color:#0a1d3b;font-size:22px;line-height:1.2}
-    .dept-slider-title small{display:block;color:#6b7280;margin-top:6px}
-    .dept-slider-nav{display:flex;align-items:center;gap:10px}
-    .dept-arrow{width:44px;height:44px;border:none;border-radius:0;display:grid;place-items:center;background:#0b2c6d;color:#fff;cursor:pointer;transition:.15s ease}
-    .dept-arrow:hover{transform:translateY(-1px)}
-    .dept-arrow:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .dept-slider-area{margin-top:62px;position:relative;z-index:2}
 
     .dept-carousel{overflow:hidden}
-    .dept-track{display:flex;gap:18px;overflow:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:14px}
-    .dept-track::-webkit-scrollbar{height:8px}
-    .dept-track::-webkit-scrollbar-thumb{background:rgba(15,23,42,.16);border-radius:20px}
-    .dept-slide{flex:0 0 calc((100% - 54px)/4);min-width:260px;scroll-snap-align:start;background:#fff;border:1px solid rgba(15,23,42,.10);box-shadow:0 14px 30px rgba(15,23,42,.08);padding:18px;border-radius:0}
-    .dept-slide-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-    .dept-slide-badge{width:54px;height:54px;display:grid;place-items:center;background:#fde8ea;color:#e41d24;border-radius:0;font-weight:800;font-size:18px}
-    .dept-slide h4{font-size:16px;line-height:1.25;color:#0a1d3b;font-weight:800}
-    .dept-slide p{color:#6b7280;font-size:13px;line-height:1.65}
-    .dept-slide a{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#0b2c6d;text-decoration:none;font-weight:700;font-size:13px}
-    .dept-slide a:hover{text-decoration:underline}
+    .dept-track{display:flex;gap:28px;overflow:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:0 0 8px;-ms-overflow-style:none;scrollbar-width:none}
+    .dept-track::-webkit-scrollbar{height:0}
 
-    .dept-dots{display:flex;justify-content:center;gap:10px;margin-top:16px}
-    .dept-dot{width:9px;height:9px;border-radius:99px;border:none;background:rgba(15,23,42,.18);cursor:pointer}
-    .dept-dot[aria-current="true"]{background:#e41d24;width:22px}
+    .dept-slide{position:relative;flex:0 0 calc((100% - 84px)/4);min-width:260px;height:430px;scroll-snap-align:start;border-radius:0;overflow:hidden;background:#0b1020;box-shadow:0 20px 50px rgba(2,8,23,.28);text-decoration:none;color:#fff;isolation:isolate}
+    .dept-slide::before{content:'';position:absolute;inset:0;background-image:var(--dept-bg);background-size:cover;background-position:center;transform:scale(1.02);filter:saturate(1.05);z-index:-2}
+    .dept-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 34%, rgba(0,0,0,.88) 100%);z-index:-1}
+
+    .dept-place-meta{position:absolute;left:22px;right:74px;bottom:22px}
+    .dept-place-kicker{display:block;font-size:12px;font-weight:600;opacity:.9;margin-bottom:10px}
+    .dept-place-title{font-size:30px;line-height:1.05;font-weight:800;letter-spacing:-.01em;text-shadow:0 10px 28px rgba(0,0,0,.55)}
+
+    .dept-place-action{position:absolute;right:20px;bottom:22px;width:52px;height:52px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.32);background:rgba(0,0,0,.22);font-size:22px;line-height:1;transition:.18s ease}
+    .dept-slide:hover .dept-place-action{transform:translateY(-2px);background:rgba(0,0,0,.38)}
+    .dept-slide:focus-visible{outline:3px solid rgba(119,195,79,.85);outline-offset:3px}
+
+    .dept-dots{display:flex;justify-content:center;gap:12px;margin-top:26px}
+    .dept-dot{width:8px;height:8px;border-radius:999px;border:none;background:rgba(11,42,27,.40);cursor:pointer}
+    .dept-dot[aria-current="true"]{width:16px;height:16px;background:transparent;border:2px solid var(--brand);position:relative}
+    .dept-dot[aria-current="true"]::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:999px;background:var(--brand)}
 
     @media(max-width:1100px){
       .dept-grid{grid-template-columns:repeat(2, 1fr)}
       .dept-head h2{font-size:40px}
-      .dept-slide{flex-basis:calc((100% - 18px)/2)}
+      .dept-slide{flex-basis:calc((100% - 28px)/2)}
     }
     @media(max-width:560px){
       .dept-section{padding:86px 18px}
       .dept-grid{grid-template-columns:1fr}
       .dept-head h2{font-size:34px}
-      .dept-section::after{height:54%}
-      .dept-slider-shell{padding:18px 16px 12px}
+      .dept-section::after{height:56%}
       .dept-slide{flex-basis:100%;min-width:0}
+      .dept-slide{height:420px}
+      .dept-place-title{font-size:28px}
     }
 
     @media(max-width:900px){
-      .hero h1{font-size:42px}
-      .search-box{width:90%}
+      .hero h1{font-size:52px}
       .section{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .hero{min-height:78vh}
+      .hero-content{min-height:78vh}
+      .hero h1{font-size:40px}
+      .search-box{flex-direction:column}
+      .search-field{width:100%;padding:0 16px}
+      .search-box button{min-width:0;padding:16px 18px}
+    }
+
+    /* ===== TOUR GUIDE ===== */
+    .guide-section{padding:110px 40px;background:#fff}
+    .guide-inner{max-width:1140px;margin:auto}
+    .guide-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:34px}
+    .guide-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--brand);position:relative;padding-top:14px}
+    .guide-kicker::before{content:'';position:absolute;left:0;top:0;width:28px;height:2px;background:var(--brand);border-radius:2px}
+    .guide-head h2{font-size:44px;line-height:1.12;margin-top:12px;color:var(--ink)}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:600;transition:.18s ease;white-space:nowrap}
+    .btn-outline:hover{border-color:#cbd5e1;transform:translateY(-1px)}
+    .btn-outline:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+
+    .guide-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:26px}
+    .guide-card{display:flex;flex-direction:column;gap:12px;text-align:center;align-items:center}
+
+    .guide-media{position:relative;width:100%;border-radius:14px;overflow:hidden;background:#eef2f7;box-shadow:0 16px 34px rgba(15,23,42,.10)}
+    .guide-media img{width:100%;height:220px;object-fit:cover;display:block}
+    .guide-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.45) 100%);opacity:0;transition:.18s ease}
+
+    .guide-social{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(10px);opacity:0;pointer-events:none;display:flex;gap:10px;align-items:center;justify-content:center;background:var(--brand);padding:10px 14px;border-radius:999px;box-shadow:0 14px 30px rgba(0,0,0,.25);transition:.18s ease}
+    .guide-social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--brand-dark);text-decoration:none;transition:.18s ease}
+    .guide-social a:hover{transform:translateY(-1px);background:#fff}
+    .guide-social svg{width:16px;height:16px;display:block}
+
+    .guide-card:hover .guide-media::after{opacity:1}
+    .guide-card:hover .guide-social{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+    .guide-card:focus-within .guide-media::after{opacity:1}
+    .guide-card:focus-within .guide-social{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
+    .guide-card h3{font-size:18px;font-weight:700;color:var(--ink);line-height:1.25}
+    .guide-card p{font-size:13px;color:#6b7280}
+
+    @media(max-width:1100px){
+      .guide-grid{grid-template-columns:repeat(2, 1fr)}
+      .guide-head h2{font-size:38px}
+    }
+    @media(max-width:560px){
+      .guide-section{padding:86px 18px}
+      .guide-head{flex-direction:column;align-items:flex-start}
+      .guide-head h2{font-size:32px}
+      .guide-grid{grid-template-columns:1fr}
+      .guide-media img{height:240px}
+    }
+
+    /* ===== EVENTS ===== */
+    .events-section{padding:110px 40px;background:#f6f8fb}
+    .events-inner{max-width:1140px;margin:auto}
+    .events-head{text-align:center;margin-bottom:46px}
+    .events-head .topline{width:28px;height:2px;background:var(--brand);border-radius:2px;margin:0 auto 14px}
+    .events-kicker{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--brand)}
+    .events-head h2{font-size:48px;line-height:1.12;margin-top:14px;color:var(--ink)}
+
+    .events-list{display:flex;flex-direction:column;gap:26px}
+    .event-card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:34px 38px;display:grid;grid-template-columns:220px 1.35fr 1fr 64px;gap:26px;align-items:center}
+
+    .event-left{position:relative;height:92px}
+    .event-date{position:absolute;left:0;top:0;width:52px;height:52px;background:var(--brand);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;line-height:1}
+    .event-date .d{font-size:14px;margin-bottom:4px}
+    .event-date .m{font-size:11px;letter-spacing:.08em}
+    .event-thumb{position:absolute;left:38px;top:4px;width:92px;height:92px;border-radius:999px;overflow:hidden;background:#eef2f7}
+    .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .event-main{display:flex;flex-direction:column;gap:10px}
+    .event-time{display:flex;align-items:center;gap:8px;color:#6b7280;font-size:13px}
+    .event-time .dot{width:16px;height:16px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+    .event-time .dot svg{width:10px;height:10px;display:block}
+    .event-title{font-size:24px;font-weight:800;color:var(--ink);line-height:1.18;text-decoration:none}
+    .event-title:hover{text-decoration:underline}
+    .event-loc{display:flex;align-items:center;gap:8px;color:#6b7280;font-size:13px}
+    .event-loc svg{width:14px;height:14px;opacity:.85}
+
+    .event-note{color:#6b7280;font-size:14px;line-height:1.5}
+
+    .event-action{justify-self:end}
+    .event-action a{width:44px;height:44px;border-radius:999px;border:1px solid #e5e7eb;display:grid;place-items:center;text-decoration:none;color:var(--ink);transition:.18s ease}
+    .event-action a:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-1px)}
+    .event-action a:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+
+    @media(max-width:1100px){
+      .events-head h2{font-size:40px}
+      .event-card{grid-template-columns:220px 1fr;grid-template-areas:
+        "left main"
+        "left note"
+        "left action";align-items:start}
+      .event-left{grid-area:left}
+      .event-main{grid-area:main}
+      .event-note{grid-area:note}
+      .event-action{grid-area:action;justify-self:start}
+    }
+    @media(max-width:560px){
+      .events-section{padding:86px 18px}
+      .events-head h2{font-size:34px}
+      .event-card{padding:26px 18px;grid-template-columns:1fr;grid-template-areas:
+        "left"
+        "main"
+        "note"
+        "action";gap:18px}
+      .event-left{height:96px}
+      .event-action{justify-self:start}
+    }
+
+    /* ===== BLOG ===== */
+    .blog-section{padding:110px 40px;background:#fff}
+    .blog-inner{max-width:1140px;margin:auto}
+    .blog-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:34px}
+    .blog-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--brand);position:relative;padding-top:14px}
+    .blog-kicker::before{content:'';position:absolute;left:0;top:0;width:28px;height:2px;background:var(--brand);border-radius:2px}
+    .blog-head h2{font-size:44px;line-height:1.12;margin-top:12px;color:var(--ink)}
+    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;border:1px solid var(--brand);transition:.18s ease;white-space:nowrap}
+    .btn-solid:hover{transform:translateY(-1px);filter:saturate(1.05)}
+    .btn-solid:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+
+    .blog-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start}
+    .blog-card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08)}
+
+    .blog-feature .media{height:310px;overflow:hidden}
+    .blog-feature .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .blog-feature .content{padding:22px 24px 26px}
+
+    .blog-compact{display:flex;min-height:198px}
+    .blog-compact .media{width:240px;flex:0 0 240px;overflow:hidden}
+    .blog-compact .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .blog-compact .content{flex:1;background:#f6f8fb;padding:22px 22px 24px}
+
+    .post-meta{display:flex;align-items:center;gap:14px;color:#6b7280;font-size:13px;margin-bottom:10px}
+    .post-meta .item{display:flex;align-items:center;gap:6px}
+    .post-meta svg{width:14px;height:14px;color:var(--brand);flex:0 0 auto}
+
+    .post-title{display:block;font-size:22px;font-weight:800;color:var(--ink);line-height:1.18;text-decoration:none;margin-bottom:12px}
+    .post-title:hover{text-decoration:underline}
+    .post-excerpt{color:#6b7280;font-size:14px;line-height:1.6;margin-bottom:16px}
+    .post-link{color:#6b7280;font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .post-link:hover{color:var(--ink)}
+    .post-link .arr{font-size:16px;line-height:1}
+
+    @media(max-width:1100px){
+      .blog-head h2{font-size:38px}
+    }
+    @media(max-width:980px){
+      .blog-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .blog-section{padding:86px 18px}
+      .blog-head{flex-direction:column;align-items:flex-start}
+      .blog-head h2{font-size:32px}
+      .blog-feature .media{height:250px}
+      .blog-compact{flex-direction:column}
+      .blog-compact .media{width:100%;flex-basis:auto;height:220px}
+    }
+
+    /* ===== LOGO STRIP ===== */
+    .logo-strip{background:#fff;padding:44px 40px}
+    .logo-strip-inner{max-width:1140px;margin:auto;background:#fde9ea;padding:34px 26px}
+    .logo-marquee{position:relative;overflow:hidden}
+
+    .logo-marquee-track{display:flex;width:max-content;will-change:transform;animation:logoMarquee 22s linear infinite}
+    .logo-marquee:hover .logo-marquee-track{animation-play-state:paused}
+
+    .logo-row{display:flex;align-items:center;gap:84px;padding-right:84px}
+    .logo-item{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700;letter-spacing:-.01em;opacity:.92;user-select:none;white-space:nowrap}
+    .logo-item svg{width:22px;height:22px;color:var(--brand-dark);opacity:.95;flex:0 0 auto}
+
+    @keyframes logoMarquee{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .logo-marquee-track{animation:none}
+    }
+    @media(max-width:560px){
+      .logo-strip{padding:34px 18px}
+      .logo-strip-inner{padding:26px 16px}
+      .logo-row{gap:54px;padding-right:54px}
     }
 
     /* ===== FOOTER ===== */
@@ -139,7 +420,7 @@
     .footer-title{font-size:18px;font-weight:700;margin-bottom:18px}
     .footer-contact{display:flex;flex-direction:column;gap:14px;color:var(--footer-text)}
     .footer-contact .item{display:flex;gap:12px;align-items:flex-start}
-    .footer-contact .ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(228,29,36,.14);color:#ff3b3b;flex:0 0 auto}
+    .footer-contact .ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(119,195,79,.18);color:var(--brand);flex:0 0 auto}
     .footer-contact .value{line-height:1.35}
     .footer-contact .address{margin-top:12px;color:var(--footer-muted);line-height:1.7}
 
@@ -151,13 +432,13 @@
     .footer-cta p{color:var(--footer-muted);margin-bottom:16px}
     .subscribe{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;max-width:640px}
     .subscribe input{flex:1;border:none;outline:none;padding:18px 18px;font-size:14px}
-    .subscribe button{border:none;background:#e41d24;color:#fff;font-weight:700;padding:0 34px}
+    .subscribe button{border:none;background:var(--brand);color:#fff;font-weight:700;padding:0 34px}
 
     .footer-bottom{padding:18px 40px 30px;text-align:center;color:rgba(255,255,255,.72);font-size:13px}
     .footer-bottom a{color:#fff;text-decoration:none}
     .footer-bottom a:hover{text-decoration:underline}
 
-    .back-to-top{position:fixed;right:20px;bottom:16px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#e41d24;color:#fff;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s ease;z-index:50}
+    .back-to-top{position:fixed;right:20px;bottom:16px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s ease;z-index:50}
     .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 
     @media(max-width:980px){
@@ -177,34 +458,110 @@
 <body>
 
 <div class="topbar">
-  <div>infogimont@gmail.com · 55 main street, Melbourne, Australia</div>
-  <div>English</div>
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+          <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="mailto:infogimont@gmail.com">infogimont@gmail.com</a>
+      </div>
+      <div class="topbar-item">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/>
+        </svg>
+        <span>55 main street,Melbourne, Australia</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-lang" aria-label="Language">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12h20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+          <path d="M12 2c3 3 3 17 0 20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+          <path d="M12 2c-3 3-3 17 0 20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+        </svg>
+        <select aria-label="Select language">
+          <option>English</option>
+          <option>French</option>
+          <option>Spanish</option>
+        </select>
+        <svg class="caret" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
+
+      <div class="topbar-social" aria-label="Social links">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.6l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5Z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.8 7.6c0 .2 0 .4-.1.7-.5 6.1-4.6 10.4-10.6 10.4-2.1 0-4-.6-5.6-1.6h.8c1.7 0 3.2-.6 4.4-1.6-1.6 0-3-1.1-3.5-2.6.2 0 .5.1.7.1.3 0 .7 0 1-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.7.5-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.4.6-1.9 1.8 2.2 4.4 3.6 7.4 3.8-.1-.3-.1-.6-.1-.9 0-2.1 1.7-3.8 3.8-3.8 1.1 0 2 .4 2.7 1.1.8-.2 1.6-.5 2.3-.9-.3.9-.9 1.6-1.6 2.1.7-.1 1.4-.3 2-.6-.5.7-1 1.3-1.6 1.8Z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 6.7A2.2 2.2 0 1 1 6.5 2.3a2.2 2.2 0 0 1 0 4.4ZM4.6 21.7V8.3h3.8v13.4H4.6ZM10.4 8.3H14v1.8h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6v7.7h-3.8v-6.8c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5v6.9h-3.8V8.3Z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm6.2-2.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <header>
-  <div class="logo">GIMONT</div>
+  <div class="logo" aria-label="Gimont">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2 20 5v7c0 5.1-3.6 9.4-8 10-4.4-.6-8-4.9-8-10V5l8-3Z" fill="rgba(255,255,255,.18)"/>
+      <path d="M12 2 20 5v7c0 5.1-3.6 9.4-8 10-4.4-.6-8-4.9-8-10V5l8-3Z" stroke="rgba(255,255,255,.85)" stroke-width="1.6"/>
+    </svg>
+    <span>GIMONT</span>
+  </div>
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Pages</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Departments</a></li>
-      <li><a href="#">Documentation</a></li>
-      <li><a href="#">Services</a></li>
+      <li class="has-submenu"><a href="#">Home</a></li>
+      <li class="has-submenu"><a href="#">Pages</a></li>
+      <li class="has-submenu"><a href="#">Events</a></li>
+      <li class="has-submenu"><a href="#">Departments</a></li>
+      <li class="has-submenu"><a href="#">Documentation</a></li>
+      <li class="has-submenu"><a href="#">Services</a></li>
     </ul>
   </nav>
-  <div class="contact">
-    <strong>+92 (8800) 9850</strong>
+  <div class="header-actions">
+    <div class="contact" aria-label="Contact phone">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <strong>+92 (8800) 9850</strong>
+    </div>
     <button class="btn">Contact Us</button>
+    <button class="menu-toggle" type="button" aria-label="Open menu">
+      <div class="bars"><span></span></div>
+    </button>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-content">
+    <div class="hero-video">
+      <button class="hero-video-btn" type="button" aria-label="Watch videos">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </button>
+      <span class="hero-video-label">Watch Videos</span>
+    </div>
     <h1>Explore The World</h1>
     <p>One site, 32500+ experience you'll remember</p>
     <div class="search-box">
-      <input type="text" placeholder="What you needs" />
+      <div class="search-field">
+        <svg class="search-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M16.6 16.6 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input type="text" placeholder="What you needs" />
+      </div>
       <button>Search Now</button>
     </div>
   </div>
@@ -244,6 +601,115 @@
     <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200" />
     <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=800" />
     <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=800" />
+  </div>
+</section>
+
+<section class="directory-section" aria-label="Popular directory">
+  <div class="directory-inner">
+    <div class="directory-head">
+      <div class="topline" aria-hidden="true"></div>
+      <div class="directory-kicker">VISIT AND ENJOY LIFE</div>
+      <h2>Explore Popular Directory</h2>
+
+      <div class="directory-tabs" role="tablist" aria-label="Directory filters" data-directory-tabs>
+        <button class="directory-tab" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="education">Education</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="entertainment">Entertainment</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="public-services">Public Services</button>
+      </div>
+    </div>
+
+    <div class="directory-grid" data-directory-grid>
+      <article class="directory-card" data-category="entertainment">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=900&auto=format&fit=crop" alt="Bowling alley with colorful lights" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Entertainment</span>
+          <h3 class="directory-title">Bowling Point</h3>
+          <p class="directory-desc">Bowling refers to a series of sports or leisure activities in which..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>165 Main Street, Cambridge, Massachusetts, USA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="directory-card" data-category="public-services">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1523875194681-bedd468c58bf?q=80&w=900&auto=format&fit=crop" alt="Community center playground" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Public Services</span>
+          <h3 class="directory-title">Community Centre</h3>
+          <p class="directory-desc">Community centres or community public centers are public locations where members of a..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>65 Park Street, Lawrence, MA, USA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="directory-card" data-category="entertainment">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop" alt="Neon cinema entrance" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Entertainment</span>
+          <h3 class="directory-title">Downtown Cinema</h3>
+          <p class="directory-desc">A movie theatre or movie theatre (also called a cinema) is a..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>279 Main Street, Frisco, TX, USA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="directory-card" data-category="education">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=900&auto=format&fit=crop" alt="Elementary school building" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Education</span>
+          <h3 class="directory-title">Elementary School</h3>
+          <p class="directory-desc">An elementary school is the main point of delivery of primary education..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>21 George Street, London, UK</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="directory-card" data-category="education">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=900&auto=format&fit=crop" alt="Historic high school building" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Education</span>
+          <h3 class="directory-title">High School</h3>
+          <p class="directory-desc">A secondary school is one means of delivering education to adolescents..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>445 King Street, Berlin, Germany</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="directory-card" data-category="public-services">
+        <div class="directory-media">
+          <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=900&auto=format&fit=crop" alt="Historic post office building" loading="lazy" />
+        </div>
+        <div class="directory-body">
+          <span class="directory-badge">Public Services</span>
+          <h3 class="directory-title">Post Office</h3>
+          <p class="directory-desc">A post office is a customer service facility forming part of a..</p>
+          <div class="directory-meta">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>56 Post Street, Paris, France</span>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -344,96 +810,397 @@
       </a>
     </div>
 
-    <div class="dept-slider-area" aria-label="Department Highlights">
-      <div class="dept-slider-shell">
-        <div class="dept-slider-head">
-          <div class="dept-slider-title">
-            <strong>Popular services &amp; resources</strong>
-            <small>Quick links people use most often</small>
+    <div class="dept-slider-area" aria-label="Favorite places">
+      <div class="dept-carousel" role="region" aria-label="Favorite places carousel">
+        <div class="dept-track" data-dept-track tabindex="0">
+          <a class="dept-slide" href="#" aria-label="Children Park" style="--dept-bg:url('https://images.unsplash.com/photo-1525856328229-52d8a7b9b2c5?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">Children Park</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="dept-slide" href="#" aria-label="Metro Stations" style="--dept-bg:url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">Metro Stations</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="dept-slide" href="#" aria-label="Historical Building" style="--dept-bg:url('https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">Historical Building</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="dept-slide" href="#" aria-label="New York City Museum" style="--dept-bg:url('https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">New York City
+                Museum</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="dept-slide" href="#" aria-label="City Library" style="--dept-bg:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">City Library</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="dept-slide" href="#" aria-label="Waterfront Walk" style="--dept-bg:url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1200')">
+            <div class="dept-place-meta">
+              <span class="dept-place-kicker">Favorite place</span>
+              <div class="dept-place-title">Waterfront Walk</div>
+            </div>
+            <span class="dept-place-action" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="dept-dots" aria-label="Carousel pagination" data-dept-dots></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" aria-label="Our Tour Guide">
+  <div class="guide-inner">
+    <div class="guide-head">
+      <div>
+        <div class="guide-kicker">OUR TOUR GUIDE</div>
+        <h2>Meet Our Tour Guide</h2>
+      </div>
+      <a class="btn-outline" href="#">View All Guide</a>
+    </div>
+
+    <div class="guide-grid">
+      <article class="guide-card">
+        <div class="guide-media">
+          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=900&auto=format&fit=crop" alt="Portrait of Aleesha brown" loading="lazy" />
+          <div class="guide-social" aria-label="Aleesha brown social links">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
+            </a>
           </div>
-          <div class="dept-slider-nav" aria-label="Carousel controls">
-            <button class="dept-arrow" type="button" data-dept-arrow="prev" aria-label="Previous">‹</button>
-            <button class="dept-arrow" type="button" data-dept-arrow="next" aria-label="Next">›</button>
+        </div>
+        <h3>Aleesha brown</h3>
+        <p>City Mayor &amp; Developer</p>
+      </article>
+
+      <article class="guide-card">
+        <div class="guide-media">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=900&auto=format&fit=crop" alt="Portrait of Mike hardson" loading="lazy" />
+          <div class="guide-social" aria-label="Mike hardson social links">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>Mike hardson</h3>
+        <p>City Mayor &amp; Developer</p>
+      </article>
+
+      <article class="guide-card">
+        <div class="guide-media">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=900&auto=format&fit=crop" alt="Portrait of Kevin martin" loading="lazy" />
+          <div class="guide-social" aria-label="Kevin martin social links">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>Kevin martin</h3>
+        <p>City Mayor &amp; Developer</p>
+      </article>
+
+      <article class="guide-card">
+        <div class="guide-media">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900&auto=format&fit=crop" alt="Portrait of Sarah albert" loading="lazy" />
+          <div class="guide-social" aria-label="Sarah albert social links">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>Sarah albert</h3>
+        <p>City Mayor &amp; Developer</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="events-section" aria-label="Events & Program">
+  <div class="events-inner">
+    <div class="events-head">
+      <div class="topline" aria-hidden="true"></div>
+      <div class="events-kicker">ART WORKS &amp; OBJECTS</div>
+      <h2>Explore Our Events &amp; Program</h2>
+    </div>
+
+    <div class="events-list">
+      <article class="event-card">
+        <div class="event-left">
+          <div class="event-date" aria-label="18 June">
+            <div class="d">18</div>
+            <div class="m">JUN</div>
+          </div>
+          <div class="event-thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
           </div>
         </div>
 
-        <div class="dept-carousel" role="region" aria-label="Services carousel">
-          <div class="dept-track" data-dept-track tabindex="0">
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">01</div>
-                <div>
-                  <h4>Pay bills online</h4>
-                  <p>Fast payments for utilities and city fees.</p>
-                </div>
-              </div>
-              <p>Manage your municipal bills securely and get instant receipts.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
-
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">02</div>
-                <div>
-                  <h4>Report an issue</h4>
-                  <p>Road, street light, waste, noise.</p>
-                </div>
-              </div>
-              <p>Send a report in minutes and track updates from the city.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
-
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">03</div>
-                <div>
-                  <h4>Permit &amp; licensing</h4>
-                  <p>Apply, renew, and check status.</p>
-                </div>
-              </div>
-              <p>Business permits, construction approvals, and renewals.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
-
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">04</div>
-                <div>
-                  <h4>Public transport info</h4>
-                  <p>Routes, schedules, and alerts.</p>
-                </div>
-              </div>
-              <p>Plan your commute with real-time updates and maps.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
-
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">05</div>
-                <div>
-                  <h4>Health &amp; community</h4>
-                  <p>Clinics, support, and programs.</p>
-                </div>
-              </div>
-              <p>Find public health programs and community wellbeing services.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
-
-            <article class="dept-slide">
-              <div class="dept-slide-top">
-                <div class="dept-slide-badge">06</div>
-                <div>
-                  <h4>Jobs &amp; career center</h4>
-                  <p>Workshops and job listings.</p>
-                </div>
-              </div>
-              <p>Discover training programs and opportunities across the city.</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
-            </article>
+        <div class="event-main">
+          <div class="event-time">
+            <span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
+            </span>
+            <span>7:00 am - 8:00 pm</span>
+          </div>
+          <a class="event-title" href="#">Organizing City Contest 2025</a>
+          <div class="event-loc">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>Bangkok, Thailand</span>
           </div>
         </div>
 
-        <div class="dept-dots" aria-label="Carousel pagination" data-dept-dots></div>
+        <div class="event-note">This event is free and open to the public</div>
+
+        <div class="event-action">
+          <a href="#" aria-label="Open event">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <div class="event-left">
+          <div class="event-date" aria-label="21 June">
+            <div class="d">21</div>
+            <div class="m">JUN</div>
+          </div>
+          <div class="event-thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1514503612056-e3f673b3f3e0?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="event-main">
+          <div class="event-time">
+            <span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
+            </span>
+            <span>7:00 am - 8:00 pm</span>
+          </div>
+          <a class="event-title" href="#">Events for the public in South East Asia</a>
+          <div class="event-loc">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>Bangkok, Thailand</span>
+          </div>
+        </div>
+
+        <div class="event-note">This event is free and open to the public</div>
+
+        <div class="event-action">
+          <a href="#" aria-label="Open event">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <div class="event-left">
+          <div class="event-date" aria-label="03 September">
+            <div class="d">03</div>
+            <div class="m">SEP</div>
+          </div>
+          <div class="event-thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="event-main">
+          <div class="event-time">
+            <span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
+            </span>
+            <span>9:00 am - 4:00 pm @ September 11, 2029</span>
+          </div>
+          <a class="event-title" href="#">Real Entrepreneurship Bootcamp in Gimont</a>
+          <div class="event-loc">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+            <span>8 Street, San Marcos London, UK</span>
+          </div>
+        </div>
+
+        <div class="event-note">This event is free and open to the public</div>
+
+        <div class="event-action">
+          <a href="#" aria-label="Open event">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="blog-section" aria-label="Latest news and articles">
+  <div class="blog-inner">
+    <div class="blog-head">
+      <div>
+        <div class="blog-kicker">FROM THE BLOG</div>
+        <h2>Latest news &amp; articles<br/>from the blog</h2>
+      </div>
+      <a class="btn-solid" href="#">View More News</a>
+    </div>
+
+    <div class="blog-grid">
+      <article class="blog-card blog-feature">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1526401485004-2aa7f3c59c75?q=80&w=1400&auto=format&fit=crop" alt="" loading="lazy" />
+        </div>
+        <div class="content">
+          <div class="post-meta">
+            <span class="item">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
+              <span>Admin</span>
+            </span>
+            <span class="item">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
+              <span>0 Comments</span>
+            </span>
+          </div>
+          <a class="post-title" href="#">Best Municipal &amp; City Government 2023</a>
+          <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
+          <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <article class="blog-card blog-compact">
+          <div class="media">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+          </div>
+          <div class="content">
+            <div class="post-meta">
+              <span class="item">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
+                <span>Admin</span>
+              </span>
+              <span class="item">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
+                <span>0 Comments</span>
+              </span>
+            </div>
+            <a class="post-title" href="#" style="font-size:20px">Urban Renewal Loans Available</a>
+            <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
+            <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+          </div>
+        </article>
+
+        <article class="blog-card blog-compact">
+          <div class="media">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+          </div>
+          <div class="content">
+            <div class="post-meta">
+              <span class="item">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
+                <span>Admin</span>
+              </span>
+              <span class="item">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
+                <span>0 Comments</span>
+              </span>
+            </div>
+            <a class="post-title" href="#" style="font-size:20px">New Australian Economic Culture</a>
+            <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
+            <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="logo-strip" aria-label="Partner logos">
+  <div class="logo-strip-inner">
+    <div class="logo-marquee" role="region" aria-label="Partner logo slider">
+      <div class="logo-marquee-track">
+        <div class="logo-row">
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2"/><path d="M4 8v8l8 4 8-4V8" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Square</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 018 8" stroke="currentColor" stroke-width="2" opacity=".6"/></svg>
+            <span>Circel</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7h7a4 4 0 010 8H6V7z" stroke="currentColor" stroke-width="2"/><path d="M13 9h5a3 3 0 010 6h-5" stroke="currentColor" stroke-width="2" opacity=".75"/></svg>
+            <span>DoubleS</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 12 4-8 4 8 4-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Exparto</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2"/><path d="M4 8v8l8 4 8-4V8" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Square</span>
+          </div>
+        </div>
+
+        <div class="logo-row" aria-hidden="true">
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2"/><path d="M4 8v8l8 4 8-4V8" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Square</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 018 8" stroke="currentColor" stroke-width="2" opacity=".6"/></svg>
+            <span>Circel</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7h7a4 4 0 010 8H6V7z" stroke="currentColor" stroke-width="2"/><path d="M13 9h5a3 3 0 010 6h-5" stroke="currentColor" stroke-width="2" opacity=".75"/></svg>
+            <span>DoubleS</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 12 4-8 4 8 4-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Exparto</span>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2"/><path d="M4 8v8l8 4 8-4V8" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Square</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -541,6 +1308,46 @@
   })();
 
   (function(){
+    const tabsWrap = document.querySelector('[data-directory-tabs]');
+    const grid = document.querySelector('[data-directory-grid]');
+    if(!tabsWrap || !grid) return;
+
+    const tabs = Array.from(tabsWrap.querySelectorAll('[data-filter]'));
+    const cards = () => Array.from(grid.querySelectorAll('[data-category]'));
+
+    const setActive = (activeValue) => {
+      tabs.forEach((t) => t.setAttribute('aria-selected', t.getAttribute('data-filter') === activeValue ? 'true' : 'false'));
+
+      const allCards = cards();
+      allCards.forEach((card) => {
+        const cat = (card.getAttribute('data-category') || '').trim();
+        const show = activeValue === 'all' || cat === activeValue;
+        card.style.display = show ? '' : 'none';
+      });
+    };
+
+    tabsWrap.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-filter]');
+      if(!btn) return;
+      setActive(btn.getAttribute('data-filter'));
+    });
+
+    // keyboard: left/right to move selection
+    tabsWrap.addEventListener('keydown', (e) => {
+      if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const focused = document.activeElement;
+      const idx = tabs.indexOf(focused);
+      if(idx === -1) return;
+      e.preventDefault();
+      const next = e.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+      tabs[next].focus();
+      setActive(tabs[next].getAttribute('data-filter'));
+    });
+
+    setActive('all');
+  })();
+
+  (function(){
     const section = document.querySelector('.dept-section');
     if(!section) return;
 
@@ -548,10 +1355,12 @@
     const dotsWrap = section.querySelector('[data-dept-dots]');
     const prevBtn = section.querySelector('[data-dept-arrow="prev"]');
     const nextBtn = section.querySelector('[data-dept-arrow="next"]');
-    if(!track || !dotsWrap || !prevBtn || !nextBtn) return;
+    if(!track || !dotsWrap) return;
 
     const slides = Array.from(track.querySelectorAll('.dept-slide'));
     if(!slides.length) return;
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
     const getStep = () => {
@@ -561,28 +1370,35 @@
       return first.getBoundingClientRect().width + gap;
     };
 
-    const pageCount = () => {
+    const visibleCount = () => {
       const step = getStep();
-      const visible = clamp(Math.round(track.getBoundingClientRect().width / step) || 1, 1, slides.length);
-      return Math.max(1, slides.length - visible + 1);
+      return clamp(Math.round(track.getBoundingClientRect().width / step) || 1, 1, slides.length);
+    };
+
+    const pageCount = () => {
+      const visible = visibleCount();
+      return Math.max(1, Math.ceil(slides.length / visible));
     };
 
     const setButtons = () => {
       const maxScroll = track.scrollWidth - track.clientWidth - 2;
-      prevBtn.disabled = track.scrollLeft <= 2;
-      nextBtn.disabled = track.scrollLeft >= maxScroll;
+      if(prevBtn) prevBtn.disabled = track.scrollLeft <= 2;
+      if(nextBtn) nextBtn.disabled = track.scrollLeft >= maxScroll;
     };
 
-    const scrollToIndex = (i) => {
+    const scrollToPage = (i) => {
       const step = getStep();
+      const visible = visibleCount();
       const maxIndex = pageCount() - 1;
       const idx = clamp(i, 0, maxIndex);
-      track.scrollTo({ left: idx * step, behavior: 'smooth' });
+      track.scrollTo({ left: idx * step * visible, behavior: 'smooth' });
     };
 
     const activeIndex = () => {
       const step = getStep();
-      return clamp(Math.round(track.scrollLeft / step), 0, pageCount() - 1);
+      const visible = visibleCount();
+      const denom = Math.max(1, step * visible);
+      return clamp(Math.round(track.scrollLeft / denom), 0, pageCount() - 1);
     };
 
     const renderDots = () => {
@@ -592,8 +1408,12 @@
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'dept-dot';
-        b.setAttribute('aria-label', `Go to slide ${i+1}`);
-        b.addEventListener('click', () => scrollToIndex(i));
+        b.setAttribute('aria-label', `Go to page ${i+1}`);
+        b.addEventListener('click', () => {
+          stopAutoplay();
+          scrollToPage(i);
+          scheduleResume();
+        });
         dotsWrap.appendChild(b);
       }
       updateDots();
@@ -606,13 +1426,76 @@
       setButtons();
     };
 
-    prevBtn.addEventListener('click', () => scrollToIndex(activeIndex() - 1));
-    nextBtn.addEventListener('click', () => scrollToIndex(activeIndex() + 1));
-    track.addEventListener('scroll', () => window.requestAnimationFrame(updateDots), {passive:true});
-    window.addEventListener('resize', () => renderDots(), {passive:true});
+    let autoplayId = null;
+    let resumeTimer = null;
+    let paused = false;
+
+    const stopAutoplay = () => {
+      if(autoplayId) window.clearInterval(autoplayId);
+      autoplayId = null;
+    };
+
+    const startAutoplay = () => {
+      if(prefersReduced || paused) return;
+      stopAutoplay();
+      autoplayId = window.setInterval(() => {
+        const next = (activeIndex() + 1) % pageCount();
+        scrollToPage(next);
+      }, 4200);
+    };
+
+    const scheduleResume = () => {
+      if(prefersReduced) return;
+      if(resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => startAutoplay(), 6500);
+    };
+
+    const pause = () => {
+      paused = true;
+      stopAutoplay();
+    };
+
+    const resume = () => {
+      paused = false;
+      startAutoplay();
+    };
+
+    if(prevBtn) prevBtn.addEventListener('click', () => {
+      stopAutoplay();
+      scrollToPage(activeIndex() - 1);
+      scheduleResume();
+    });
+    if(nextBtn) nextBtn.addEventListener('click', () => {
+      stopAutoplay();
+      scrollToPage(activeIndex() + 1);
+      scheduleResume();
+    });
+
+    track.addEventListener('mouseenter', pause);
+    track.addEventListener('mouseleave', resume);
+    track.addEventListener('focusin', pause);
+    track.addEventListener('focusout', resume);
+    track.addEventListener('pointerdown', () => { stopAutoplay(); scheduleResume(); }, {passive:true});
+    track.addEventListener('wheel', () => { stopAutoplay(); scheduleResume(); }, {passive:true});
+
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateDots);
+      scheduleResume();
+    }, {passive:true});
+
+    window.addEventListener('resize', () => {
+      renderDots();
+      scheduleResume();
+    }, {passive:true});
+
+    document.addEventListener('visibilitychange', () => {
+      if(document.hidden) stopAutoplay();
+      else startAutoplay();
+    });
 
     renderDots();
     setButtons();
+    startAutoplay();
   })();
 </script>
 
