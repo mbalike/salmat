@@ -1,0 +1,45 @@
+/* Departments overview page styles (pairs with service-detail.css) */
+
+.dept-page-wrap{max-width:1200px;margin:0 auto;padding:64px 40px 90px}
+
+.dept-page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:28px}
+.dept-page-head h2{margin:0;font-size:34px;line-height:1.15;color:var(--ink);font-weight:800}
+.dept-page-head p{margin:0;max-width:720px;color:#6b7280;line-height:1.8}
+
+.dept-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px}
+
+.dept-card{display:grid;grid-template-columns:1fr min(320px, 42%);min-height:220px;background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);text-decoration:none;color:inherit;transition:.18s ease;overflow:hidden}
+.dept-card:hover{transform:translateY(-2px);box-shadow:0 22px 55px rgba(2,8,23,.12)}
+.dept-card:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:5px}
+
+.dept-card-copy{padding:26px 24px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+
+.dept-card-ico{width:54px;height:54px;border-radius:999px;background:rgba(117,191,83,.12);color:var(--brand-dark);display:grid;place-items:center;flex:0 0 auto}
+.dept-card-ico svg{width:22px;height:22px;display:block}
+
+.dept-card-title{margin:0;font-size:18px;line-height:1.25;font-weight:800;color:var(--ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+
+/* two-line intro like your reference */
+.dept-card-intro{margin:0;color:#6b7280;line-height:1.6;font-size:14px;max-width:46ch;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+
+.dept-card-media{position:relative;background:#0b1020}
+.dept-card-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
+.dept-card-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.36));opacity:1}
+
+.dept-card-cta{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:800;text-decoration:none;opacity:0;transform:translateY(8px);transition:.18s ease;z-index:2}
+.dept-card-cta .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(119,195,79,.88);backdrop-filter:saturate(1.1);border:1px solid rgba(255,255,255,.24)}
+.dept-card:hover .dept-card-cta{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:1100px){
+  .dept-card{grid-template-columns:1fr min(280px, 44%)}
+}
+
+@media(max-width:700px){
+  .dept-page-wrap{padding:46px 18px 70px}
+  .dept-page-head{flex-direction:column;align-items:flex-start}
+  .dept-page-head h2{font-size:30px}
+  .dept-grid{grid-template-columns:1fr}
+  .dept-card{grid-template-columns:1fr}
+  .dept-card-media{height:220px}
+}
