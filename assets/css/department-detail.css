@@ -64,15 +64,10 @@
 .download-card .dl svg{width:22px;height:22px}
 
 /* Article tweaks for department copy */
-.dept-detail .dept-article-media{border-radius:16px;overflow:hidden;background:#e5e7eb;margin:0 0 18px}
-.dept-detail .dept-article-media img{display:block;width:100%;height:260px;object-fit:cover}
+.dept-detail .feature-media{height:clamp(180px, 20vw, 240px)}
 .dept-detail .article h2{margin-top:24px}
 .dept-detail .article .tagline{font-size:18px;font-weight:800;color:var(--brand-dark);margin:8px 0 14px}
 .dept-detail .article .lead{margin:0;color:#6b7280;line-height:1.85}
-
-@media(max-width:640px){
-  .dept-detail .dept-article-media img{height:200px}
-}
 
 @media(max-width:980px){
   .dept-detail .page-grid{grid-template-columns:1fr}
