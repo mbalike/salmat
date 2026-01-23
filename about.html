@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us • SALMART Diplomatic Hospitality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
+    :root{
+      --brand:#77c34f;
+      --brand-dark:#1f6b35;
+      --ink:#0b2a1b;
+      --card:#ffffff;
+      --muted:#6b7280;
+    }
+    header{background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 10px 30px rgba(2,8,23,.06)}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .logo img{height:46px;width:auto;display:block}
+    nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+    nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+    nav a:hover{text-decoration:underline}
+
+    .page{max-width:1100px;margin:auto;padding:56px 18px 86px}
+    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
+    h1{font-size:44px;line-height:1.1;margin-top:12px}
+    .lead{margin-top:14px;color:var(--muted);line-height:1.8;max-width:920px}
+
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin-top:34px}
+    .card{background:var(--card);box-shadow:0 18px 40px rgba(2,8,23,.08);padding:26px 24px}
+    .card h2{font-size:22px;margin-bottom:10px}
+    .card p{color:var(--muted);line-height:1.8}
+
+    .list{margin-top:12px;display:flex;flex-direction:column;gap:10px;color:var(--muted);line-height:1.7}
+    .list strong{color:var(--ink)}
+
+    .pillgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .pill{border:1px solid #e5e7eb;background:#fff;padding:12px 14px}
+    .pill strong{display:block;font-size:14px}
+    .pill span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--brand)}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:700}
+
+    footer{background:linear-gradient(180deg, rgba(14,62,36,1), rgba(11,50,29,1));color:#fff}
+    .footer-inner{max-width:1100px;margin:auto;padding:34px 18px}
+    .footer-inner p{color:rgba(255,255,255,.78);line-height:1.7;margin-top:8px}
+    .footer-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px}
+    .footer-links a{color:#fff;text-decoration:none;font-weight:700}
+    .footer-links a:hover{text-decoration:underline}
+
+    @media(max-width:920px){
+      h1{font-size:36px}
+      .grid{grid-template-columns:1fr}
+      .pillgrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html#home" aria-label="SALMART Diplomatic Hospitality">
+      <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="SALMART Diplomatic Hospitality" />
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why.html">Why SALMART</a></li>
+        <li><a href="how-we-work.html">How We Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <span class="kicker">ABOUT US</span>
+    <h1>SALMART Diplomatic Hospitality</h1>
+    <p class="lead">SALMART Diplomatic Hospitality is a premier Destination Management Company (DMC) dedicated to designing, managing, and delivering high-level events and hospitality experiences for corporate, diplomatic, institutional, and high-profile clients. We operate at the intersection of strategy, culture, protocol, and creativity, offering fully integrated solutions that go far beyond logistics.</p>
+
+    <div class="grid">
+      <section class="card" aria-label="Overview">
+        <h2>What We Do</h2>
+        <p>From international conferences and diplomatic summits to incentive programs, exhibitions, and luxury travel experiences, we manage every detail with precision, discretion, and cultural intelligence. Our work spans live, hybrid, and online formats, supported by cutting-edge technology, refined storytelling, and world-class production standards.</p>
+        <p style="margin-top:12px">At SALMART, we do not simply organize events — we craft experiences from the ground up. From branding and visual identity to venue transformation, content creation, media engagement, and post-event documentation, we ensure every engagement leaves a meaningful and lasting impact.</p>
+
+        <div class="cta">
+          <a class="btn-solid" href="services.html">Explore our services</a>
+          <a class="btn-outline" href="contact.html">Request a proposal</a>
+        </div>
+      </section>
+
+      <aside class="card" aria-label="Vision and mission">
+        <h2>Vision</h2>
+        <p>To be a globally respected Destination Management Company, recognized for delivering exceptional, culturally intelligent, and future-focused experiences that connect people, institutions, and ideas across borders.</p>
+
+        <h2 style="margin-top:16px">Mission</h2>
+        <p>To provide end-to-end hospitality, event management, and strategic communication solutions that are thoughtfully designed, flawlessly executed, and deeply human, enabling our clients to achieve influence, visibility, and lasting outcomes.</p>
+      </aside>
+
+      <section class="card" aria-label="Core values" style="grid-column:1/-1">
+        <h2>Core Values</h2>
+        <div class="pillgrid">
+          <div class="pill"><strong>Excellence</strong><span>Highest standards in planning, execution, and service delivery.</span></div>
+          <div class="pill"><strong>Innovation</strong><span>Creativity, technology, and future-ready thinking.</span></div>
+          <div class="pill"><strong>Integrity</strong><span>Professionalism, discretion, transparency, and respect.</span></div>
+          <div class="pill"><strong>Cultural &amp; Diplomatic Intelligence</strong><span>Protocol-aware, inclusive, cross-cultural delivery.</span></div>
+          <div class="pill"><strong>Impactful Storytelling</strong><span>Narratives that resonate and extend value.</span></div>
+          <div class="pill"><strong>Sustainability &amp; Responsibility</strong><span>Responsible practices that respect communities and long-term value.</span></div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Who we work with" style="grid-column:1/-1">
+        <h2>Who We Work With</h2>
+        <p>Our clients include decision-makers, leaders, and institutions shaping industries and nations. We are trusted to deliver when stakes are high and visibility is global.</p>
+        <div class="list">
+          <div>• <strong>Governments, Embassies &amp; Diplomatic Missions</strong></div>
+          <div>• <strong>Multinational &amp; Regional Corporations</strong></div>
+          <div>• <strong>Development Partners &amp; NGOs</strong></div>
+          <div>• <strong>Industry Associations &amp; Chambers of Commerce</strong></div>
+          <div>• <strong>Academic, Healthcare &amp; Research Institutions</strong></div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Industries we serve" style="grid-column:1/-1">
+        <h2>Industries We Serve</h2>
+        <div class="list">
+          <div>• Government &amp; Diplomatic Institutions</div>
+          <div>• Multinational Corporations</div>
+          <div>• Development Partners &amp; NGOs</div>
+          <div>• Trade Associations &amp; Industry Bodies</div>
+          <div>• Healthcare, Education &amp; Research Institutions</div>
+          <div>• Luxury, Hospitality &amp; Tourism Brands</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <strong>SALMART Diplomatic Hospitality</strong>
+      <p>Your Destination Management Partner for High-Level Events, Experiences, and Stories.</p>
+      <div class="footer-links">
+        <a href="services.html">Services</a>
+        <a href="why.html">Why SALMART</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

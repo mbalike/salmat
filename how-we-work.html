@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How We Work • SALMART Diplomatic Hospitality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
+    :root{--brand:#77c34f;--brand-dark:#1f6b35;--ink:#0b2a1b;--muted:#6b7280}
+
+    header{background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 10px 30px rgba(2,8,23,.06)}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .logo img{height:46px;width:auto;display:block}
+    nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+    nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+    nav a:hover{text-decoration:underline}
+
+    .page{max-width:1100px;margin:auto;padding:56px 18px 86px}
+    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
+    h1{font-size:44px;line-height:1.1;margin-top:12px}
+    .lead{margin-top:14px;color:var(--muted);line-height:1.8;max-width:940px}
+
+    .steps{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px;margin-top:24px}
+    .card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px}
+    .num{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(119,195,79,.18);color:var(--brand-dark);font-weight:900}
+    .card h2{font-size:18px;margin:12px 0 8px}
+    .card p{color:var(--muted);line-height:1.75}
+
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--brand)}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:700}
+
+    @media(max-width:920px){
+      h1{font-size:36px}
+      .steps{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html#home" aria-label="SALMART Diplomatic Hospitality">
+      <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="SALMART Diplomatic Hospitality" />
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why.html">Why SALMART</a></li>
+        <li><a href="how-we-work.html" aria-current="page">How We Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <span class="kicker">HOW WE WORK</span>
+    <h1>Consultative. Strategic. Detail-Driven.</h1>
+    <p class="lead">At SALMART Diplomatic Hospitality, our approach is consultative, strategic, and detail-driven. We believe exceptional events are built through collaboration, trust, and precision execution.</p>
+
+    <div class="cta">
+      <a class="btn-solid" href="contact.html">Start a project</a>
+      <a class="btn-outline" href="services.html">Explore services</a>
+    </div>
+
+    <section class="steps" aria-label="Delivery methodology">
+      <article class="card">
+        <div class="num">01</div>
+        <h2>Discovery &amp; Strategy</h2>
+        <p>We begin by understanding your objectives, audience, protocol requirements, and desired impact. This phase includes concept development, destination advisory, budget alignment, and risk assessment.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">02</div>
+        <h2>Creative Design &amp; Planning</h2>
+        <p>We develop the full creative ecosystem of your event—branding, themes, content flow, stage concepts, delegate journeys, and communication strategy.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">03</div>
+        <h2>Production &amp; Delivery</h2>
+        <p>From venue transformation and technical production to delegate logistics and media coordination, we manage every moving part with precision and professionalism.</p>
+      </article>
+
+      <article class="card">
+        <div class="num">04</div>
+        <h2>Post-Event Value</h2>
+        <p>We deliver detailed reports, media assets, conference summaries, and performance insights to extend the value of your event beyond the final day.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

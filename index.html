@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--surface)}
 
     :root{
@@ -71,13 +72,57 @@
     @media(max-width:980px){
       .topbar{padding:10px 18px}
       header{padding:14px 18px}
-      nav{display:none}
+      nav{display:block}
     }
 
+    /* ===== MOBILE NAV (uses existing <nav>) ===== */
+    .nav-backdrop{position:fixed;inset:0;background:rgba(2,8,23,.55);opacity:0;pointer-events:none;transition:.18s ease;z-index:60}
+    body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
+    @media(max-width:980px){
+      header{position:sticky;top:0;z-index:70;box-shadow:0 12px 30px rgba(2,8,23,.08)}
+      nav{position:fixed;top:0;right:0;bottom:0;width:min(340px, 88vw);background:#fff;z-index:70;
+        transform:translateX(105%);transition:.2s ease;box-shadow:-20px 0 60px rgba(2,8,23,.18);
+        padding:88px 18px 18px
+      }
+      body.nav-open nav{transform:translateX(0)}
+      nav ul{flex-direction:column;gap:14px}
+      nav a{font-size:16px}
+    }
+
+    /* ===== CONTENT HELPERS ===== */
+    .values-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:10px 18px;margin-top:18px}
+    .values-pill{background:#fff;border:1px solid #e5e7eb;padding:12px 14px;box-shadow:0 14px 30px rgba(15,23,42,.06)}
+    .values-pill strong{display:block;font-size:14px;color:var(--ink)}
+    .values-pill span{display:block;font-size:12px;color:#6b7280;margin-top:2px}
+    @media(max-width:560px){
+      .values-grid{grid-template-columns:1fr}
+    }
+
+    .section-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+
+    .directory-head p{max-width:860px;margin:16px auto 0;color:#6b7280;line-height:1.7}
+    .directory-actions{text-align:center;margin-top:30px}
+
+    .dept-intro{max-width:900px;margin:16px auto 0;color:rgba(255,255,255,.78);line-height:1.7}
+
+    .guide-intro{margin-top:10px;color:#6b7280;max-width:760px}
+
+    .events-actions{text-align:center;margin-top:18px}
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip-link{position:absolute;left:12px;top:12px;z-index:1000;background:#fff;color:var(--ink);padding:10px 12px;text-decoration:none;border:2px solid rgba(119,195,79,.55);transform:translateY(-140%);transition:.18s ease}
+    .skip-link:focus{transform:translateY(0)}
+
     /* ===== HERO ===== */
-    .hero{position:relative;min-height:86vh;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat}
-    .hero::before{content:'';position:absolute;inset:0;background:rgba(12,46,28,.66)}
-    .hero-content{position:relative;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:54px 18px}
+    .hero{position:relative;min-height:86vh;overflow:hidden;isolation:isolate}
+    .hero::after{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat;transform:scale(1);animation:heroZoom 6.5s ease-out forwards;z-index:-2}
+    .hero::before{content:'';position:absolute;inset:0;background:rgba(12,46,28,.66);z-index:-1}
+    .hero-content{position:relative;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:54px 18px;z-index:0}
+
+    @keyframes heroZoom{
+      from{transform:scale(1)}
+      to{transform:scale(1.08)}
+    }
 
     .hero-video{display:flex;align-items:center;gap:12px;margin-bottom:22px}
     .hero-video-btn{width:56px;height:56px;border-radius:999px;border:3px solid rgba(255,255,255,.65);background:rgba(255,255,255,.16);display:grid;place-items:center;cursor:pointer;transition:.18s ease}
@@ -86,8 +131,12 @@
     .hero-video-btn:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
     .hero-video-label{font-weight:600;opacity:.95}
 
-    .hero h1{font-size:72px;line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
-    .hero p{opacity:.9;margin-bottom:34px;font-weight:500}
+    .hero h1{font-size:72px;line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;max-width:980px}
+    .hero p{opacity:.9;margin-bottom:34px;font-weight:500;max-width:980px}
+
+    @media (prefers-reduced-motion: reduce){
+      .hero::after{animation:none;transform:scale(1)}
+    }
 
     .search-box{background:#fff;display:flex;align-items:stretch;width:min(920px, 92%);box-shadow:0 22px 55px rgba(2,8,23,.25)}
     .search-field{flex:1;display:flex;align-items:center;gap:10px;padding:0 18px}
@@ -122,7 +171,7 @@
     .directory-head{text-align:center;margin-bottom:26px}
     .directory-head .topline{width:28px;height:2px;background:var(--brand);border-radius:2px;margin:0 auto 14px}
     .directory-kicker{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--brand)}
-    .directory-head h2{font-size:48px;line-height:1.12;margin-top:14px;color:var(--ink)}
+    .directory-head h2{font-size:48px;line-height:1.12;margin-top:14px;color:var(--ink);max-width:860px;margin-left:auto;margin-right:auto}
 
     .directory-tabs{display:flex;justify-content:center;gap:30px;margin-top:18px}
     .directory-tab{background:transparent;border:none;padding:0 2px 10px;cursor:pointer;font:600 14px/1.2 'Poppins',sans-serif;color:var(--ink);position:relative}
@@ -137,9 +186,12 @@
     .directory-body{position:relative;background:#fff;width:calc(100% - 56px);margin:-26px auto 0;padding:26px 24px 22px;display:flex;flex-direction:column;gap:10px;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.08)}
     .directory-badge{position:absolute;left:24px;top:0;transform:translateY(-50%);background:var(--brand);color:#fff;font-size:11px;font-weight:600;padding:6px 12px;border-radius:0;letter-spacing:.06em;text-transform:uppercase}
     .directory-title{font-size:20px;font-weight:800;color:var(--ink);line-height:1.2;margin:8px 0 0}
-    .directory-desc{font-size:14px;color:#6b7280;line-height:1.5}
+    .directory-desc{font-size:14px;color:#6b7280;line-height:1.5;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
     .directory-meta{margin-top:12px;padding-top:12px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:8px;font-size:13px;color:#6b7280}
     .directory-meta svg{width:14px;height:14px;opacity:.85;flex:0 0 auto}
+
+    .directory-card:hover .directory-body{box-shadow:0 22px 55px rgba(2,8,23,.12)}
+    .directory-card:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:5px}
 
     @media(max-width:900px){
       .directory-head h2{font-size:40px}
@@ -466,14 +518,14 @@
           <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
           <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <a href="mailto:infogimont@gmail.com">infogimont@gmail.com</a>
+        <a href="mailto:info@salmartdiplomatichospitality.com">info@salmartdiplomatichospitality.com</a>
       </div>
       <div class="topbar-item">
         <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
           <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/>
         </svg>
-        <span>55 main street,Melbourne, Australia</span>
+        <span>Destination Management Partner • Global Delivery</span>
       </div>
     </div>
 
@@ -497,12 +549,6 @@
         <a href="#" aria-label="Facebook">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.6l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5Z"/></svg>
         </a>
-        <a href="#" aria-label="Twitter">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.8 7.6c0 .2 0 .4-.1.7-.5 6.1-4.6 10.4-10.6 10.4-2.1 0-4-.6-5.6-1.6h.8c1.7 0 3.2-.6 4.4-1.6-1.6 0-3-1.1-3.5-2.6.2 0 .5.1.7.1.3 0 .7 0 1-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.7.5-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.4.6-1.9 1.8 2.2 4.4 3.6 7.4 3.8-.1-.3-.1-.6-.1-.9 0-2.1 1.7-3.8 3.8-3.8 1.1 0 2 .4 2.7 1.1.8-.2 1.6-.5 2.3-.9-.3.9-.9 1.6-1.6 2.1.7-.1 1.4-.3 2-.6-.5.7-1 1.3-1.6 1.8Z"/></svg>
-        </a>
-        <a href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 6.7A2.2 2.2 0 1 1 6.5 2.3a2.2 2.2 0 0 1 0 4.4ZM4.6 21.7V8.3h3.8v13.4H4.6ZM10.4 8.3H14v1.8h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6v7.7h-3.8v-6.8c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5v6.9h-3.8V8.3Z"/></svg>
-        </a>
         <a href="#" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm6.2-2.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
         </a>
@@ -512,17 +558,17 @@
 </div>
 
 <header>
-  <a class="logo" href="#" aria-label="Salmat Diplomatic Hospitality">
+  <a class="logo" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
     <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" decoding="async" loading="eager" />
   </a>
   <nav>
     <ul>
-      <li class="has-submenu"><a href="#">Home</a></li>
-      <li class="has-submenu"><a href="#">Pages</a></li>
-      <li class="has-submenu"><a href="#">Events</a></li>
-      <li class="has-submenu"><a href="#">Departments</a></li>
-      <li class="has-submenu"><a href="#">Documentation</a></li>
-      <li class="has-submenu"><a href="#">Services</a></li>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="why.html">Why SALMART</a></li>
+      <li><a href="how-we-work.html">How We Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
   <div class="header-actions">
@@ -530,16 +576,20 @@
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
       </svg>
-      <strong>+92 (8800) 9850</strong>
+      <strong>Consultation by appointment</strong>
     </div>
-    <button class="btn">Contact Us</button>
+    <a class="btn" href="#contact" style="text-decoration:none;display:inline-flex;align-items:center">Request a Proposal</a>
     <button class="menu-toggle" type="button" aria-label="Open menu">
       <div class="bars"><span></span></div>
     </button>
   </div>
 </header>
 
-<section class="hero">
+<a class="nav-backdrop" href="#" aria-label="Close menu" data-nav-backdrop></a>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<section class="hero" id="home">
   <div class="hero-content">
     <div class="hero-video">
       <button class="hero-video-btn" type="button" aria-label="Watch videos">
@@ -547,178 +597,203 @@
           <path d="M8 5v14l11-7z"></path>
         </svg>
       </button>
-      <span class="hero-video-label">Watch Videos</span>
+      <span class="hero-video-label">Our Approach</span>
     </div>
-    <h1>Explore The World</h1>
-    <p>One site, 32500+ experience you'll remember</p>
+    <h1>High-Level Events.<br/>Diplomatic Precision.</h1>
+    <p>SALMART Diplomatic Hospitality is a premier Destination Management Company (DMC) delivering culturally intelligent, future-focused hospitality and event experiences for corporate, diplomatic, and institutional clients.</p>
     <div class="search-box">
       <div class="search-field">
         <svg class="search-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
           <path d="M16.6 16.6 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <input type="text" placeholder="What you needs" />
+        <input type="text" placeholder="Tell us about your engagement (city, dates, format, audience)" aria-label="Engagement details" />
       </div>
-      <button>Search Now</button>
+      <button type="button" onclick="document.querySelector('#contact')?.scrollIntoView({behavior:'smooth'})">Request a Proposal</button>
     </div>
   </div>
 </section>
 
-<section class="section">
+<main id="main">
+
+<section class="section" id="about" aria-label="About SALMART">
   <div>
-    <h2>Explore Gimont City<br/>Activities & Resources</h2>
-    <p>There are many variations of passages of available but majority have suffered simply free text available alteration.</p>
+    <h2>About SALMART<br/>Diplomatic Hospitality</h2>
+    <p>SALMART Diplomatic Hospitality is a Destination Management Company (DMC) designing and delivering high-level events and hospitality experiences for corporate, diplomatic, and institutional clients—where strategy, protocol, culture, and creativity meet.</p>
+
+    <div class="section-cta" aria-label="About actions">
+      <a class="btn-solid" href="about.html">Explore our story</a>
+      <a class="btn-outline" href="contact.html">Request a proposal</a>
+    </div>
 
     <div class="features">
       <div class="feature">
         <div class="check">✓</div>
         <div>
-          <strong>Business Guides</strong>
-          <small>Available, but the majority have suffered simply</small>
+          <strong>Our Vision</strong>
+          <small>A globally respected DMC known for culturally intelligent, future-focused experiences.</small>
         </div>
       </div>
       <div class="feature active">
         <div class="check">✓</div>
         <div>
-          <strong>City Highlights</strong>
-          <small>Available, but the majority have suffered simply</small>
+          <strong>Our Mission</strong>
+          <small>End-to-end hospitality, event management, and strategic communications—thoughtfully designed and flawlessly delivered.</small>
         </div>
       </div>
       <div class="feature">
         <div class="check">✓</div>
         <div>
-          <strong>History Of City</strong>
-          <small>Available, but the majority have suffered simply</small>
+          <strong>Our Core Values</strong>
+          <small>Excellence • innovation • integrity • diplomatic intelligence • storytelling • sustainability.</small>
         </div>
       </div>
+    </div>
+
+    <div class="values-grid" aria-label="Core values">
+      <div class="values-pill"><strong>Excellence</strong><span>Highest standards and attention to detail.</span></div>
+      <div class="values-pill"><strong>Innovation</strong><span>Creativity, technology, and future-ready thinking.</span></div>
+      <div class="values-pill"><strong>Integrity</strong><span>Professionalism, discretion, transparency, respect.</span></div>
+      <div class="values-pill"><strong>Cultural &amp; Diplomatic Intelligence</strong><span>Protocol-aware, inclusive, cross-cultural delivery.</span></div>
+      <div class="values-pill"><strong>Impactful Storytelling</strong><span>Narratives that resonate and extend value.</span></div>
+      <div class="values-pill"><strong>Sustainability &amp; Responsibility</strong><span>Responsible practices with long-term value.</span></div>
     </div>
   </div>
 
   <div class="images">
-    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200" />
-    <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=800" />
-    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=800" />
+    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1200&auto=format&fit=crop" alt="Conference audience and stage" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="Professional team planning an event" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop" alt="Executive meeting documents" loading="lazy" />
   </div>
 </section>
 
-<section class="directory-section" aria-label="Popular directory">
+<section class="directory-section" id="services" aria-label="Our services">
   <div class="directory-inner">
     <div class="directory-head">
       <div class="topline" aria-hidden="true"></div>
-      <div class="directory-kicker">VISIT AND ENJOY LIFE</div>
-      <h2>Explore Popular Directory</h2>
+      <div class="directory-kicker">OUR SERVICES</div>
+      <h2>End-to-End Diplomatic Hospitality &amp; Event Delivery</h2>
+
+      <p>Intro-level overview of what we do. Visit the services page for full scope, formats, and detailed capability coverage.</p>
 
       <div class="directory-tabs" role="tablist" aria-label="Directory filters" data-directory-tabs>
         <button class="directory-tab" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
-        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="education">Education</button>
-        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="entertainment">Entertainment</button>
-        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="public-services">Public Services</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="events">Events</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="production">Production &amp; Branding</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="hospitality">Hospitality &amp; Logistics</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="protocol">Protocol &amp; DMC</button>
+        <button class="directory-tab" type="button" role="tab" aria-selected="false" data-filter="media">Media &amp; Storytelling</button>
       </div>
     </div>
 
     <div class="directory-grid" data-directory-grid>
-      <article class="directory-card" data-category="entertainment">
+      <a class="directory-card" href="service-event-management-production.html" data-category="events" aria-label="Event Management and Production">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=900&auto=format&fit=crop" alt="Bowling alley with colorful lights" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=900&auto=format&fit=crop" alt="Conference stage and audience" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Entertainment</span>
-          <h3 class="directory-title">Bowling Point</h3>
-          <p class="directory-desc">Bowling refers to a series of sports or leisure activities in which..</p>
+          <span class="directory-badge">Events</span>
+          <h3 class="directory-title">Event Management &amp; Production</h3>
+          <p class="directory-desc">End-to-end planning and delivery for high-profile engagements across live, hybrid, and online formats.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>165 Main Street, Cambridge, Massachusetts, USA</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v5l4 2-1 2-5-3V7h2z"/></svg>
+            <span>International conferences • executive summits • brand activations</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="directory-card" data-category="public-services">
+      <a class="directory-card" href="service-production-branding-venue.html" data-category="production" aria-label="Production, Branding and Venue Transformation">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1523875194681-bedd468c58bf?q=80&w=900&auto=format&fit=crop" alt="Community center playground" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop" alt="Production team working" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Public Services</span>
-          <h3 class="directory-title">Community Centre</h3>
-          <p class="directory-desc">Community centres or community public centers are public locations where members of a..</p>
+          <span class="directory-badge">Production</span>
+          <h3 class="directory-title">Production, Branding &amp; Venue Transformation</h3>
+          <p class="directory-desc">AV, lighting, stage and set design, conference branding, printing, and full venue transformation.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>65 Park Street, Lawrence, MA, USA</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4V6zm3 3v6h2V9H7zm4 0v6h2V9h-2zm4 0v6h2V9h-2z"/></svg>
+            <span>Stage design • streaming • signage • delegate kits</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="directory-card" data-category="entertainment">
+      <a class="directory-card" href="service-conference-support-coverage.html" data-category="media" aria-label="Event Coverage and Conference Support">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop" alt="Neon cinema entrance" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1526401485004-2aa7f3c59c75?q=80&w=900&auto=format&fit=crop" alt="Camera crew covering an event" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Entertainment</span>
-          <h3 class="directory-title">Downtown Cinema</h3>
-          <p class="directory-desc">A movie theatre or movie theatre (also called a cinema) is a..</p>
+          <span class="directory-badge">Media</span>
+          <h3 class="directory-title">Event Coverage &amp; Conference Support</h3>
+          <p class="directory-desc">Professional documentation and conference support, from photography and video to moderators, MCs, and rapporteurs.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>279 Main Street, Frisco, TX, USA</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h10v10H4V7zm12 2 4-2v10l-4-2V9z"/></svg>
+            <span>Live updates • post-event reports • key outcomes</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="directory-card" data-category="education">
+      <a class="directory-card" href="service-mice-delivery.html" data-category="events" aria-label="MICE Delivery">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=900&auto=format&fit=crop" alt="Elementary school building" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop" alt="Conference planning session" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Education</span>
-          <h3 class="directory-title">Elementary School</h3>
-          <p class="directory-desc">An elementary school is the main point of delivery of primary education..</p>
+          <span class="directory-badge">Events</span>
+          <h3 class="directory-title">MICE Delivery</h3>
+          <p class="directory-desc">Operational excellence across meetings, incentives, conferences, and exhibitions—registration, speakers, delegates, and on-site ops.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>21 George Street, London, UK</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v4H4V4zm0 6h16v10H4V10z"/></svg>
+            <span>Meetings • incentives • conferences • exhibitions</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="directory-card" data-category="education">
+      <a class="directory-card" href="service-protocol-diplomatic.html" data-category="protocol" aria-label="Protocol and Diplomatic Services">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=900&auto=format&fit=crop" alt="Historic high school building" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=900&auto=format&fit=crop" alt="Formal venue prepared for VIP reception" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Education</span>
-          <h3 class="directory-title">High School</h3>
-          <p class="directory-desc">A secondary school is one means of delivering education to adolescents..</p>
+          <span class="directory-badge">Protocol</span>
+          <h3 class="directory-title">Protocol &amp; Diplomatic Services</h3>
+          <p class="directory-desc">Protocol advisory and VIP handling for official engagements—liaison officers, coordination, and on-ground support.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>445 King Street, Berlin, Germany</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l8 4v6c0 5-3 9-8 10-5-1-8-5-8-10V6l8-4z"/></svg>
+            <span>State visits • receptions • dignitary management</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <article class="directory-card" data-category="public-services">
+      <a class="directory-card" href="service-luxury-accommodation-logistics.html" data-category="hospitality" aria-label="Luxury Accommodation and Logistics">
         <div class="directory-media">
-          <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=900&auto=format&fit=crop" alt="Historic post office building" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=900&auto=format&fit=crop" alt="Luxury hotel lobby" loading="lazy" />
         </div>
         <div class="directory-body">
-          <span class="directory-badge">Public Services</span>
-          <h3 class="directory-title">Post Office</h3>
-          <p class="directory-desc">A post office is a customer service facility forming part of a..</p>
+          <span class="directory-badge">Hospitality</span>
+          <h3 class="directory-title">Luxury Accommodation &amp; Logistics</h3>
+          <p class="directory-desc">Discreet travel coordination: five-star stays, VIP transport, airport protocol, and itinerary planning.</p>
           <div class="directory-meta">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>56 Post Street, Paris, France</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9z"/></svg>
+            <span>Discreet travel coordination • VIP handling</span>
           </div>
         </div>
-      </article>
+      </a>
+    </div>
+
+    <div class="directory-actions">
+      <a class="btn-solid" href="services.html">View all services</a>
     </div>
   </div>
 </section>
 
-<section class="dept-section" aria-label="Our Departments">
+<section class="dept-section" id="why" aria-label="Why choose SALMART">
   <div class="dept-inner">
     <div class="dept-head">
-      <div class="dept-kicker">OUR DEPARTMENTS</div>
-      <h2>Explore city government<br/>departments</h2>
+      <div class="dept-kicker">WHY SALMART</div>
+      <h2>Your DMC Partner for High-Level Events,<br/>Experiences, and Stories</h2>
+      <p class="dept-intro">A single, integrated partner for delivery, protocol, production, hospitality, and storytelling—built for high-stakes environments and global visibility.</p>
     </div>
 
     <div class="dept-grid">
-      <a class="dept-card" href="#" aria-label="Business & Industry">
+      <a class="dept-card" href="services.html" aria-label="End-to-end destination management">
         <div class="dept-num">1</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -726,10 +801,10 @@
             <path d="M9 15h2V9H9v6zm4 0h2V7h-2v8z"/>
           </svg>
         </div>
-        <h3>Business &amp; Industry</h3>
+        <h3>End-to-End DMC Expertise</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Culture & Recreation">
+      <a class="dept-card" href="why.html" aria-label="Diplomacy, protocol and cultural intelligence">
         <div class="dept-num">2</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -737,10 +812,10 @@
             <path d="M12 7.5l1.4 2.9 3.2.5-2.3 2.2.6 3.2L12 15l-2.9 1.5.6-3.2-2.3-2.2 3.2-.5L12 7.5z"/>
           </svg>
         </div>
-        <h3>Culture &amp; Recreation</h3>
+        <h3>Diplomacy, Protocol &amp; Culture</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Health & medical">
+      <a class="dept-card" href="storytelling.html" aria-label="Integrated media and storytelling">
         <div class="dept-num">3</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -748,10 +823,10 @@
             <path d="M11 10h2v2h2v2h-2v2h-2v-2H9v-2h2v-2z" fill="#ffffff"/>
           </svg>
         </div>
-        <h3>Health &amp; medical</h3>
+        <h3>Integrated Media &amp; Storytelling</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Jobs & Unemployment">
+      <a class="dept-card" href="how-we-work.html" aria-label="Consultative delivery methodology">
         <div class="dept-num">4</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -759,10 +834,10 @@
             <path d="M2 12h20v2H2v-2z"/>
           </svg>
         </div>
-        <h3>Jobs &amp; Unemployment</h3>
+        <h3>Consultative, Detail-Driven Delivery</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Justice & safety law">
+      <a class="dept-card" href="standards.html" aria-label="Safety, security and risk management">
         <div class="dept-num">5</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -770,10 +845,10 @@
             <path d="M12 6l4 2v4c0 3-2 6-4 7-2-1-4-4-4-7V8l4-2z" fill="rgba(255,255,255,.92)"/>
           </svg>
         </div>
-        <h3>Justice &amp; safety law</h3>
+        <h3>Safety, Security &amp; Risk Management</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Policing & crimes">
+      <a class="dept-card" href="services.html" aria-label="Luxury hospitality and VIP logistics">
         <div class="dept-num">6</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -781,10 +856,10 @@
             <path d="M9 20h6v2H9v-2z"/>
           </svg>
         </div>
-        <h3>Policing &amp; crimes</h3>
+        <h3>Luxury Hospitality &amp; VIP Logistics</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Roads & Transport">
+      <a class="dept-card" href="why.html" aria-label="Global outlook with local execution">
         <div class="dept-num">7</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -792,10 +867,10 @@
             <path d="M7 20a2 2 0 110-4 2 2 0 010 4zm10 0a2 2 0 110-4 2 2 0 010 4z"/>
           </svg>
         </div>
-        <h3>Roads &amp; Transport</h3>
+        <h3>Global Outlook, Strong Local Execution</h3>
       </a>
 
-      <a class="dept-card" href="#" aria-label="Your governement">
+      <a class="dept-card" href="about.html" aria-label="Human-centered approach">
         <div class="dept-num">8</div>
         <div class="dept-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -803,58 +878,57 @@
             <path d="M5 10h14v10H5V10zm2 2v6h10v-6H7z"/>
           </svg>
         </div>
-        <h3>Your governement</h3>
+        <h3>Human-Centered Impact</h3>
       </a>
     </div>
 
-    <div class="dept-slider-area" aria-label="Favorite places">
+    <div class="dept-slider-area" aria-label="Industries we serve">
       <div class="dept-carousel" role="region" aria-label="Favorite places carousel">
         <div class="dept-track" data-dept-track tabindex="0">
-          <a class="dept-slide" href="#" aria-label="Children Park" style="--dept-bg:url('https://images.unsplash.com/photo-1525856328229-52d8a7b9b2c5?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Government and diplomatic institutions" style="--dept-bg:url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">Children Park</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Government &amp; Diplomatic Institutions</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
 
-          <a class="dept-slide" href="#" aria-label="Metro Stations" style="--dept-bg:url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Multinational corporations" style="--dept-bg:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">Metro Stations</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Multinational Corporations</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
 
-          <a class="dept-slide" href="#" aria-label="Historical Building" style="--dept-bg:url('https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Development partners and NGOs" style="--dept-bg:url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">Historical Building</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Development Partners &amp; NGOs</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
 
-          <a class="dept-slide" href="#" aria-label="New York City Museum" style="--dept-bg:url('https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Trade associations and industry bodies" style="--dept-bg:url('https://images.unsplash.com/photo-1515165562835-c4c4f46f7a2a?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">New York City
-                Museum</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Trade Associations &amp; Industry Bodies</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
 
-          <a class="dept-slide" href="#" aria-label="City Library" style="--dept-bg:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Healthcare, education and research" style="--dept-bg:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">City Library</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Healthcare, Education &amp; Research</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
 
-          <a class="dept-slide" href="#" aria-label="Waterfront Walk" style="--dept-bg:url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1200')">
+          <a class="dept-slide" href="industries.html" aria-label="Luxury, hospitality and tourism brands" style="--dept-bg:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop')">
             <div class="dept-place-meta">
-              <span class="dept-place-kicker">Favorite place</span>
-              <div class="dept-place-title">Waterfront Walk</div>
+              <span class="dept-place-kicker">Industries We Serve</span>
+              <div class="dept-place-title">Luxury, Hospitality &amp; Tourism Brands</div>
             </div>
             <span class="dept-place-action" aria-hidden="true">↗</span>
           </a>
@@ -866,113 +940,73 @@
   </div>
 </section>
 
-<section class="guide-section" aria-label="Our Tour Guide">
+<section class="guide-section" id="how-we-work" aria-label="How we work">
   <div class="guide-inner">
     <div class="guide-head">
       <div>
-        <div class="guide-kicker">OUR TOUR GUIDE</div>
-        <h2>Meet Our Tour Guide</h2>
+        <div class="guide-kicker">HOW WE WORK</div>
+        <h2>Strategy to Delivery, End to End</h2>
+        <p class="guide-intro">A consultative, detail-driven methodology designed for high-level stakeholders, complex logistics, and measurable outcomes.</p>
       </div>
-      <a class="btn-outline" href="#">View All Guide</a>
+      <a class="btn-outline" href="how-we-work.html">Explore the methodology</a>
     </div>
 
     <div class="guide-grid">
       <article class="guide-card">
         <div class="guide-media">
-          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=900&auto=format&fit=crop" alt="Portrait of Aleesha brown" loading="lazy" />
-          <div class="guide-social" aria-label="Aleesha brown social links">
-            <a href="#" aria-label="Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
-            </a>
-          </div>
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop" alt="Discovery and strategy session" loading="lazy" />
         </div>
-        <h3>Aleesha brown</h3>
-        <p>City Mayor &amp; Developer</p>
+        <h3>Discovery &amp; Strategy</h3>
+        <p>We define objectives, audiences, protocol requirements, budgets, and risks to build a clear roadmap for delivery.</p>
       </article>
 
       <article class="guide-card">
         <div class="guide-media">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=900&auto=format&fit=crop" alt="Portrait of Mike hardson" loading="lazy" />
-          <div class="guide-social" aria-label="Mike hardson social links">
-            <a href="#" aria-label="Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
-            </a>
-          </div>
+          <img src="https://images.unsplash.com/photo-1515165562835-c4c4f46f7a2a?q=80&w=900&auto=format&fit=crop" alt="Creative planning and design" loading="lazy" />
         </div>
-        <h3>Mike hardson</h3>
-        <p>City Mayor &amp; Developer</p>
+        <h3>Creative Design &amp; Planning</h3>
+        <p>We develop the creative ecosystem: branding, themes, content flow, stage concepts, delegate journeys, and communications.</p>
       </article>
 
       <article class="guide-card">
         <div class="guide-media">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=900&auto=format&fit=crop" alt="Portrait of Kevin martin" loading="lazy" />
-          <div class="guide-social" aria-label="Kevin martin social links">
-            <a href="#" aria-label="Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
-            </a>
-          </div>
+          <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=900&auto=format&fit=crop" alt="Production and on-site delivery" loading="lazy" />
         </div>
-        <h3>Kevin martin</h3>
-        <p>City Mayor &amp; Developer</p>
+        <h3>Production &amp; Delivery</h3>
+        <p>From venue transformation and technical production to delegate logistics and media coordination, we manage every moving part with precision.</p>
       </article>
 
       <article class="guide-card">
         <div class="guide-media">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=900&auto=format&fit=crop" alt="Portrait of Sarah albert" loading="lazy" />
-          <div class="guide-social" aria-label="Sarah albert social links">
-            <a href="#" aria-label="Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
-            </a>
-          </div>
+          <img src="https://images.unsplash.com/photo-1526401485004-2aa7f3c59c75?q=80&w=900&auto=format&fit=crop" alt="Post-event documentation and reporting" loading="lazy" />
         </div>
-        <h3>Sarah albert</h3>
-        <p>City Mayor &amp; Developer</p>
+        <h3>Post-Event Value</h3>
+        <p>We deliver reports, media assets, conference summaries, and performance insights to extend impact beyond the final day.</p>
       </article>
     </div>
   </div>
 </section>
 
-<section class="events-section" aria-label="Events & Program">
+<section class="events-section" id="standards" aria-label="Destination management and standards">
   <div class="events-inner">
     <div class="events-head">
       <div class="topline" aria-hidden="true"></div>
-      <div class="events-kicker">ART WORKS &amp; OBJECTS</div>
-      <h2>Explore Our Events &amp; Program</h2>
+      <div class="events-kicker">DMC ADVANTAGE</div>
+      <h2>Destination Expertise, Responsibility, and Risk Management</h2>
+      <div class="events-actions">
+        <a class="btn-solid" href="standards.html">Read the full standards</a>
+      </div>
     </div>
 
     <div class="events-list">
       <article class="event-card">
         <div class="event-left">
-          <div class="event-date" aria-label="18 June">
-            <div class="d">18</div>
-            <div class="m">JUN</div>
+          <div class="event-date" aria-label="Pillar one">
+            <div class="d">01</div>
+            <div class="m">PILLAR</div>
           </div>
           <div class="event-thumb" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
           </div>
         </div>
 
@@ -981,19 +1015,19 @@
             <span class="dot" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
             </span>
-            <span>7:00 am - 8:00 pm</span>
+            <span>Local intelligence with international standards</span>
           </div>
-          <a class="event-title" href="#">Organizing City Contest 2025</a>
+          <a class="event-title" href="standards.html">Destination Management Expertise (DMC Advantage)</a>
           <div class="event-loc">
             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>Bangkok, Thailand</span>
+            <span>Venue sourcing • supplier management • government &amp; protocol coordination • quality control</span>
           </div>
         </div>
 
-        <div class="event-note">This event is free and open to the public</div>
+        <div class="event-note">We act as your on-the-ground partner to coordinate venues, suppliers, authorities, and cultural stakeholders — ensuring smooth execution across borders.</div>
 
         <div class="event-action">
-          <a href="#" aria-label="Open event">
+          <a href="standards.html" aria-label="Open standards page">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1001,12 +1035,12 @@
 
       <article class="event-card">
         <div class="event-left">
-          <div class="event-date" aria-label="21 June">
-            <div class="d">21</div>
-            <div class="m">JUN</div>
+          <div class="event-date" aria-label="Pillar two">
+            <div class="d">02</div>
+            <div class="m">PILLAR</div>
           </div>
           <div class="event-thumb" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1514503612056-e3f673b3f3e0?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
           </div>
         </div>
 
@@ -1015,19 +1049,19 @@
             <span class="dot" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
             </span>
-            <span>7:00 am - 8:00 pm</span>
+            <span>Responsible destination management</span>
           </div>
-          <a class="event-title" href="#">Events for the public in South East Asia</a>
+          <a class="event-title" href="standards.html">Sustainability &amp; Responsible Events</a>
           <div class="event-loc">
             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>Bangkok, Thailand</span>
+            <span>Eco-conscious sourcing • digital-first communication • local supplier engagement • cultural preservation</span>
           </div>
         </div>
 
-        <div class="event-note">This event is free and open to the public</div>
+        <div class="event-note">We balance excellence with environmental and social responsibility to create value for communities, clients, and long-term outcomes.</div>
 
         <div class="event-action">
-          <a href="#" aria-label="Open event">
+          <a href="standards.html" aria-label="Open standards page">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1035,12 +1069,12 @@
 
       <article class="event-card">
         <div class="event-left">
-          <div class="event-date" aria-label="03 September">
+          <div class="event-date" aria-label="Pillar three">
             <div class="d">03</div>
-            <div class="m">SEP</div>
+            <div class="m">PILLAR</div>
           </div>
           <div class="event-thumb" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop" alt="" loading="lazy" />
           </div>
         </div>
 
@@ -1049,19 +1083,19 @@
             <span class="dot" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a1 1 0 011 1v3.6l2.2 1.3a1 1 0 11-1 1.7l-2.7-1.6A1 1 0 0111 12V8a1 1 0 011-1z"/></svg>
             </span>
-            <span>9:00 am - 4:00 pm @ September 11, 2029</span>
+            <span>Security coordination, confidentiality, and compliance</span>
           </div>
-          <a class="event-title" href="#">Real Entrepreneurship Bootcamp in Gimont</a>
+          <a class="event-title" href="standards.html">Safety, Security &amp; Risk Management</a>
           <div class="event-loc">
             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
-            <span>8 Street, San Marcos London, UK</span>
+            <span>Emergency response planning • health &amp; safety • access control • data protection</span>
           </div>
         </div>
 
-        <div class="event-note">This event is free and open to the public</div>
+        <div class="event-note">For diplomatic and high-level corporate engagements, we integrate risk protocols from the outset and coordinate with authorities where required.</div>
 
         <div class="event-action">
-          <a href="#" aria-label="Open event">
+          <a href="standards.html" aria-label="Open standards page">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1070,14 +1104,14 @@
   </div>
 </section>
 
-<section class="blog-section" aria-label="Latest news and articles">
+<section class="blog-section" id="storytelling" aria-label="Media and strategic storytelling">
   <div class="blog-inner">
     <div class="blog-head">
       <div>
-        <div class="blog-kicker">FROM THE BLOG</div>
-        <h2>Latest news &amp; articles<br/>from the blog</h2>
+        <div class="blog-kicker">STORYTELLING</div>
+        <h2>Media Management &amp; Strategic Storytelling</h2>
       </div>
-      <a class="btn-solid" href="#">View More News</a>
+      <a class="btn-solid" href="storytelling.html">Explore storytelling</a>
     </div>
 
     <div class="blog-grid">
@@ -1089,16 +1123,16 @@
           <div class="post-meta">
             <span class="item">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
-              <span>Admin</span>
+              <span>SALMART Media Desk</span>
             </span>
             <span class="item">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
-              <span>0 Comments</span>
+              <span>Impactful storytelling</span>
             </span>
           </div>
-          <a class="post-title" href="#">Best Municipal &amp; City Government 2023</a>
-          <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
-          <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+          <a class="post-title" href="storytelling.html">Purpose-Driven Media &amp; Reputation</a>
+          <div class="post-excerpt">We craft narratives that improve visibility, credibility, and outcomes—before, during, and long after the event.</div>
+          <a class="post-link" href="storytelling.html">Explore media services <span class="arr">→</span></a>
         </div>
       </article>
 
@@ -1111,16 +1145,16 @@
             <div class="post-meta">
               <span class="item">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
-                <span>Admin</span>
+                <span>Conference Support</span>
               </span>
               <span class="item">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
-                <span>0 Comments</span>
+                <span>Moderation &amp; rapporteurs</span>
               </span>
             </div>
-            <a class="post-title" href="#" style="font-size:20px">Urban Renewal Loans Available</a>
-            <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
-            <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+            <a class="post-title" href="services.html" style="font-size:20px">Real-Time Conference Communications</a>
+            <div class="post-excerpt">Live social updates, behind-the-scenes content, accurate summaries and key outcomes, plus post-event documentation that extends your engagement’s value.</div>
+            <a class="post-link" href="services.html">Explore support services <span class="arr">→</span></a>
           </div>
         </article>
 
@@ -1132,16 +1166,16 @@
             <div class="post-meta">
               <span class="item">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
-                <span>Admin</span>
+                <span>Strategic Communications</span>
               </span>
               <span class="item">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
-                <span>0 Comments</span>
+                <span>Visibility &amp; influence</span>
               </span>
             </div>
-            <a class="post-title" href="#" style="font-size:20px">New Australian Economic Culture</a>
-            <div class="post-excerpt">The city government is responsible for providing essential services to the...</div>
-            <a class="post-link" href="#">View Post <span class="arr">→</span></a>
+            <a class="post-title" href="storytelling.html" style="font-size:20px">Amplify Impact Beyond the Event</a>
+            <div class="post-excerpt">Organizations across the continent trust SALMART to deliver their stories to the right audience, at the right time, with credibility and impact.</div>
+            <a class="post-link" href="contact.html">Contact us <span class="arr">→</span></a>
           </div>
         </article>
       </div>
@@ -1193,10 +1227,10 @@
   </div>
 </section>
 
-<footer class="site-footer" aria-label="Footer">
+<footer class="site-footer" id="contact" aria-label="Footer">
   <div class="footer-inner">
     <div class="footer-top">
-      <a class="footer-brand" href="#" aria-label="Salmat Diplomatic Hospitality">
+      <a class="footer-brand" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
         <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" decoding="async" loading="lazy" />
       </a>
 
@@ -1226,52 +1260,52 @@
             <div class="ico" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </div>
-            <div class="value">needhelp@company.com</div>
+            <div class="value">info@salmartdiplomatichospitality.com</div>
           </div>
           <div class="item">
             <div class="ico" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.36 2.3.56 3.5.56a1 1 0 011 1V20a1 1 0 01-1 1C10.4 21 3 13.6 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.4.56 3.5a1 1 0 01-.25 1L6.6 10.8z"/></svg>
             </div>
-            <div class="value">+92 (666) 888 0000</div>
+            <div class="value">Consultation by appointment</div>
           </div>
-          <div class="address">66 Road Broklyn Golden Street,<br/>600 New York, USA</div>
+          <div class="address">Destination Management Company (DMC)<br/>High-level events • hospitality • storytelling</div>
         </div>
       </div>
 
       <div>
         <div class="footer-title">Explore</div>
         <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Our Team</a></li>
-          <li><a href="#">Upcoming Events</a></li>
-          <li><a href="#">Latest News</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="why.html">Why SALMART</a></li>
+          <li><a href="how-we-work.html">How We Work</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-title">Departments</div>
+        <div class="footer-title">Services</div>
         <ul class="footer-links">
-          <li><a href="#">Jobs &amp; Unemployment</a></li>
-          <li><a href="#">Business &amp; Industry</a></li>
-          <li><a href="#">Roads &amp; Transport</a></li>
-          <li><a href="#">Culture &amp; Recreation</a></li>
-          <li><a href="#">Health &amp; medical</a></li>
+          <li><a href="services.html">Event Management &amp; Production</a></li>
+          <li><a href="services.html">Branding &amp; Venue Transformation</a></li>
+          <li><a href="services.html">Protocol &amp; Diplomatic Services</a></li>
+          <li><a href="services.html">Luxury Accommodation &amp; Logistics</a></li>
+          <li><a href="storytelling.html">Media &amp; Strategic Storytelling</a></li>
         </ul>
       </div>
 
       <div class="footer-cta">
-        <h3>Great city &amp; place to develop your career &amp; business.</h3>
-        <p>Subscribe to get latest update &amp; news</p>
+        <h3>Let us design, manage, and elevate your next destination experience.</h3>
+        <p>Share your email and we’ll respond with a quick discovery call.</p>
         <form class="subscribe" action="#" method="post">
-          <input type="email" name="email" placeholder="Enter address" aria-label="Email address" required />
-          <button type="submit">Subscribe</button>
+          <input type="email" name="email" placeholder="Enter email" aria-label="Email address" required />
+          <button type="submit">Request</button>
         </form>
       </div>
     </div>
   </div>
 
-  <div class="footer-bottom">© Copyright 2023 by <a href="#">Ovatheme.com</a></div>
+  <div class="footer-bottom">© 2026 <a href="index.html#home">SALMART Diplomatic Hospitality</a>. All rights reserved.</div>
 </footer>
 
 <a class="back-to-top" href="#" aria-label="Back to top">↑</a>
@@ -1286,6 +1320,37 @@
     };
     window.addEventListener('scroll', toggle, {passive:true});
     toggle();
+  })();
+
+  (function(){
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const backdrop = document.querySelector('[data-nav-backdrop]');
+
+    const close = () => document.body.classList.remove('nav-open');
+    const open = () => document.body.classList.add('nav-open');
+    const isOpen = () => document.body.classList.contains('nav-open');
+
+    if(toggleBtn){
+      toggleBtn.addEventListener('click', () => {
+        isOpen() ? close() : open();
+      });
+    }
+
+    if(backdrop){
+      backdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        close();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') close();
+    });
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('nav a');
+      if(a) close();
+    });
   })();
 
   (function(){
@@ -1479,6 +1544,8 @@
     startAutoplay();
   })();
 </script>
+
+</main>
 
 </body>
 </html>

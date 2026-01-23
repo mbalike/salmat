@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standards • SALMART Diplomatic Hospitality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
+    :root{--brand:#77c34f;--brand-dark:#1f6b35;--ink:#0b2a1b;--muted:#6b7280}
+
+    header{background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 10px 30px rgba(2,8,23,.06)}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .logo img{height:46px;width:auto;display:block}
+    nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+    nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+    nav a:hover{text-decoration:underline}
+
+    .page{max-width:1100px;margin:auto;padding:56px 18px 86px}
+    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
+    h1{font-size:44px;line-height:1.1;margin-top:12px}
+    .lead{margin-top:14px;color:var(--muted);line-height:1.8;max-width:940px}
+
+    .grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px;margin-top:24px}
+    .card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px}
+    .card h2{font-size:18px;margin-bottom:8px}
+    .card p{color:var(--muted);line-height:1.75}
+    .card ul{margin-top:12px;padding-left:18px;color:var(--muted);line-height:1.75}
+    .card li{margin:6px 0}
+
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--brand)}
+    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:700}
+
+    @media(max-width:920px){
+      h1{font-size:36px}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html#home" aria-label="SALMART Diplomatic Hospitality">
+      <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="SALMART Diplomatic Hospitality" />
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why.html">Why SALMART</a></li>
+        <li><a href="how-we-work.html">How We Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <span class="kicker">STANDARDS</span>
+    <h1>DMC Advantage, Sustainability &amp; Risk Management</h1>
+    <p class="lead">For diplomatic, governmental, and high-level corporate engagements, precision and responsibility are non-negotiable. SALMART integrates comprehensive standards across destination management, sustainability, and safety planning.</p>
+
+    <div class="cta">
+      <a class="btn-solid" href="contact.html">Request a consultation</a>
+      <a class="btn-outline" href="services.html">Explore services</a>
+    </div>
+
+    <section class="grid" aria-label="Standards">
+      <article class="card">
+        <h2>Destination Management Expertise (DMC Advantage)</h2>
+        <p>Local intelligence with international standards. We act as your on-the-ground partner, coordinating across venues, suppliers, authorities, and cultural stakeholders.</p>
+        <ul>
+          <li>Destination research and feasibility studies</li>
+          <li>Venue sourcing and contracting</li>
+          <li>Government and protocol coordination</li>
+          <li>Supplier management and quality control</li>
+          <li>Risk management and contingency planning</li>
+          <li>Delegate hospitality and VIP handling</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Sustainability &amp; Responsible Events</h2>
+        <p>We balance excellence with environmental and social responsibility to create value for communities, clients, and long-term outcomes.</p>
+        <ul>
+          <li>Eco-conscious sourcing and materials</li>
+          <li>Digital-first communication to reduce waste</li>
+          <li>Local supplier engagement to support communities</li>
+          <li>Sustainable transport and accommodation options</li>
+          <li>Cultural preservation through authentic experiences</li>
+        </ul>
+      </article>
+
+      <article class="card" style="grid-column:1/-1">
+        <h2>Safety, Security &amp; Risk Management</h2>
+        <p>For diplomatic and high-level corporate events, safety is non-negotiable. SALMART integrates risk protocols from the outset and coordinates with authorities where required.</p>
+        <ul>
+          <li>Security coordination with local authorities</li>
+          <li>Emergency response planning</li>
+          <li>Health and safety compliance</li>
+          <li>Crowd management and access control</li>
+          <li>Confidentiality and data protection</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

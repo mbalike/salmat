@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact • SALMART Diplomatic Hospitality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
+    :root{--brand:#77c34f;--brand-dark:#1f6b35;--ink:#0b2a1b;--muted:#6b7280}
+
+    header{background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 10px 30px rgba(2,8,23,.06)}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .logo img{height:46px;width:auto;display:block}
+    nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
+    nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+    nav a:hover{text-decoration:underline}
+
+    .page{max-width:900px;margin:auto;padding:56px 18px 86px}
+    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
+    h1{font-size:44px;line-height:1.1;margin-top:12px}
+    .lead{margin-top:14px;color:var(--muted);line-height:1.8}
+
+    .card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px;margin-top:22px}
+    .card h2{font-size:18px;margin-bottom:8px}
+    .card p{color:var(--muted);line-height:1.75}
+
+    form{display:grid;gap:12px;margin-top:12px}
+    label{font-weight:700;font-size:13px}
+    input,textarea{width:100%;padding:12px 12px;border:1px solid #e5e7eb;font:500 14px/1.4 'Poppins',sans-serif}
+    textarea{min-height:120px;resize:vertical}
+    button{background:var(--brand);color:#fff;border:1px solid var(--brand);padding:12px 16px;font-weight:800;cursor:pointer}
+    button:hover{filter:saturate(1.05)}
+
+    @media(max-width:920px){
+      h1{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html#home" aria-label="SALMART Diplomatic Hospitality">
+      <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="SALMART Diplomatic Hospitality" />
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why.html">Why SALMART</a></li>
+        <li><a href="how-we-work.html">How We Work</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <span class="kicker">CONTACT</span>
+    <h1>Let’s Build Something Exceptional</h1>
+    <p class="lead">Share a few details and we’ll respond with a quick discovery call. For sensitive engagements, we’re happy to coordinate discreetly and by appointment.</p>
+
+    <section class="card" aria-label="Contact details">
+      <h2>Reach Us</h2>
+      <p><strong>Email:</strong> info@salmartdiplomatichospitality.com</p>
+      <p style="margin-top:6px"><strong>Consultation:</strong> By appointment</p>
+      <p style="margin-top:6px">Destination Management Company (DMC) • High-level events • hospitality • storytelling</p>
+    </section>
+
+    <section class="card" aria-label="Inquiry form">
+      <h2>Request a Proposal</h2>
+      <p>Tell us about your destination, dates, format (live/hybrid/virtual), and audience.</p>
+      <form action="#" method="post">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="message">Project details</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Send request</button>
+      </form>
+      <p style="margin-top:10px;color:var(--muted)">Note: This demo form does not submit to a server yet. If you want, I can wire it to an email service or backend endpoint.</p>
+    </section>
+  </main>
+</body>
+</html>
