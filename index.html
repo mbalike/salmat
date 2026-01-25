@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salmat Diplomatic Hospitality</title>
+  <link rel="shortcut icon" href="./assets/img/salmart-diplomatic-hospitality-logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -147,23 +148,48 @@
     .search-box button:hover{filter:saturate(1.05)}
     .search-box button:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
 
-    /* ===== SECTION ===== */
-    .section{padding:110px 40px;max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px}
-    .section h2{font-size:40px;font-weight:700;margin-bottom:16px;color:var(--ink)}
-    .section p{color:#6b7280;margin-bottom:28px}
-    .features{position:relative;display:flex;flex-direction:column;gap:22px}
-    .features::before{content:'';position:absolute;left:13px;top:10px;bottom:10px;width:2px;background:#e5e7eb;border-radius:2px}
-    .feature{position:relative;background:transparent;padding:8px 14px 8px 48px;border-radius:6px}
-    .feature > div:not(.check){position:relative;z-index:1}
-    .feature strong{display:block;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:2px}
-    .feature small{color:#6b7280}
-    .feature.active{background:transparent}
-    .feature.active::after{content:'';position:absolute;left:38px;right:0;top:0;bottom:0;background:#fff;border-radius:6px;box-shadow:0 14px 30px rgba(15,23,42,.10);z-index:0}
-    .check{position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--brand);border:2px solid rgba(119,195,79,.22);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;z-index:2}
-    .feature.active .check{background:var(--brand);color:#fff;border-color:var(--brand)}
-    .images{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .images img{width:100%;height:100%;object-fit:cover;border-radius:6px}
-    .images img:first-child{grid-column:1/3;height:260px}
+    /* ===== CEO MESSAGE ===== */
+    .ceo-section{padding:110px 40px;background:#f6f8fb}
+    .ceo-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+    .ceo-image-wrap{position:relative}
+    .ceo-image{position:relative;width:100%;overflow:hidden}
+    .ceo-image img{width:100%;height:auto;display:block;object-fit:cover}
+    .ceo-quote{position:absolute;bottom:-30px;right:-30px;background:var(--brand-dark);color:#fff;padding:42px 38px;max-width:380px;box-shadow:0 20px 50px rgba(31,107,53,.35)}
+    .ceo-quote-icon{width:44px;height:34px;margin-bottom:12px}
+    .ceo-quote-icon::before{content:'';display:block;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 44' fill='none'%3E%3Cpath d='M22 6c-8 2-12 9-12 16 0 8 5 14 12 14 4 0 8-3 8-8s-3-8-8-8c-2 0-3 .4-4 1 0-5 3-9 9-12l-5-3Z' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M42 6c-8 2-12 9-12 16 0 8 5 14 12 14 4 0 8-3 8-8s-3-8-8-8c-2 0-3 .4-4 1 0-5 3-9 9-12l-5-3Z' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+    .ceo-quote-text{font-size:18px;line-height:1.4;font-weight:600}
+    
+    .ceo-content{}
+    .ceo-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:800;color:var(--brand-dark);margin-bottom:14px}
+    .ceo-title{font-size:48px;line-height:1.08;font-weight:800;color:var(--ink);margin-bottom:8px}
+    .ceo-subtitle{font-size:22px;line-height:1.25;font-weight:700;color:var(--ink);margin-bottom:24px}
+    .ceo-text{color:#6b7280;line-height:1.8;margin-bottom:22px;font-size:15px}
+    .ceo-text + .ceo-text{margin-bottom:28px}
+    
+    .ceo-points{display:flex;flex-direction:column;gap:14px;margin-bottom:34px}
+    .ceo-point{display:flex;align-items:flex-start;gap:12px}
+    .ceo-point-icon{width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;flex:0 0 24px;font-size:14px;font-weight:800;margin-top:2px}
+    .ceo-point-text{font-size:15px;font-weight:600;color:var(--ink);line-height:1.5}
+    
+    .ceo-signature{display:flex;align-items:center;gap:18px;padding-top:24px;border-top:1px solid #e5e7eb}
+    .ceo-signature-photo{width:70px;height:70px;border-radius:50%;overflow:hidden;border:3px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.12);flex:0 0 70px}
+    .ceo-signature-photo img{width:100%;height:100%;object-fit:cover}
+    .ceo-signature-sign{flex:1}
+    .ceo-signature-sign img{height:50px;width:auto;display:block}
+    
+    @media(max-width:980px){
+      .ceo-inner{grid-template-columns:1fr;gap:50px}
+      .ceo-title{font-size:40px}
+      .ceo-subtitle{font-size:20px}
+      .ceo-quote{right:20px;bottom:-20px;max-width:320px;padding:32px 28px}
+      .ceo-quote-text{font-size:16px}
+    }
+    @media(max-width:560px){
+      .ceo-section{padding:86px 18px}
+      .ceo-title{font-size:34px}
+      .ceo-subtitle{font-size:18px}
+      .ceo-quote{position:static;margin-top:20px;max-width:100%}
+    }
 
     /* ===== DIRECTORY FILTER ===== */
     .directory-section{padding:110px 40px;background:#fff}
@@ -559,14 +585,14 @@
 
 <header>
   <a class="logo" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
-    <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" decoding="async" loading="eager" />
+    <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" decoding="async" loading="eager" />
   </a>
   <nav>
     <ul>
       <li><a href="index.html#home">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html">About Us</a></li>
       <li><a href="services.html">Services</a></li>
-      <li><a href="why.html">Why SALMART</a></li>
+      <li><a href="why.html">Why Salmat</a></li>
       <li><a href="how-we-work.html">How We Work</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -600,7 +626,7 @@
       <span class="hero-video-label">Our Approach</span>
     </div>
     <h1>High-Level Events.<br/>Diplomatic Precision.</h1>
-    <p>SALMART Diplomatic Hospitality is a premier Destination Management Company (DMC) delivering culturally intelligent, future-focused hospitality and event experiences for corporate, diplomatic, and institutional clients.</p>
+    <p>Salmat Diplomatic Hospitality is a premier Destination Management Company (DMC) delivering culturally intelligent, future-focused hospitality and event experiences for corporate, diplomatic, and institutional clients.</p>
     <div class="search-box">
       <div class="search-field">
         <svg class="search-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -616,54 +642,56 @@
 
 <main id="main">
 
-<section class="section" id="about" aria-label="About SALMART">
-  <div>
-    <h2>About SALMART<br/>Diplomatic Hospitality</h2>
-    <p>SALMART Diplomatic Hospitality is a Destination Management Company (DMC) designing and delivering high-level events and hospitality experiences for corporate, diplomatic, and institutional clients—where strategy, protocol, culture, and creativity meet.</p>
-
-    <div class="section-cta" aria-label="About actions">
-      <a class="btn-solid" href="about.html">Explore our story</a>
-      <a class="btn-outline" href="contact.html">Request a proposal</a>
-    </div>
-
-    <div class="features">
-      <div class="feature">
-        <div class="check">✓</div>
-        <div>
-          <strong>Our Vision</strong>
-          <small>A globally respected DMC known for culturally intelligent, future-focused experiences.</small>
-        </div>
+<section class="ceo-section" id="about" aria-label="Message from our CEO">
+  <div class="ceo-inner">
+    <div class="ceo-image-wrap">
+      <div class="ceo-image">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" alt="CEO of Salmat Diplomatic Hospitality" loading="lazy" />
       </div>
-      <div class="feature active">
-        <div class="check">✓</div>
-        <div>
-          <strong>Our Mission</strong>
-          <small>End-to-end hospitality, event management, and strategic communications—thoughtfully designed and flawlessly delivered.</small>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="check">✓</div>
-        <div>
-          <strong>Our Core Values</strong>
-          <small>Excellence • innovation • integrity • diplomatic intelligence • storytelling • sustainability.</small>
-        </div>
+      <div class="ceo-quote">
+        <div class="ceo-quote-icon flaticon flaticon-quotation" aria-hidden="true"></div>
+        <div class="ceo-quote-text">Excellence is not the key to success. Success is the key to excellence you deliver.</div>
       </div>
     </div>
 
-    <div class="values-grid" aria-label="Core values">
-      <div class="values-pill"><strong>Excellence</strong><span>Highest standards and attention to detail.</span></div>
-      <div class="values-pill"><strong>Innovation</strong><span>Creativity, technology, and future-ready thinking.</span></div>
-      <div class="values-pill"><strong>Integrity</strong><span>Professionalism, discretion, transparency, respect.</span></div>
-      <div class="values-pill"><strong>Cultural &amp; Diplomatic Intelligence</strong><span>Protocol-aware, inclusive, cross-cultural delivery.</span></div>
-      <div class="values-pill"><strong>Impactful Storytelling</strong><span>Narratives that resonate and extend value.</span></div>
-      <div class="values-pill"><strong>Sustainability &amp; Responsibility</strong><span>Responsible practices with long-term value.</span></div>
+    <div class="ceo-content">
+      <span class="ceo-kicker">HELLO I'M</span>
+      <h2 class="ceo-title">Samuel Martinez</h2>
+      <div class="ceo-subtitle">Chief Executive Officer</div>
+      
+      <p class="ceo-text">As CEO of Salmat Diplomatic Hospitality, I am proud to lead a team dedicated to delivering world-class destination management services that bridge cultures, elevate experiences, and create lasting impact for our clients across the globe.</p>
+      
+      <p class="ceo-text">With over two decades of experience in international relations, protocol management, and high-level event production, we understand that every engagement is an opportunity to strengthen relationships, showcase excellence, and advance the missions of the institutions we serve.</p>
+      
+      <div class="ceo-points">
+        <div class="ceo-point">
+          <div class="ceo-point-icon">✓</div>
+          <div class="ceo-point-text">Strategic excellence in diplomatic hospitality and event delivery</div>
+        </div>
+        <div class="ceo-point">
+          <div class="ceo-point-icon">✓</div>
+          <div class="ceo-point-text">Cultural intelligence and protocol-driven approach</div>
+        </div>
+        <div class="ceo-point">
+          <div class="ceo-point-icon">✓</div>
+          <div class="ceo-point-text">Commitment to sustainability and responsible event management</div>
+        </div>
+      </div>
+      
+      <div class="ceo-signature">
+        <div class="ceo-signature-photo">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" alt="Samuel Martinez signature photo" loading="lazy" />
+        </div>
+        <div class="ceo-signature-sign">
+          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" style="width:180px;height:auto">
+            <path d="M 10 40 Q 20 20, 40 35 T 70 40" stroke="var(--brand-dark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 75 35 Q 85 25, 95 35 Q 105 45, 115 35" stroke="var(--brand-dark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 120 30 L 125 45 L 135 25" stroke="var(--brand-dark)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 140 35 Q 150 25, 160 35 T 180 35" stroke="var(--brand-dark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="images">
-    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1200&auto=format&fit=crop" alt="Conference audience and stage" loading="lazy" />
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="Professional team planning an event" loading="lazy" />
-    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop" alt="Executive meeting documents" loading="lazy" />
   </div>
 </section>
 
@@ -784,10 +812,10 @@
   </div>
 </section>
 
-<section class="dept-section" id="why" aria-label="Why choose SALMART">
+<section class="dept-section" id="why" aria-label="Why choose Salmat">
   <div class="dept-inner">
     <div class="dept-head">
-      <div class="dept-kicker">WHY SALMART</div>
+      <div class="dept-kicker">WHY Salmat</div>
       <h2>Your DMC Partner for High-Level Events,<br/>Experiences, and Stories</h2>
       <p class="dept-intro">A single, integrated partner for delivery, protocol, production, hospitality, and storytelling—built for high-stakes environments and global visibility.</p>
     </div>
@@ -1123,7 +1151,7 @@
           <div class="post-meta">
             <span class="item">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a4.5 4.5 0 10-4.5-4.5A4.5 4.5 0 0012 12zm0 2c-4.7 0-8.5 2.4-8.5 5.3V21h17v-1.7c0-2.9-3.8-5.3-8.5-5.3z"/></svg>
-              <span>SALMART Media Desk</span>
+              <span>Salmat Media Desk</span>
             </span>
             <span class="item">
               <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 6a3 3 0 00-3-3H6A3 3 0 003 6v8a3 3 0 003 3h9l4.5 3v-3H18a3 3 0 003-3V6z"/></svg>
@@ -1174,7 +1202,7 @@
               </span>
             </div>
             <a class="post-title" href="storytelling.html" style="font-size:20px">Amplify Impact Beyond the Event</a>
-            <div class="post-excerpt">Organizations across the continent trust SALMART to deliver their stories to the right audience, at the right time, with credibility and impact.</div>
+            <div class="post-excerpt">Organizations across the continent trust Salmat to deliver their stories to the right audience, at the right time, with credibility and impact.</div>
             <a class="post-link" href="contact.html">Contact us <span class="arr">→</span></a>
           </div>
         </article>
@@ -1189,37 +1217,37 @@
       <div class="logo-marquee-track">
         <div class="logo-row">
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" loading="lazy" decoding="async" />
           </div>
         </div>
 
         <div class="logo-row" aria-hidden="true">
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
           <div class="logo-item">
-            <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -1231,7 +1259,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <a class="footer-brand" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
-        <img src="assets/img/salmart-diplomatic-hospitality-logo.jpg" alt="Salmat Diplomatic Hospitality" decoding="async" loading="lazy" />
+        <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" decoding="async" loading="lazy" />
       </a>
 
       <div class="footer-social" aria-label="Social links">
@@ -1277,7 +1305,7 @@
         <ul class="footer-links">
           <li><a href="about.html">About Us</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="why.html">Why SALMART</a></li>
+          <li><a href="why.html">Why Salmat</a></li>
           <li><a href="how-we-work.html">How We Work</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -1305,7 +1333,7 @@
     </div>
   </div>
 
-  <div class="footer-bottom">© 2026 <a href="index.html#home">SALMART Diplomatic Hospitality</a>. All rights reserved.</div>
+  <div class="footer-bottom">© 2026 <a href="index.html#home">Salmat Diplomatic Hospitality</a>. All rights reserved.</div>
 </footer>
 
 <a class="back-to-top" href="#" aria-label="Back to top">↑</a>

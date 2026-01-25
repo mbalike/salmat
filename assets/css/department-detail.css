@@ -1,0 +1,75 @@
+/* Department detail page overrides (built on top of service-detail.css) */
+
+:root{
+  --aside-accent:var(--brand);
+  --aside-cta:var(--brand);
+  --aside-ink:var(--ink);
+}
+
+/* flip layout: aside left, article right */
+.dept-detail .page-grid{grid-template-columns:.9fr 1.65fr}
+
+/* allow using the same page-wrap spacing */
+.dept-detail .page-wrap{padding-top:64px}
+
+/* Dedicated aside styles (snapshot-inspired) */
+.dept-aside{position:sticky;top:88px;align-self:start;display:flex;flex-direction:column;gap:18px}
+
+.aside-widget{background:#fff;border:1px solid rgba(48,72,87,.22);box-shadow:0 18px 40px rgba(2,8,23,.08)}
+
+.aside-widget-header{position:relative;background:var(--aside-accent);color:#fff;font-weight:900;font-size:20px;line-height:1.1;padding:16px 18px}
+.aside-widget-header::after{
+  content:'';
+  position:absolute;
+  left:22px;
+  bottom:-10px;
+  width:0;height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-top:10px solid var(--aside-accent);
+}
+
+.aside-widget-body{padding:26px 18px 18px}
+
+/* Contact widget */
+.aside-kv{display:grid;gap:18px}
+.aside-kv .k{color:#6b7280;font-size:14px}
+.aside-kv .v{color:#0b2a1b;font-weight:800}
+.aside-kv a{color:#0b2a1b;text-decoration:none;font-weight:800}
+.aside-kv a:hover{text-decoration:underline}
+
+/* Department links widget */
+.aside-links{list-style:none;display:flex;flex-direction:column;gap:12px;margin:0;padding:0}
+.aside-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px;background:#f3f4f6;color:var(--aside-ink);text-decoration:none;font-weight:800}
+.aside-links a:hover{filter:brightness(.98)}
+.aside-links a:focus-visible{outline:3px solid rgba(117,191,83,.45);outline-offset:3px}
+.aside-links .plus{font-size:22px;line-height:1;font-weight:700;opacity:.8}
+
+/* Download card widget (snapshot-inspired) */
+.download-card{position:relative;background:var(--aside-cta);color:#fff;overflow:hidden;box-shadow:0 18px 40px rgba(2,8,23,.14)}
+.download-card .body{padding:18px 18px 18px 18px;display:grid;gap:10px}
+.download-card .meta{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.92);font-weight:700;font-size:13px}
+.download-card .meta svg{width:18px;height:18px;opacity:.95}
+.download-card h3{margin:0;font-size:22px;line-height:1.15;font-weight:900}
+.download-card .dl{
+  position:absolute;right:16px;top:16px;
+  width:56px;height:56px;border-radius:999px;
+  display:grid;place-items:center;
+  background:#fff;color:var(--brand-dark);
+  text-decoration:none;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+.download-card .dl:hover{transform:translateY(-1px)}
+.download-card .dl:focus-visible{outline:3px solid rgba(255,255,255,.65);outline-offset:4px}
+.download-card .dl svg{width:22px;height:22px}
+
+/* Article tweaks for department copy */
+.dept-detail .feature-media{height:clamp(180px, 20vw, 240px)}
+.dept-detail .article h2{margin-top:24px}
+.dept-detail .article .tagline{font-size:18px;font-weight:800;color:var(--brand-dark);margin:8px 0 14px}
+.dept-detail .article .lead{margin:0;color:#6b7280;line-height:1.85}
+
+@media(max-width:980px){
+  .dept-detail .page-grid{grid-template-columns:1fr}
+  .dept-aside{position:relative;top:auto}
+}
