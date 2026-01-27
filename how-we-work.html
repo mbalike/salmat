@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How We Work • Salmat Diplomatic Hospitality</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site-shell.css" />
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
@@ -47,9 +48,72 @@
       <ul>
         <li><a href="index.html#home">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li class="has-submenu">
+          <a href="services.html">Services</a>
+          <div class="nav-mega" role="menu" aria-label="Services menu">
+            <div class="nav-mega-inner">
+              <div class="nav-mega-grid">
+                <div class="nav-col">
+                  <div class="nav-col-title">Services</div>
+                  <a href="services.html">Services Overview <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Core Services</div>
+                  <a href="service-event-management-production.html">Event Management &amp; Production <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-production-branding-venue.html">Production, Branding &amp; Venue <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-conference-support-coverage.html">Conference Support &amp; Coverage <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-mice-delivery.html">MICE Delivery <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-cruise-line-services.html">Cruise Line Services <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Explore</div>
+                  <a href="industries.html">Industries <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="standards.html">Standards <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="storytelling.html">Storytelling <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="city-visitors-guide.html">City Visitor’s Guide <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Company</div>
+                  <a href="why.html">Why Salmat <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="how-we-work.html">How We Work <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="contact.html">Contact <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="has-submenu">
+          <a href="departments.html">Departpartment</a>
+          <div class="nav-mega" role="menu" aria-label="Departments menu">
+            <div class="nav-mega-inner">
+              <div class="nav-mega-grid">
+                <div class="nav-col">
+                  <div class="nav-col-title">Departments</div>
+                  <a href="departments.html">Departments Overview <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="department-business-development-partnerships.html">Business Development &amp; Partnerships <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Services</div>
+                  <a href="services.html">Browse Services <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-event-management-production.html">Event Management <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="service-mice-delivery.html">MICE Delivery <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Insights</div>
+                  <a href="standards.html">Standards <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="storytelling.html">Storytelling <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="industries.html">Industries <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-col">
+                  <div class="nav-col-title">Get In Touch</div>
+                  <a href="contact.html">Request a Proposal <span class="arr" aria-hidden="true">→</span></a>
+                  <a href="about.html">About Us <span class="arr" aria-hidden="true">→</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
         <li><a href="why.html">Why Salmat</a></li>
-        <li><a href="how-we-work.html" aria-current="page">How We Work</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -91,5 +155,7 @@
       </article>
     </section>
   </main>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

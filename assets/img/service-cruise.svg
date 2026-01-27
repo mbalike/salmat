@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2a1b"/>
+      <stop offset="0.52" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#243645"/>
+    </linearGradient>
+    <radialGradient id="r" cx="25%" cy="20%" r="70%">
+      <stop offset="0" stop-color="#ef4444" stop-opacity="0.45"/>
+      <stop offset="0.6" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <rect width="1600" height="900" fill="url(#r)"/>
+  <g opacity="0.16" fill="#ffffff">
+    <path d="M210 600c170-40 310-60 420-60 200 0 320 50 470 110 130 52 250 90 490 90v70H210v-210Z"/>
+    <path d="M350 520c90-120 210-180 360-180h300c130 0 260 50 390 150l-52 34c-90-74-186-110-288-110H710c-118 0-214 44-288 132l-72-26Z"/>
+    <path d="M260 700h1080v14H260z"/>
+    <path d="M260 738h920v14H260z"/>
+  </g>
+</svg>

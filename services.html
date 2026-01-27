@@ -4,185 +4,517 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services • Salmat Diplomatic Hospitality</title>
+  <link rel="shortcut icon" href="./assets/img/salmart-diplomatic-hospitality-logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
-    :root{--brand:#77c34f;--brand-dark:#1f6b35;--ink:#0b2a1b;--muted:#6b7280}
-
-    header{background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:10;box-shadow:0 10px 30px rgba(2,8,23,.06)}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
-    .logo img{height:46px;width:auto;display:block}
-    nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px}
-    nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
-    nav a:hover{text-decoration:underline}
-
-    .page{max-width:1100px;margin:auto;padding:56px 18px 86px}
-    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
-    h1{font-size:44px;line-height:1.1;margin-top:12px}
-    .lead{margin-top:14px;color:var(--muted);line-height:1.8;max-width:940px}
-
-    .grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px;margin-top:28px}
-    .card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px}
-    .card h2{font-size:18px;margin-bottom:8px}
-    .card p{color:var(--muted);line-height:1.75}
-    .card ul{margin-top:12px;padding-left:18px;color:var(--muted);line-height:1.75}
-    .card li{margin:6px 0}
-
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--brand)}
-    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:700}
-
-    footer{background:linear-gradient(180deg, rgba(14,62,36,1), rgba(11,50,29,1));color:#fff}
-    .footer-inner{max-width:1100px;margin:auto;padding:34px 18px}
-    .footer-inner p{color:rgba(255,255,255,.78);line-height:1.7;margin-top:8px}
-
-    @media(max-width:920px){
-      h1{font-size:36px}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/service-detail.css" />
+  <link rel="stylesheet" href="assets/css/site-shell.css" />
+  <link rel="stylesheet" href="assets/css/services.css" />
 </head>
 <body>
-  <header>
-    <a class="logo" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
-      <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" />
-    </a>
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html" aria-current="page">Services</a></li>
-        <li><a href="why.html">Why Salmat</a></li>
-        <li><a href="how-we-work.html">How We Work</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+          <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <a href="mailto:info@salmartdiplomatichospitality.com">info@salmartdiplomatichospitality.com</a>
+      </div>
+      <div class="topbar-item">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/>
+        </svg>
+        <span>Destination Management Partner • Global Delivery</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-lang" aria-label="Language">
+        <svg class="topbar-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12h20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+          <path d="M12 2c3 3 3 17 0 20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+          <path d="M12 2c-3 3-3 17 0 20" stroke="currentColor" stroke-width="2" opacity=".85"/>
+        </svg>
+        <select aria-label="Select language">
+          <option>English</option>
+          <option>French</option>
+          <option>Spanish</option>
+        </select>
+        <svg class="caret" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
+
+      <div class="topbar-social" aria-label="Social links">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.6l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5Z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm6.2-2.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <a class="logo" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
+    <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" decoding="async" loading="eager" />
+  </a>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="has-submenu">
+        <a href="services.html" aria-current="page">Services</a>
+        <div class="nav-mega" role="menu" aria-label="Services menu">
+          <div class="nav-mega-inner">
+            <div class="nav-mega-grid">
+              <div class="nav-col">
+                <div class="nav-col-title">Services</div>
+                <a href="services.html">Services Overview <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Core Services</div>
+                <a href="service-event-management-production.html">Event Management &amp; Production <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-production-branding-venue.html">Production, Branding &amp; Venue <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-conference-support-coverage.html">Conference Support &amp; Coverage <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-mice-delivery.html">MICE Delivery <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-cruise-line-services.html">Cruise Line Services <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Explore</div>
+                <a href="industries.html">Industries <span class="arr" aria-hidden="true">→</span></a>
+                <a href="standards.html">Standards <span class="arr" aria-hidden="true">→</span></a>
+                <a href="storytelling.html">Storytelling <span class="arr" aria-hidden="true">→</span></a>
+                <a href="city-visitors-guide.html">City Visitor’s Guide <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Company</div>
+                <a href="why.html">Why Salmat <span class="arr" aria-hidden="true">→</span></a>
+                <a href="how-we-work.html">How We Work <span class="arr" aria-hidden="true">→</span></a>
+                <a href="contact.html">Contact <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="has-submenu">
+        <a href="departments.html">Departpartment</a>
+        <div class="nav-mega" role="menu" aria-label="Departments menu">
+          <div class="nav-mega-inner">
+            <div class="nav-mega-grid">
+              <div class="nav-col">
+                <div class="nav-col-title">Departments</div>
+                <a href="departments.html">Departments Overview <span class="arr" aria-hidden="true">→</span></a>
+                <a href="department-business-development-partnerships.html">Business Development &amp; Partnerships <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Services</div>
+                <a href="services.html">Browse Services <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-event-management-production.html">Event Management <span class="arr" aria-hidden="true">→</span></a>
+                <a href="service-mice-delivery.html">MICE Delivery <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Insights</div>
+                <a href="standards.html">Standards <span class="arr" aria-hidden="true">→</span></a>
+                <a href="storytelling.html">Storytelling <span class="arr" aria-hidden="true">→</span></a>
+                <a href="industries.html">Industries <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+              <div class="nav-col">
+                <div class="nav-col-title">Get In Touch</div>
+                <a href="contact.html">Request a Proposal <span class="arr" aria-hidden="true">→</span></a>
+                <a href="about.html">About Us <span class="arr" aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="why.html">Why Salmat</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-actions">
+    <div class="contact" aria-label="Contact phone">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <strong>Consultation by appointment</strong>
+    </div>
+    <a class="btn" href="contact.html" style="text-decoration:none;display:inline-flex;align-items:center">Request a Proposal</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu">
+      <div class="bars"><span></span></div>
+    </button>
+  </div>
+</header>
+
+<a class="nav-backdrop" href="#" aria-label="Close menu" data-nav-backdrop></a>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<section class="inner-hero" aria-label="Page header" style="--hero-bg-image:url('https://images.unsplash.com/photo-1469796466635-455ede028aca?q=80&w=2400&auto=format&fit=crop');">
+  <div class="inner-hero-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html#home">Home</a>
+      <span class="crumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Services </span>
     </nav>
-  </header>
 
-  <main class="page">
-    <span class="kicker">OUR SERVICES</span>
-    <h1>End-to-End Event, Hospitality &amp; DMC Solutions</h1>
-    <p class="lead">Salmat delivers integrated services across events, production, protocol, logistics, and strategic communications. Below is our full portfolio—structured for corporate, diplomatic, institutional, and high-profile clients.</p>
+    <h1 class="inner-hero-title">Services </h1>
+  </div>
+</section>
 
-    <div class="cta">
-      <a class="btn-solid" href="contact.html">Request a proposal</a>
-      <a class="btn-outline" href="standards.html">See our standards</a>
+<main id="main">
+
+  <section class="services-wrap" aria-label="Explore more with us">
+    <div class="services-explore-head">
+      <div class="services-explore-kicker">
+        <div class="topline" aria-hidden="true"></div>
+        <div class="label">EXPLORE MORE WITH US</div>
+        <h2 class="services-explore-title">Let’s explore local services programs &amp; initiatives</h2>
+      </div>
+
+      <div class="services-explore-action">
+        <a class="discover-btn" href="contact.html">Discover More</a>
+      </div>
     </div>
 
-    <section class="grid" aria-label="Service list">
-      <article class="card">
-        <h2>1) Event Management &amp; Production</h2>
-        <p>Full-spectrum event management from concept development to final delivery—built for high-profile and complex engagements.</p>
-        <ul>
-          <li>International Conferences &amp; Forums</li>
-          <li>Executive Summits &amp; Leadership Retreats</li>
-          <li>Corporate Meetings &amp; Board Sessions</li>
-          <li>Product Launches &amp; Brand Activations</li>
-          <li>Awards &amp; Recognition Ceremonies</li>
-          <li>Formats: Live • Hybrid • Fully Online</li>
-        </ul>
+    <div class="services-explore-grid" aria-label="Service highlights">
+      <a class="service-showcase service-showcase-link" href="service-event-management-production.html" aria-label="Event Management &amp; Production">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop" alt="Event Management & Production" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 7h14v3H5V7Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M5 12h14v5H5v-5Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            <path d="M8 6V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 6V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="title-bar">
+          <h3>Event Management &amp; Production</h3>
+        </div>
+      </a>
+
+      <div class="service-showcase center" aria-label="MICE Delivery">
+        <img src="https://images.unsplash.com/photo-1526401485004-2aa7f3c59c75?q=80&w=1600&auto=format&fit=crop" alt="MICE Delivery" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            <path d="M6 17h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+          </svg>
+        </div>
+
+        <div class="center-card">
+          <div class="inner">
+            <h3>MICE Delivery</h3>
+            <p>Delegate management, registrations, on-site operations, exhibition flow, and speaker coordination.</p>
+          </div>
+          <div class="center-cta">
+            <a href="service-mice-delivery.html" aria-label="View MICE Delivery">
+              <span>View Service</span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a class="service-showcase service-showcase-link" href="service-conference-support-coverage.html" aria-label="Event Coverage &amp; Conference Support">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1600&auto=format&fit=crop" alt="Event Coverage & Conference Support" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10H4V7Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="title-bar">
+          <h3>Event Coverage &amp; Conference Support</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="stats-wrap" aria-label="Key metrics">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 21v-7h6v7" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="value" data-count="4" data-suffix="th">0th</div>
+        <div class="label">Home ownership costs</div>
+      </div>
+      <div class="stat">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 21v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6.5 12c3-5.5 8-5.5 11 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 21h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="value" data-count="36" data-suffix="%">0%</div>
+        <div class="label">Private gardenlands</div>
+      </div>
+      <div class="stat">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M16 11a4 4 0 1 0-8 0" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 21c1.5-4 6-6 9-6s7.5 2 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="value" data-count="84000" data-format="compact">0</div>
+        <div class="label">People lived in the city</div>
+      </div>
+      <div class="stat">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="value" data-count="3300" data-format="compact">0</div>
+        <div class="label">Kilometers region covers</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-wrap" aria-label="Testimonials">
+    <div class="testimonials-head">
+      <div class="testimonials-kicker">
+        <div class="topline" aria-hidden="true"></div>
+        <div class="label">OUR TESTIMONIALS</div>
+      </div>
+      <h2>What they’re talking about us?</h2>
+    </div>
+
+    <div class="testimonial-grid" aria-label="Customer reviews">
+      <article class="testimonial" aria-label="Review 1">
+        <div class="testimonial-top">
+          <div class="avatar" aria-hidden="true">SA</div>
+          <div class="who">
+            <small>CUSTOMER</small>
+            <strong>Sarah Albert</strong>
+          </div>
+          <div class="stars" aria-label="5 star rating">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+          </div>
+        </div>
+        <div class="testimonial-body">This is due to their excellent service, competitive pricing and customer support. It’s thoroughly refreshing to get such a personal touch.</div>
       </article>
 
-      <article class="card">
-        <h2>2) Production, Branding &amp; Venue Transformation</h2>
-        <p>We design events from scratch, shaping both the physical and visual identity of each experience.</p>
-        <ul>
-          <li>Professional AV production, lighting, and sound engineering</li>
-          <li>Stage design, set construction, and scenic styling</li>
-          <li>Video production, live streaming, and on-demand content</li>
-          <li>Conference branding concepts and visual identity development</li>
-          <li>Signage, backdrops, printing, delegate kits, and merchandise</li>
-        </ul>
+      <article class="testimonial" aria-label="Review 2">
+        <div class="testimonial-top">
+          <div class="avatar" aria-hidden="true">MR</div>
+          <div class="who">
+            <small>CUSTOMER</small>
+            <strong>Mike Ronobs</strong>
+          </div>
+          <div class="stars" aria-label="5 star rating">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+          </div>
+        </div>
+        <div class="testimonial-body">The team handled everything with precision and calm. Clear communication, thoughtful planning, and an executive-level finish across the entire program.</div>
       </article>
 
-      <article class="card">
-        <h2>3) Event Coverage &amp; Conference Support</h2>
-        <p>Professional documentation, moderation, and real-time communications that extend your event’s value.</p>
-        <ul>
-          <li>Photography and cinematic videography</li>
-          <li>Highlight videos, documentaries, and post-event reels</li>
-          <li>Live social updates and behind-the-scenes storytelling</li>
-          <li>Moderators, MCs, and rapporteurs</li>
-        </ul>
+      <article class="testimonial" aria-label="Review 3">
+        <div class="testimonial-top">
+          <div class="avatar" aria-hidden="true">AB</div>
+          <div class="who">
+            <small>CUSTOMER</small>
+            <strong>Aleesha Brown</strong>
+          </div>
+          <div class="stars" aria-label="5 star rating">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 20l1.2-6.5L2.5 8.9 9.1 8 12 2Z"/></svg>
+          </div>
+        </div>
+        <div class="testimonial-body">From arrival to closeout, everything felt seamless. The quality of stakeholder care and delivery standards stood out immediately.</div>
       </article>
+    </div>
+  </section>
 
-      <article class="card">
-        <h2>4) MICE (Meetings, Incentives, Conferences &amp; Exhibitions)</h2>
-        <p>Strategic and operational excellence across the full MICE lifecycle.</p>
-        <ul>
-          <li>Delegate management, speaker coordination, registration systems</li>
-          <li>On-site operations and exhibitor flow planning</li>
-          <li>Exhibition concept development and booth fabrication</li>
-          <li>Digital displays, screens, and interactive installations</li>
-        </ul>
-      </article>
+  <section class="services-list-wrap" aria-label="Services list">
+    <div class="services-list-head">
+      <div>
+        <h2>Our Services</h2>
+        <p>Browse our core delivery areas. Each service is designed for high-level, high-visibility engagements with clear operations, brand consistency, and stakeholder care.</p>
+      </div>
+    </div>
 
-      <article class="card">
-        <h2>5) Cruise Line Services</h2>
-        <p>Exclusive cruise-based experiences for corporate and private clients seeking distinction and privacy.</p>
-        <ul>
-          <li>Corporate conferences and meetings at sea</li>
-          <li>Incentive programs aboard luxury cruise liners</li>
-          <li>Private charter cruises for executive and VIP groups</li>
-          <li>Curated shore excursions and destination experiences</li>
-        </ul>
-      </article>
+    <div class="services-tiles" aria-label="All services">
+      <a class="service-tile" href="service-event-management-production.html" aria-label="Event Management &amp; Production">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1400&auto=format&fit=crop" alt="Event Management & Production" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 7h14v3H5V7Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M5 12h14v5H5v-5Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="tile-panel">
+          <h3>Event Management &amp; Production</h3>
+          <div class="tile-cta"><span>View details</span><span aria-hidden="true">→</span></div>
+        </div>
+      </a>
 
-      <article class="card">
-        <h2>6) Protocol &amp; Diplomatic Services</h2>
-        <p>Expert support for events involving governments, diplomatic missions, and international institutions.</p>
-        <ul>
-          <li>Diplomatic protocol advisory</li>
-          <li>VIP handling and dignitary management</li>
-          <li>Liaison officers and official coordination</li>
-          <li>State visits, receptions, and formal engagements</li>
-        </ul>
-      </article>
+      <a class="service-tile" href="service-production-branding-venue.html" aria-label="Production, Branding &amp; Venue Transformation">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop" alt="Production, Branding & Venue Transformation" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 18V8l6-4 6 4v10" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity=".95"/>
+          </svg>
+        </div>
+        <div class="tile-panel">
+          <h3>Production, Branding &amp; Venue Transformation</h3>
+          <div class="tile-cta"><span>View details</span><span aria-hidden="true">→</span></div>
+        </div>
+      </a>
 
-      <article class="card">
-        <h2>7) Luxury Accommodation &amp; Logistics</h2>
-        <p>Premium travel and hospitality logistics with discretion and efficiency.</p>
-        <ul>
-          <li>Five-star and executive accommodation sourcing</li>
-          <li>VIP transportation and chauffeured services</li>
-          <li>Airport protocol and meet-and-greet services</li>
-          <li>Itinerary planning and travel coordination</li>
-        </ul>
-      </article>
+      <a class="service-tile" href="service-conference-support-coverage.html" aria-label="Event Coverage &amp; Conference Support">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1400&auto=format&fit=crop" alt="Event Coverage & Conference Support" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10H4V7Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="tile-panel">
+          <h3>Event Coverage &amp; Conference Support</h3>
+          <div class="tile-cta"><span>View details</span><span aria-hidden="true">→</span></div>
+        </div>
+      </a>
 
-      <article class="card">
-        <h2>8) Cultural &amp; Tourism Experiences</h2>
-        <p>Authentic, high-quality cultural experiences that connect guests to destination identity.</p>
-        <ul>
-          <li>Cultural tours and heritage experiences</li>
-          <li>Traditional performances and curated entertainment</li>
-          <li>Culinary journeys and fine dining experiences</li>
-          <li>Virtual destination briefings and multimedia keepsakes</li>
-        </ul>
-      </article>
+      <a class="service-tile" href="service-mice-delivery.html" aria-label="MICE Delivery">
+        <img src="https://images.unsplash.com/photo-1526401485004-2aa7f3c59c75?q=80&w=1400&auto=format&fit=crop" alt="MICE Delivery" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            <path d="M6 17h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+          </svg>
+        </div>
+        <div class="tile-panel">
+          <h3>MICE Delivery</h3>
+          <div class="tile-cta"><span>View details</span><span aria-hidden="true">→</span></div>
+        </div>
+      </a>
 
-      <article class="card" style="grid-column:1/-1">
-        <h2>9) Media Management &amp; Strategic Storytelling</h2>
-        <p>Purpose-driven media and communication services focused on creating emotive, intelligent, and credible narratives.</p>
-        <ul>
-          <li>Media strategy and message development</li>
-          <li>Media relations with local and international outlets</li>
-          <li>Interviews, press briefings, and media coordination</li>
-          <li>Documentary-style content and impact storytelling</li>
-          <li>Brand visibility and reputation management</li>
-          <li>Crisis communication support</li>
-        </ul>
-        <p style="margin-top:12px"><a href="storytelling.html" style="color:var(--brand-dark);font-weight:800;text-decoration:none">Explore storytelling →</a></p>
-      </article>
-    </section>
-  </main>
+      <a class="service-tile" href="service-cruise-line-services.html" aria-label="Cruise Line Services">
+        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1400&auto=format&fit=crop" alt="Cruise Line Services" loading="lazy" decoding="async" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 16l3-8h6l3 8H6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity=".95"/>
+          </svg>
+        </div>
+        <div class="tile-panel">
+          <h3>Cruise Line Services</h3>
+          <div class="tile-cta"><span>View details</span><span aria-hidden="true">→</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-  <footer>
+  <footer class="site-footer" id="contact" aria-label="Footer">
     <div class="footer-inner">
-      <strong>Salmat Diplomatic Hospitality</strong>
-      <p>Your Destination Management Partner for High-Level Events, Experiences, and Stories.</p>
+      <div class="footer-top">
+        <a class="footer-brand" href="index.html#home" aria-label="Salmat Diplomatic Hospitality">
+          <img src="assets/img/salmart-diplomatic-hospitality-logo.png" alt="Salmat Diplomatic Hospitality" decoding="async" loading="lazy" />
+        </a>
+
+        <div class="footer-social" aria-label="Social links">
+          <a href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 9H3.8v12h2.7V9zM5.2 3.6a1.6 1.6 0 10.1 3.2 1.6 1.6 0 000-3.2zM20.5 14.2c0-3.2-1.7-5.2-4.5-5.2-2 0-3 1.1-3.5 1.9V9H9.9v12h2.7v-6.3c0-1.7.3-3.4 2.4-3.4s2.1 2 2.1 3.5V21h2.7v-6.8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-divider" role="presentation"></div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Contact</div>
+          <div class="footer-contact">
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div class="value">info@salmartdiplomatichospitality.com</div>
+            </div>
+            <div class="item">
+              <div class="ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.1.36 2.3.56 3.5.56a1 1 0 011 1V20a1 1 0 01-1 1C10.4 21 3 13.6 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.4.56 3.5a1 1 0 01-.25 1L6.6 10.8z"/></svg>
+              </div>
+              <div class="value">Consultation by appointment</div>
+            </div>
+            <div class="address">Destination Management Company (DMC)<br/>High-level events • hospitality • storytelling</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Explore</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="why.html">Why Salmat</a></li>
+            <li><a href="how-we-work.html">How We Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="service-event-management-production.html">Event Management &amp; Production</a></li>
+            <li><a href="service-production-branding-venue.html">Branding &amp; Venue Transformation</a></li>
+            <li><a href="service-conference-support-coverage.html">Event Coverage &amp; Conference Support</a></li>
+            <li><a href="service-mice-delivery.html">MICE Delivery</a></li>
+            <li><a href="service-cruise-line-services.html">Cruise Line Services</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-cta">
+          <h3>Let us design, manage, and elevate your next destination experience.</h3>
+          <p>Share your email and we’ll respond with a quick discovery call.</p>
+          <form class="subscribe" action="#" method="post">
+            <input type="email" name="email" placeholder="Enter email" aria-label="Email address" required />
+            <button type="submit">Request</button>
+          </form>
+        </div>
+      </div>
     </div>
+
+    <div class="footer-bottom">© 2026 <a href="index.html#home">Salmat Diplomatic Hospitality</a>. All rights reserved.</div>
   </footer>
+
+  <a class="back-to-top" href="#" aria-label="Back to top">↑</a>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/service-detail.js"></script>
 </body>
 </html>
