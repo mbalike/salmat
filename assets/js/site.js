@@ -1,4 +1,70 @@
 (function () {
+  function textEquals(el, expected) {
+    if (!el) return false;
+    return (el.textContent || "").trim().toLowerCase() === expected.trim().toLowerCase();
+  }
+
+  function setColumnLinks(mega, title, links) {
+    if (!mega) return;
+    var cols = mega.querySelectorAll(".nav-col");
+    var targetCol = null;
+    cols.forEach(function (col) {
+      var t = col.querySelector(":scope > .nav-col-title");
+      if (textEquals(t, title)) targetCol = col;
+    });
+    if (!targetCol) return;
+
+    // Remove existing links in that column, keep the title
+    Array.from(targetCol.querySelectorAll(":scope > a")).forEach(function (a) {
+      a.remove();
+    });
+
+    links.forEach(function (item) {
+      var a = document.createElement("a");
+      a.href = item.href;
+      a.textContent = item.label;
+      var arr = document.createElement("span");
+      arr.className = "arr";
+      arr.setAttribute("aria-hidden", "true");
+      arr.textContent = "→";
+      a.appendChild(document.createTextNode(" "));
+      a.appendChild(arr);
+      targetCol.appendChild(a);
+    });
+  }
+
+  function hydrateMegaMenus() {
+    var servicesMega = document.querySelector('.nav-mega[aria-label="Services menu"]');
+    var departmentsMega = document.querySelector('.nav-mega[aria-label="Departments menu"]');
+
+    // Keep the exact set of pages in sync with the workspace naming.
+    var serviceLinks = [
+      { href: "service-event-management-production.html", label: "Event Management & Production" },
+      { href: "service-production-branding-venue.html", label: "Production, Branding & Venue" },
+      { href: "service-conference-support-coverage.html", label: "Conference Support & Coverage" },
+      { href: "service-mice-delivery.html", label: "MICE Delivery" },
+      { href: "service-cruise-line-services.html", label: "Cruise Line Services" },
+      { href: "service-cultural-tourism-experiences.html", label: "Cultural & Tourism Experiences" },
+      { href: "service-luxury-accommodation-logistics.html", label: "Luxury Accommodation & Logistics" },
+      { href: "service-media-management-strategic-storytelling.html", label: "Media Management & Strategic Storytelling" },
+      { href: "service-protocol-diplomatic.html", label: "Protocol & Diplomatic Services" },
+    ];
+
+    var departmentLinks = [
+      { href: "department-business-development-partnerships.html", label: "Business Development & Partnerships" },
+      { href: "department-destination-management-hospitality.html", label: "Destination Management & Hospitality" },
+      { href: "department-event-conference-management.html", label: "Event & Conference Management" },
+      { href: "department-finance-administration.html", label: "Finance & Administration" },
+      { href: "department-media-communications.html", label: "Media & Communications" },
+      { href: "department-training-capacity-building.html", label: "Training & Capacity Building" },
+    ];
+
+    setColumnLinks(servicesMega, "Core Services", serviceLinks);
+    setColumnLinks(departmentsMega, "Departments", [
+      { href: "departments.html", label: "Departments Overview" },
+    ].concat(departmentLinks));
+  }
+
   function currentFile() {
     var path = window.location.pathname || "";
     var file = path.split("/").pop();
@@ -133,6 +199,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    hydrateMegaMenus();
     markActiveLinks();
     setupMobileSubmenus();
     setupCounters();

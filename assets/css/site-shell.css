@@ -20,7 +20,9 @@ nav a.is-active::after{
 
 /* Mega dropdown */
 nav ul{position:relative}
-nav li.has-submenu{position:relative}
+/* Make the mega panel position relative to the whole nav (not the single li)
+  so it stays inside the viewport. */
+nav li.has-submenu{position:static}
 
 nav li.has-submenu > a{
   display:inline-flex;
@@ -39,7 +41,7 @@ nav li.has-submenu > a::after{
   left:50%;
   top:calc(100% + 14px);
   transform:translate(-50%, 8px);
-  width:min(1100px, calc(100vw - 80px));
+  width:min(1100px, calc(100vw - 32px));
   background:#fff;
   border:1px solid rgba(148,163,184,.45);
   box-shadow:0 22px 55px rgba(2,8,23,.14);
@@ -47,6 +49,20 @@ nav li.has-submenu > a::after{
   pointer-events:none;
   transition:.18s ease;
   z-index:90;
+}
+
+/* Desktop: prevent header nav items/buttons from wrapping */
+@media(min-width:981px){
+  header nav[aria-label="Primary"] ul{flex-wrap:nowrap}
+  header nav[aria-label="Primary"] a{white-space:nowrap}
+  header .header-actions .btn{white-space:nowrap}
+}
+
+@media(min-width:981px) and (max-width:1240px){
+  header nav[aria-label="Primary"] ul{gap:12px}
+  header nav[aria-label="Primary"] a{font-size:13px}
+  header .header-actions strong{font-size:14px}
+  header .header-actions .btn{font-size:13px;padding:10px 14px}
 }
 
 .nav-mega::before{

@@ -36,7 +36,16 @@
 
   document.addEventListener('click', (e) => {
     const a = e.target.closest('nav a');
-    if(a) close();
+    if(!a) return;
+
+    // On mobile, allow the first tap on a submenu trigger to open the submenu
+    // (handled by `assets/js/site.js`) without immediately closing the nav.
+    const media = window.matchMedia('(max-width: 980px)');
+    const li = a.closest('li.has-submenu');
+    const isSubmenuTrigger = li && li.querySelector(':scope > a') === a;
+    if(media.matches && isSubmenuTrigger) return;
+
+    close();
   });
 })();
 
