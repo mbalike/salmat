@@ -83,6 +83,7 @@
 
     var isServiceDetail = /^service-.*\.html$/i.test(file);
     var isDeptDetail = /^department-.*\.html$/i.test(file);
+    var isPortfolioDetail = /^portfolio-detail-.*\.html$/i.test(file);
 
     var navLinks = document.querySelectorAll("nav a[href]");
     var footerLinks = document.querySelectorAll(".site-footer a[href]");
@@ -109,6 +110,11 @@
     if (isDeptDetail) {
       applyActive(navLinks, "departments.html");
       applyActive(footerLinks, "departments.html");
+    }
+
+    if (isPortfolioDetail) {
+      applyActive(navLinks, "portfolio.html");
+      applyActive(footerLinks, "portfolio.html");
     }
   }
 

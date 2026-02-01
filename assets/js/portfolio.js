@@ -7,146 +7,60 @@
 
   const ITEMS = [
     {
-      title: "Musée d’Orsay",
-      category: "Culture",
-      image:
-        "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Accademia Gallery",
-      category: "Culture",
-      image:
-        "https://images.unsplash.com/photo-1528460033278-a6ba57020470?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "The Bund",
+      title: "ALC 2024 & 10th FFT Anniversary",
       category: "Events",
       image:
-        "https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
       count: 6,
+      href: "portfolio-detail-alc-2024-fft.html",
     },
     {
-      title: "Protest",
+      title: "Ijuka Omuka Festival 2024",
       category: "Culture",
       image:
-        "https://images.unsplash.com/photo-1520975682031-a77e3b61a6a8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
       count: 6,
+      href: "portfolio-detail-ijuka-omuka-2024.html",
     },
     {
-      title: "Business portfolio",
-      category: "Business",
-      image:
-        "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Museum of New York",
-      category: "History Building",
-      image:
-        "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Melton Art Museum",
-      category: "Government",
-      image:
-        "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "New York City Museum",
-      category: "Business",
-      image:
-        "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Co-working Meeting",
+      title: "3rd FAR4ViBE Conference 2024",
       category: "Conference",
       image:
         "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
       count: 6,
+      href: "portfolio-detail-far4vibe-2024.html",
     },
-
-    // More items (for Load More)
     {
-      title: "Summit Reception",
+      title: "Regenerative Ocean Week (ROW) 2025",
+      category: "Conference",
+      image:
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+      count: 6,
+      href: "portfolio-detail-row-2025.html",
+    },
+    {
+      title: "MarCOSIO Fisheries Exchange Workshop 2025",
+      category: "Conference",
+      image:
+        "https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80",
+      count: 6,
+      href: "portfolio-detail-marcosio-2025.html",
+    },
+    {
+      title: "Korean Delegation Visit to Tanzania",
       category: "Government",
       image:
         "https://images.unsplash.com/photo-1521737604893-cfcf42c1c1c5?auto=format&fit=crop&w=1200&q=80",
-      count: 8,
+      count: 6,
+      href: "portfolio-detail-kiost-delegation.html",
     },
     {
-      title: "Conference Hall Setup",
-      category: "Conference",
-      image:
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-      count: 5,
-    },
-    {
-      title: "Cultural Experience",
-      category: "Culture",
-      image:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-      count: 7,
-    },
-    {
-      title: "Executive Briefing",
-      category: "Business",
-      image:
-        "https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80",
-      count: 4,
-    },
-    {
-      title: "Historic Venue Tour",
-      category: "History Building",
-      image:
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
-      count: 9,
-    },
-    {
-      title: "Event Production",
+      title: "Nane Nane, Uvuvi & Mifugo Day",
       category: "Events",
       image:
         "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=1200&q=80",
       count: 6,
-    },
-    {
-      title: "Protocol Arrival",
-      category: "Government",
-      image:
-        "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Panel Discussion",
-      category: "Conference",
-      image:
-        "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Heritage Exhibition",
-      category: "History Building",
-      image:
-        "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Brand Activation",
-      category: "Business",
-      image:
-        "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
-    },
-    {
-      title: "Gala Night",
-      category: "Events",
-      image:
-        "https://images.unsplash.com/photo-1522158637959-30385a09e0da?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
+      href: "portfolio-detail-nane-nane-summary.html",
     },
   ];
 
@@ -169,7 +83,7 @@
   function cardEl(item) {
     const a = document.createElement("a");
     a.className = "p-card";
-    a.href = "#";
+    a.href = item.href || "#";
     a.setAttribute("role", "article");
     a.setAttribute("aria-label", item.title);
 
@@ -206,7 +120,6 @@
     a.appendChild(media);
     a.appendChild(body);
 
-    a.addEventListener("click", (e) => e.preventDefault());
     return a;
   }
 
