@@ -1,0 +1,84 @@
+/* Portfolio detail page styles (gallery + content + sidebar + prev/next) */
+
+.pd-wrap{max-width:1200px;margin:0 auto;padding:64px 40px 96px}
+
+.pd-gallery{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:28px}
+
+.pd-photo{position:relative;display:block;background:#eef2f7;overflow:hidden;aspect-ratio:1/1;box-shadow:0 18px 40px rgba(2,8,23,.08)}
+.pd-photo img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.01);transition:transform .25s ease}
+.pd-photo:hover img{transform:scale(1.06)}
+
+.pd-zoom{
+  position:absolute;
+  right:14px;
+  top:14px;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  background:rgba(2,8,23,.48);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  backdrop-filter:blur(4px)
+}
+.pd-zoom svg{width:18px;height:18px;display:block}
+
+.pd-detail{display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, .9fr);gap:56px;margin-top:56px;align-items:start}
+
+.pd-title{font-size:28px;line-height:1.15;color:var(--ink);margin:0 0 14px;font-weight:900}
+.pd-content p{color:#6b7280;line-height:1.9;margin:0 0 16px}
+
+.pd-block{margin-top:22px}
+.pd-block h3{font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-dark);font-weight:900;margin:0 0 12px}
+.pd-block ul{margin:0;padding-left:18px;color:#6b7280;line-height:1.9}
+.pd-block li{margin:6px 0}
+
+.pd-aside{background:#fff;padding:26px 24px;box-shadow:0 18px 40px rgba(2,8,23,.08)}
+.pd-aside h4{margin:0 0 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9aa6b2}
+
+.pd-meta{display:grid;gap:14px}
+.pd-meta-row strong{display:block;color:#0b1f3a;font-size:14px;margin-bottom:4px}
+.pd-meta-row span{color:#6b7280;font-size:13px;line-height:1.6;display:block}
+
+.pd-share{display:flex;align-items:center;gap:10px;margin-top:16px}
+.pd-share-label{font-weight:800;color:#0b1f3a;font-size:14px}
+.pd-share a{width:34px;height:34px;border-radius:999px;display:grid;place-items:center;text-decoration:none;color:#fff;transition:.18s ease}
+.pd-share a:hover{transform:translateY(-1px)}
+.pd-share a svg{width:16px;height:16px;display:block}
+.pd-share .tw{background:#1da1f2}
+.pd-share .fb{background:#1877f2}
+.pd-share .pi{background:#e60023}
+
+.pd-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:64px;padding-top:26px;border-top:1px solid rgba(148,163,184,.35)}
+.pd-nav a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.pd-nav a:hover .pd-nav-title{text-decoration:underline}
+.pd-nav .pd-nav-pill{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(148,163,184,.55);background:#fff;box-shadow:0 10px 22px rgba(2,8,23,.06)}
+.pd-nav .pd-nav-pill svg{width:18px;height:18px;display:block;color:#0b1f3a}
+.pd-nav .pd-nav-kicker{font-size:12px;color:#ef4444;letter-spacing:.04em}
+.pd-nav .pd-nav-title{font-size:18px;font-weight:900;color:#0b1f3a}
+
+.pd-nav-center{display:flex;align-items:center;justify-content:center;gap:6px;opacity:.45}
+.pd-nav-dot{width:6px;height:6px;border-radius:999px;background:#94a3b8}
+
+/* Lightbox */
+.pd-lightbox{position:fixed;inset:0;background:rgba(2,8,23,.72);display:none;align-items:center;justify-content:center;padding:22px;z-index:200}
+.pd-lightbox.is-open{display:flex}
+.pd-lightbox-inner{width:min(1100px, 100%);max-height:88vh;position:relative}
+.pd-lightbox img{width:100%;height:100%;max-height:88vh;object-fit:contain;display:block;background:#0b1220}
+.pd-lightbox-close{position:absolute;right:12px;top:12px;width:42px;height:42px;border-radius:999px;border:none;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center}
+.pd-lightbox-close:hover{background:rgba(255,255,255,.18)}
+.pd-lightbox-close:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
+
+@media(max-width:980px){
+  .pd-wrap{padding:52px 18px 86px}
+  .pd-gallery{grid-template-columns:repeat(2, minmax(0, 1fr));gap:18px}
+  .pd-detail{grid-template-columns:1fr;gap:28px}
+}
+
+@media(max-width:560px){
+  .pd-gallery{grid-template-columns:1fr}
+  .pd-title{font-size:24px}
+  .pd-nav{flex-direction:column;align-items:stretch}
+  .pd-nav-center{order:2}
+  .pd-nav a{justify-content:space-between}
+}
