@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Testimonials</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f6f6f6;
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .testimonials {
+    max-width: 1100px;
+    margin: 60px auto;
+    display: flex;
+    gap: 25px;
+    padding: 0 20px;
+  }
+
+  .card {
+    background: #ffffff;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .card-header {
+    height: 70px;
+    background: linear-gradient(135deg, transparent 55%, #e11b22 55%);
+  }
+
+  .card-body {
+    padding: 25px;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .user img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .label {
+    font-size: 12px;
+    color: #7a7a7a;
+    letter-spacing: 1px;
+  }
+
+  .user h3 {
+    margin: 4px 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0a2a66;
+  }
+
+  .stars {
+    color: #e11b22;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .card-body p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="testimonials">
+
+  <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <div class="user">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg">
+        <div>
+          <div class="label">CUSTOMER</div>
+          <h3>Sarah albert</h3>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p>
+        This is due to their excellent service, competitive pricing and
+        customer support. It’s throughly refreshing to get such a personal
+        touch.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <div class="user">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+        <div>
+          <div class="label">CUSTOMER</div>
+          <h3>Mike ronobs</h3>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p>
+        This is due to their excellent service, competitive pricing and
+        customer support. It’s throughly refreshing to get such a personal
+        touch.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <div class="user">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg">
+        <div>
+          <div class="label">CUSTOMER</div>
+          <h3>Aleesha brown</h3>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p>
+        This is due to their excellent service, competitive pricing and
+        customer support. It’s throughly refreshing to get such a personal
+        touch.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
