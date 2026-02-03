@@ -1,5 +1,9 @@
 /* Shared site shell enhancements: mega dropdown + active link styling */
 
+/* Prevent accidental horizontal scrolling site-wide */
+html, body{max-width:100%}
+body{overflow-x:hidden}
+
 /* Active state (header + footer) */
 nav a[aria-current="page"],
 nav a.is-active{
@@ -18,8 +22,22 @@ nav a.is-active::after{
   text-underline-offset:4px;
 }
 
+/* Footer logo: make it read better on dark backgrounds */
+.site-footer .footer-brand img{
+  border-radius:12px !important;
+  padding:8px 10px !important;
+  background:rgba(255,255,255,.92) !important;
+  box-shadow:0 12px 26px rgba(2,8,23,.22) !important;
+}
+
 /* Mega dropdown */
-nav ul{position:relative}
+/* Default: injected mobile-only content should never affect desktop layout */
+.mobile-nav-extras{display:none}
+
+/* Make the mega panel position relative to the whole header nav so it stays inside the viewport,
+  even when the <ul> shrinks to the width of its items. */
+header nav[aria-label="Primary"]{position:relative}
+header nav[aria-label="Primary"] ul{position:static}
 /* Make the mega panel position relative to the whole nav (not the single li)
   so it stays inside the viewport. */
 nav li.has-submenu{position:static}
@@ -38,10 +56,13 @@ nav li.has-submenu > a::after{
 
 .nav-mega{
   position:absolute;
-  left:50%;
+  left:0;
+  right:0;
   top:calc(100% + 14px);
-  transform:translate(-50%, 8px);
-  width:min(1100px, calc(100vw - 32px));
+  transform:translateY(8px);
+  width:auto;
+  max-width:1100px;
+  margin:0 auto;
   background:#fff;
   border:1px solid rgba(148,163,184,.45);
   box-shadow:0 22px 55px rgba(2,8,23,.14);
@@ -51,18 +72,57 @@ nav li.has-submenu > a::after{
   z-index:90;
 }
 
-/* Desktop: prevent header nav items/buttons from wrapping */
+/* Header: keep content visible without horizontal scroll */
+header{max-width:100%}
+header .logo{min-width:0;flex:0 1 auto}
+header .logo picture, header .logo img{display:block;max-width:100%}
+/* Slightly reduce logo so desktop nav fits in one row */
+header .logo img{max-width:min(220px, 38vw)}
 @media(min-width:981px){
-  header nav[aria-label="Primary"] ul{flex-wrap:nowrap}
-  header nav[aria-label="Primary"] a{white-space:nowrap}
-  header .header-actions .btn{white-space:nowrap}
+  header .logo img{height:44px !important;width:auto !important}
+}
+header nav[aria-label="Primary"]{min-width:0;flex:1 1 auto}
+/* Desktop: keep the primary nav in one line */
+header nav[aria-label="Primary"] ul{flex-wrap:nowrap !important;min-width:0;gap:20px}
+header nav[aria-label="Primary"] ul > li{flex:0 0 auto}
+header nav[aria-label="Primary"] > ul,
+header nav[aria-label="Primary"] a{white-space:nowrap}
+header .header-actions{flex:0 0 auto}
+header .header-actions .btn{white-space:nowrap}
+
+/* Hide hamburger on desktop (some pages define it inline, so use !important) */
+@media(min-width:981px){
+  header .menu-toggle{display:none !important}
 }
 
+/* Mid-width desktops: allow header to wrap instead of overflowing */
 @media(min-width:981px) and (max-width:1240px){
-  header nav[aria-label="Primary"] ul{gap:12px}
-  header nav[aria-label="Primary"] a{font-size:13px}
+  header{gap:14px}
+  header nav[aria-label="Primary"] ul{gap:14px}
+  header nav[aria-label="Primary"] a{font-size:13px;white-space:nowrap}
   header .header-actions strong{font-size:14px}
   header .header-actions .btn{font-size:13px;padding:10px 14px}
+}
+
+/* Mobile: hide topbar + move actions into drawer (injected by JS) */
+@media(max-width:980px){
+  .topbar{display:none !important}
+  header .header-actions .contact,
+  header .header-actions .btn{display:none !important}
+  header .menu-toggle{display:grid !important}
+
+  /* Drawer extras */
+  .mobile-nav-extras{display:block}
+  .mobile-nav-extras{margin-top:18px;padding-top:18px;border-top:1px solid #e5e7eb}
+  .mobile-nav-extras .mobile-cta{display:flex;gap:10px;flex-direction:column}
+  .mobile-nav-extras .btn{display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border-radius:10px}
+  .mobile-nav-extras .mobile-meta{margin-top:14px;display:flex;flex-direction:column;gap:10px;color:rgba(2,8,23,.72);font-size:13px;line-height:1.35}
+  .mobile-nav-extras .mobile-meta a{color:inherit;text-decoration:none}
+  .mobile-nav-extras .mobile-meta a:hover{text-decoration:underline}
+  .mobile-nav-extras .mobile-social{display:flex;gap:10px;margin-top:6px}
+  .mobile-nav-extras .mobile-social a{width:38px;height:38px;border-radius:999px;display:grid;place-items:center;background:rgba(2,8,23,.06)}
+  .mobile-nav-extras .mobile-social a:hover{background:rgba(2,8,23,.10)}
+  .mobile-nav-extras .mobile-social svg{width:16px;height:16px;display:block}
 }
 
 .nav-mega::before{
@@ -81,9 +141,16 @@ nav li.has-submenu > a::after{
 .nav-mega-inner{padding:22px 22px}
 .nav-mega-grid{
   display:grid;
-  grid-template-columns:repeat(4, minmax(0, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
   gap:26px;
 }
+
+/* Dropdown links should wrap naturally for long names */
+.nav-col a{white-space:normal;line-height:1.25;overflow-wrap:break-word}
+.nav-col a .arr{display:none}
+
+/* Prevent mega menu from being clipped on short viewports */
+.nav-mega-inner{max-height:calc(100vh - 160px);overflow:auto}
 
 .nav-col-title{
   font-size:12px;
@@ -94,14 +161,11 @@ nav li.has-submenu > a::after{
   margin-bottom:12px;
 }
 
-.nav-col{border-right:1px solid rgba(148,163,184,.35);padding-right:18px}
-.nav-col:last-child{border-right:none;padding-right:0}
+.nav-col{padding:0 18px}
+.nav-col + .nav-col{border-left:1px solid rgba(148,163,184,.35)}
 
 .nav-col a{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  display:block;
   padding:10px 10px;
   border-radius:10px;
   text-decoration:none;
@@ -120,7 +184,7 @@ nav li.has-submenu:hover .nav-mega,
 nav li.has-submenu:focus-within .nav-mega{
   opacity:1;
   pointer-events:auto;
-  transform:translate(-50%, 0);
+  transform:translateY(0);
 }
 
 /* Mobile: make dropdown sections toggleable */
@@ -228,6 +292,13 @@ nav li.has-submenu:focus-within .nav-mega{
   .chat-panel{bottom:70px;width:min(92vw, 380px)}
   .chat-convo{height:min(62vh, 420px)}
   .back-to-top{bottom:86px !important}
+}
+
+@media(max-width:420px){
+  .chat-panel{left:0;right:0;margin:0 auto;width:calc(100vw - 24px)}
+  .chat-compose{gap:8px}
+  .chat-input{min-height:42px}
+  .chat-send{width:42px;height:42px}
 }
 
 @media (prefers-reduced-motion: reduce){

@@ -1,4 +1,98 @@
 (function () {
+  function setupMobileNavExtras() {
+    var nav = document.querySelector('header nav[aria-label="Primary"]');
+    if (!nav) return;
+    var existing = nav.querySelector('[data-mobile-nav-extras]');
+
+    var extras = existing || document.createElement('div');
+    if (!existing) {
+      extras.className = 'mobile-nav-extras';
+      extras.setAttribute('data-mobile-nav-extras', '');
+    }
+
+    function isMobile() {
+      if (!window.matchMedia) return false;
+      return window.matchMedia('(max-width: 980px)').matches;
+    }
+
+    function syncVisibility() {
+      // Use the hidden attribute so it cannot affect desktop layout even if CSS is overridden.
+      extras.hidden = !isMobile();
+      extras.setAttribute('aria-hidden', extras.hidden ? 'true' : 'false');
+    }
+
+    // If it's already built, just keep visibility in sync.
+    if (existing) {
+      syncVisibility();
+      try {
+        if (window.matchMedia) {
+          var mql = window.matchMedia('(max-width: 980px)');
+          if (mql && mql.addEventListener) mql.addEventListener('change', syncVisibility);
+          else if (mql && mql.addListener) mql.addListener(syncVisibility);
+        } else {
+          window.addEventListener('resize', syncVisibility);
+        }
+      } catch (e) {}
+      return;
+    }
+
+    extras.innerHTML = '';
+
+    var ctaWrap = document.createElement('div');
+    ctaWrap.className = 'mobile-cta';
+
+    var proposal = document.querySelector('header .header-actions a.btn');
+    if (proposal) {
+      var proposalClone = proposal.cloneNode(true);
+      proposalClone.removeAttribute('style');
+      ctaWrap.appendChild(proposalClone);
+    }
+
+    var metaWrap = document.createElement('div');
+    metaWrap.className = 'mobile-meta';
+
+    var contactText = document.querySelector('header .header-actions .contact strong');
+    if (contactText && contactText.textContent) {
+      var contactLine = document.createElement('div');
+      contactLine.textContent = contactText.textContent.trim();
+      metaWrap.appendChild(contactLine);
+    }
+
+    var email = document.querySelector('.topbar a[href^="mailto:"]');
+    if (email) {
+      metaWrap.appendChild(email.cloneNode(true));
+    }
+
+    var tagline = document.querySelector('.topbar-left .topbar-item:nth-child(2) span');
+    if (tagline && tagline.textContent) {
+      var taglineLine = document.createElement('div');
+      taglineLine.textContent = tagline.textContent.trim();
+      metaWrap.appendChild(taglineLine);
+    }
+
+    var socials = document.querySelector('.topbar-social');
+    extras.appendChild(ctaWrap);
+    extras.appendChild(metaWrap);
+    if (socials) {
+      var socialClone = socials.cloneNode(true);
+      socialClone.classList.add('mobile-social');
+      extras.appendChild(socialClone);
+    }
+
+    nav.appendChild(extras);
+
+    syncVisibility();
+    try {
+      if (window.matchMedia) {
+        var mql2 = window.matchMedia('(max-width: 980px)');
+        if (mql2 && mql2.addEventListener) mql2.addEventListener('change', syncVisibility);
+        else if (mql2 && mql2.addListener) mql2.addListener(syncVisibility);
+      } else {
+        window.addEventListener('resize', syncVisibility);
+      }
+    } catch (e) {}
+  }
+
   function setupChatWidget() {
     // Allow opting out on any page:
     // <body data-disable-chat="true">
@@ -549,6 +643,7 @@
     markActiveLinks();
     setupMobileSubmenus();
     setupCounters();
+    setupMobileNavExtras();
     setupChatWidget();
   });
 })();
