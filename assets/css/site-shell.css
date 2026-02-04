@@ -34,9 +34,10 @@ nav a.is-active::after{
 /* Default: injected mobile-only content should never affect desktop layout */
 .mobile-nav-extras{display:none}
 
-/* Make the mega panel position relative to the whole header nav so it stays inside the viewport,
-  even when the <ul> shrinks to the width of its items. */
-header nav[aria-label="Primary"]{position:relative}
+/* Make the mega panel position relative to the full header so the dropdown never overflows
+  when the <nav> only takes the width of its items. */
+header{position:relative}
+header nav[aria-label="Primary"]{position:static}
 header nav[aria-label="Primary"] ul{position:static}
 /* Make the mega panel position relative to the whole nav (not the single li)
   so it stays inside the viewport. */
@@ -56,13 +57,11 @@ nav li.has-submenu > a::after{
 
 .nav-mega{
   position:absolute;
-  left:0;
-  right:0;
+  left:50%;
+  right:auto;
   top:calc(100% + 14px);
-  transform:translateY(8px);
-  width:auto;
-  max-width:1100px;
-  margin:0 auto;
+  transform:translate(-50%, 8px);
+  width:min(1100px, calc(100vw - 32px));
   background:#fff;
   border:1px solid rgba(148,163,184,.45);
   box-shadow:0 22px 55px rgba(2,8,23,.14);
@@ -184,7 +183,7 @@ nav li.has-submenu:hover .nav-mega,
 nav li.has-submenu:focus-within .nav-mega{
   opacity:1;
   pointer-events:auto;
-  transform:translateY(0);
+  transform:translate(-50%, 0);
 }
 
 /* Mobile: make dropdown sections toggleable */
@@ -208,6 +207,7 @@ nav li.has-submenu:focus-within .nav-mega{
   .nav-mega-grid{grid-template-columns:1fr;gap:12px}
   .nav-col{border-right:none;padding-right:0;border-top:1px solid #e5e7eb;padding-top:10px}
   .nav-col:first-child{border-top:none;padding-top:0}
+  .nav-col + .nav-col{border-left:none}
 
   nav li.has-submenu.submenu-open .nav-mega{display:block}
   nav li.has-submenu > a{justify-content:space-between;width:100%}
