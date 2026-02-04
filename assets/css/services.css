@@ -7,6 +7,7 @@
 .services-explore-kicker .topline{width:44px;height:2px;background:var(--brand);border-radius:2px}
 .services-explore-kicker .label{font-size:12px;letter-spacing:.18em;font-weight:800;color:var(--brand-dark)}
 .services-explore-title{margin:0;margin-top:2px;font-size:50px;line-height:1.1;font-weight:800;color:var(--ink);max-width:760px}
+.services-explore-intro{margin:10px 0 0;max-width:74ch;color:#6b7280;line-height:1.85;font-size:15px}
 
 .services-explore-action{display:flex;align-items:center;justify-content:flex-end;flex:0 0 auto}
 .services-explore-action .discover-btn{display:inline-flex;align-items:center;justify-content:center;min-width:220px;padding:18px 22px;background:#f3f4f6;border:1px solid #eef2f7;color:#6b7280;font-weight:700;text-decoration:none;transition:.18s ease}
@@ -23,7 +24,8 @@
 .service-showcase::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,8,23,.12), rgba(2,8,23,.42));opacity:1}
 
 .service-showcase .badge{position:absolute;right:0;top:0;width:64px;height:64px;background:var(--brand);display:grid;place-items:center;z-index:2}
-.service-showcase .badge svg{width:28px;height:28px;display:block;color:#fff}
+.service-showcase .badge svg,.service-showcase .badge i{width:28px;height:28px;display:block;color:#fff}
+.service-showcase .badge i{font-size:28px;line-height:1}
 
 .service-showcase .title-bar{position:absolute;left:0;right:0;bottom:0;background:#fff;padding:22px 22px;z-index:2;max-width:86%}
 .service-showcase .title-bar h3{margin:0;font-size:20px;line-height:1.2;font-weight:800;color:var(--ink)}
@@ -53,7 +55,8 @@
 .service-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,8,23,.10), rgba(2,8,23,.46));z-index:1}
 
 .service-tile .badge{position:absolute;right:0;top:0;width:64px;height:64px;background:var(--brand);display:grid;place-items:center;z-index:2}
-.service-tile .badge svg{width:28px;height:28px;display:block;color:#fff}
+.service-tile .badge svg,.service-tile .badge i{width:28px;height:28px;display:block;color:#fff}
+.service-tile .badge i{font-size:28px;line-height:1}
 
 .service-tile .tile-panel{position:absolute;left:0;right:0;bottom:0;background:#fff;padding:20px 22px;z-index:2;max-width:90%;box-shadow:0 -1px 0 rgba(15,23,42,.05)}
 .service-tile .tile-panel h3{margin:0;font-size:20px;line-height:1.2;font-weight:800;color:var(--ink)}
