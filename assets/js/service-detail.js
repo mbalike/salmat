@@ -10,46 +10,6 @@
 })();
 
 (function(){
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const backdrop = document.querySelector('[data-nav-backdrop]');
-
-  const close = () => document.body.classList.remove('nav-open');
-  const open = () => document.body.classList.add('nav-open');
-  const isOpen = () => document.body.classList.contains('nav-open');
-
-  if(toggleBtn){
-    toggleBtn.addEventListener('click', () => {
-      isOpen() ? close() : open();
-    });
-  }
-
-  if(backdrop){
-    backdrop.addEventListener('click', (e) => {
-      e.preventDefault();
-      close();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') close();
-  });
-
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('nav a');
-    if(!a) return;
-
-    // On mobile, allow the first tap on a submenu trigger to open the submenu
-    // (handled by `assets/js/site.js`) without immediately closing the nav.
-    const media = window.matchMedia('(max-width: 980px)');
-    const li = a.closest('li.has-submenu');
-    const isSubmenuTrigger = li && li.querySelector(':scope > a') === a;
-    if(media.matches && isSubmenuTrigger) return;
-
-    close();
-  });
-})();
-
-(function(){
   const title = document.querySelector('.inner-hero-title');
   const lead = document.querySelector('.inner-hero-lead');
   if(!title || !lead) return;

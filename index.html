@@ -1430,69 +1430,6 @@
   })();
 
   (function(){
-    const toggleBtn = document.querySelector('.menu-toggle');
-    const backdrop = document.querySelector('[data-nav-backdrop]');
-    const closeBtn = document.querySelector('[data-nav-close]');
-
-    const isOpen = () => document.body.classList.contains('nav-open');
-    const sync = () => {
-      if(!toggleBtn) return;
-      toggleBtn.setAttribute('aria-expanded', isOpen() ? 'true' : 'false');
-      toggleBtn.setAttribute('aria-label', isOpen() ? 'Close menu' : 'Open menu');
-    };
-
-    const close = () => {
-      document.body.classList.remove('nav-open');
-      document.querySelectorAll('nav li.has-submenu.submenu-open').forEach((li) => {
-        li.classList.remove('submenu-open');
-        const a = li.querySelector(':scope > a');
-        if(a) a.setAttribute('aria-expanded', 'false');
-      });
-      sync();
-    };
-    const open = () => { document.body.classList.add('nav-open'); sync(); };
-
-    // Always start closed (also handles iOS/Chrome back-forward cache restoring the open state)
-    close();
-    window.addEventListener('pageshow', close);
-    window.addEventListener('resize', () => {
-      const isDesktop = window.matchMedia && window.matchMedia('(min-width: 981px)').matches;
-      if(isDesktop) close();
-    }, {passive:true});
-
-    if(toggleBtn){
-      toggleBtn.addEventListener('click', () => {
-        isOpen() ? close() : open();
-      });
-    }
-
-    if(backdrop){
-      backdrop.addEventListener('click', (e) => {
-        e.preventDefault();
-        close();
-      });
-    }
-
-    if(closeBtn){
-      closeBtn.addEventListener('click', () => close());
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') close();
-    });
-
-    document.addEventListener('click', (e) => {
-      const a = e.target.closest('nav a');
-      if(!a) return;
-      const isMobile = window.matchMedia && window.matchMedia('(max-width: 980px)').matches;
-      const li = a.closest('li.has-submenu');
-      const isTrigger = li && li.querySelector(':scope > a') === a;
-      if(isMobile && isTrigger) return;
-      close();
-    });
-  })();
-
-  (function(){
     const tabsWrap = document.querySelector('[data-directory-tabs]');
     const grid = document.querySelector('[data-directory-grid]');
     if(!tabsWrap || !grid) return;

@@ -1,5 +1,56 @@
 /* Shared site shell enhancements: mega dropdown + active link styling */
 
+/*
+  Canonical header theming (matches index.html)
+  Many pages define their own :root brand variables for page theming.
+  We lock the header + topbar to site-wide values so the header looks identical everywhere.
+*/
+:root{
+  --site-brand:#77c34f;
+  --site-brand-2:#67b744;
+  --site-brand-dark:#1f6b35;
+  --site-brand-900:#0b2a1b;
+  --site-brand-soft:#e9f6e7;
+  --site-ink:var(--site-brand-900);
+}
+
+/* Force header/topbar to always use the site palette (even if the page theme overrides --brand*) */
+.topbar,
+header,
+header nav,
+.nav-mega{
+  --brand:var(--site-brand);
+  --brand-2:var(--site-brand-2);
+  --brand-dark:var(--site-brand-dark);
+  --brand-900:var(--site-brand-900);
+  --brand-soft:var(--site-brand-soft);
+  --ink:var(--site-ink);
+}
+
+/* Drawer behavior should match the homepage everywhere */
+body.nav-open{overflow:hidden}
+
+/* Ensure the close button/backdrop exist visually even on pages missing inline styles */
+.nav-backdrop{position:fixed;inset:0;background:rgba(2,8,23,.55);opacity:0;pointer-events:none;transition:.18s ease;z-index:75}
+body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
+
+.nav-close{display:none}
+@media(max-width:980px){
+  .nav-close{display:grid;place-items:center;position:absolute;
+    top:calc(env(safe-area-inset-top, 0px) + 14px);right:14px;
+    width:44px;height:44px;border:none;border-radius:12px;cursor:pointer;
+    background:rgba(2,8,23,.06);color:var(--ink);font-size:24px;line-height:1
+  }
+  .nav-close:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+
+  /* Normalize drawer stacking + motion (some pages define different z-index/transform) */
+  header{z-index:70}
+  nav#primary-nav{z-index:90;transform:translate3d(105%,0,0);transition:transform .22s ease;
+    visibility:hidden;pointer-events:none;will-change:transform
+  }
+  body.nav-open nav#primary-nav{transform:translate3d(0,0,0);visibility:visible;pointer-events:auto}
+}
+
 /* Prevent accidental horizontal scrolling site-wide */
 html, body{max-width:100%}
 body{overflow-x:hidden}
@@ -69,6 +120,16 @@ nav li.has-submenu > a::after{
   pointer-events:none;
   transition:.18s ease;
   z-index:90;
+}
+
+/* Guardrails: some pages use `nav li.has-submenu a` (too broad) which styles mega links.
+   Force mega links to be plain list links like the homepage. */
+nav li.has-submenu .nav-mega a{
+  display:block !important;
+  align-items:initial !important;
+}
+nav li.has-submenu .nav-mega a::after{
+  content:none !important;
 }
 
 /* Header: keep content visible without horizontal scroll */

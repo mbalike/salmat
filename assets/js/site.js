@@ -1,4 +1,94 @@
 (function () {
+  function setupMobileDrawer() {
+    // Avoid double-binding if multiple scripts try to wire the drawer.
+    if (document.documentElement && document.documentElement.hasAttribute("data-nav-drawer-wired")) return;
+
+    var toggleBtn = document.querySelector(".menu-toggle");
+    var backdrop = document.querySelector("[data-nav-backdrop]");
+    var closeBtn = document.querySelector("[data-nav-close]");
+    var nav = document.getElementById("primary-nav") || document.querySelector('header nav[aria-label="Primary"]');
+
+    if (!toggleBtn || !nav) return;
+
+    function isMobile() {
+      if (!window.matchMedia) return false;
+      return window.matchMedia("(max-width: 980px)").matches;
+    }
+
+    function isOpen() {
+      return document.body.classList.contains("nav-open");
+    }
+
+    function sync() {
+      // Keep ARIA attributes aligned.
+      if (nav && nav.id) toggleBtn.setAttribute("aria-controls", nav.id);
+      toggleBtn.setAttribute("aria-expanded", isOpen() ? "true" : "false");
+    }
+
+    function open() {
+      document.body.classList.add("nav-open");
+      sync();
+    }
+
+    function close() {
+      document.body.classList.remove("nav-open");
+      sync();
+    }
+
+    toggleBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (isOpen()) close();
+      else open();
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener("click", function (e) {
+        e.preventDefault();
+        close();
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        close();
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
+
+    // Close nav when a link is clicked.
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("nav a") : null;
+      if (!a) return;
+
+      // On mobile, allow first tap on submenu trigger to open the submenu (handled elsewhere).
+      var li = a.closest && a.closest("li.has-submenu");
+      var isSubmenuTrigger = li && li.querySelector && li.querySelector(":scope > a") === a;
+      if (isMobile() && isSubmenuTrigger) return;
+
+      close();
+    });
+
+    // If we move to desktop, ensure the drawer state can't get stuck.
+    try {
+      if (window.matchMedia) {
+        var mql = window.matchMedia("(max-width: 980px)");
+        var onChange = function () {
+          if (!mql.matches) close();
+          else sync();
+        };
+        if (mql && mql.addEventListener) mql.addEventListener("change", onChange);
+        else if (mql && mql.addListener) mql.addListener(onChange);
+      }
+    } catch (e) {}
+
+    sync();
+    if (document.documentElement) document.documentElement.setAttribute("data-nav-drawer-wired", "true");
+  }
+
   function setupMobileNavExtras() {
     var nav = document.querySelector('header nav[aria-label="Primary"]');
     if (!nav) return;
@@ -478,6 +568,7 @@
       { href: "service-conference-support-coverage.html", label: "Conference Support & Coverage" },
       { href: "service-mice-delivery.html", label: "MICE Delivery" },
       { href: "service-cruise-line-services.html", label: "Cruise Line Services" },
+      { href: "service-sports-tourism-services.html", label: "Sports Tourism Service" },
       { href: "service-cultural-tourism-experiences.html", label: "Cultural & Tourism Experiences" },
       { href: "service-luxury-accommodation-logistics.html", label: "Luxury Accommodation & Logistics" },
       { href: "service-media-management-strategic-storytelling.html", label: "Media Management & Strategic Storytelling" },
@@ -486,6 +577,7 @@
 
     var departmentLinks = [
       { href: "department-business-development-partnerships.html", label: "Business Development & Partnerships" },
+      { href: "department-tours-experiences.html", label: "Tours & Experiences" },
       { href: "department-destination-management-hospitality.html", label: "Destination Management & Hospitality" },
       { href: "department-event-conference-management.html", label: "Event & Conference Management" },
       { href: "department-finance-administration.html", label: "Finance & Administration" },
@@ -639,6 +731,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    setupMobileDrawer();
     hydrateMegaMenus();
     markActiveLinks();
     setupMobileSubmenus();
