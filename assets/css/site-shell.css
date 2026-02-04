@@ -55,6 +55,10 @@ body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
 html, body{max-width:100%}
 body{overflow-x:hidden}
 
+/* Justify paragraph text for a cleaner editorial look */
+p{text-align:justify;text-justify:inter-word;hyphens:auto}
+@media(max-width:700px){p{text-align:left;hyphens:none}}
+
 /* Active state (header + footer) */
 nav a[aria-current="page"],
 nav a.is-active{
