@@ -270,8 +270,12 @@
       position:relative;
       display:grid;
       grid-template-columns:1.08fr .92fr;
-      gap:34px;
-      align-items:start;
+      grid-template-rows:auto 1fr;
+      grid-template-areas:
+        "head head"
+        "list visuals";
+      gap:18px 34px;
+      align-items:stretch;
       padding:26px 26px 30px;
       border:1px solid rgba(2,8,23,.06);
       background:rgba(255,255,255,.55);
@@ -288,7 +292,8 @@
         radial-gradient(900px 380px at 96% 70%, rgba(31,107,53,.12), transparent 60%);
       opacity:.75;
     }
-    .impact-left{position:relative;z-index:1}
+    .impact-head{grid-area:head;position:relative;z-index:1}
+    .impact-left{grid-area:list;position:relative;z-index:1}
     .impact-feature .section-head{margin-bottom:14px}
     .impact-feature .section-head h2{font-size:44px;letter-spacing:-.02em;line-height:1.05;color:rgba(11,42,27,.88)}
     .impact-feature .section-lead{max-width:720px;font-size:15px}
@@ -319,7 +324,8 @@
     .impact-ico svg{width:22px;height:22px;display:block}
     .impact-text{font-weight:800;color:rgba(11,42,27,.86);line-height:1.25}
 
-    .impact-visuals{position:relative;z-index:1;display:grid;gap:16px;align-content:start}
+    .impact-visuals{grid-area:visuals;position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;height:100%}
+    .impact-photo--bottom{margin-top:auto}
     .impact-photo{
       position:relative;
       background:rgba(255,255,255,.70);
@@ -350,8 +356,51 @@
       border-radius:18px;padding:26px 22px;box-shadow:0 18px 46px rgba(2,8,23,.08)}
     .initiative h3{margin:0 0 10px;font-size:20px}
     .initiative p{margin:0;color:#4b5563;line-height:1.75}
-    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .pilltag{border:1px solid rgba(31,107,53,.14);background:rgba(255,255,255,.75);padding:10px 12px;border-radius:999px;font-weight:700;color:var(--brand-dark);font-size:12px;letter-spacing:.04em}
+    .initiative{--pill-accent:var(--brand-dark)}
+    .initiative .pillrow{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;margin-top:18px;padding:10px 0}
+    .initiative .pilltag{
+      width:168px;
+      height:168px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-align:center;
+      padding:18px;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(2,8,23,.10);
+      box-shadow:0 28px 70px rgba(2,8,23,.14);
+      color:var(--ink);
+      font-weight:900;
+      letter-spacing:-.01em;
+      line-height:1.15;
+      border-radius:999px !important;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .initiative .pilltag:hover{transform:translateY(-2px);box-shadow:0 34px 86px rgba(2,8,23,.18)}
+    .initiative .pilltag .pill-ico{
+      width:64px;
+      height:64px;
+      display:grid;
+      place-items:center;
+      color:var(--pill-accent);
+      margin-bottom:2px;
+      border-radius:999px !important;
+    }
+    .initiative .pilltag .pill-ico svg{width:34px;height:34px;display:block}
+    .initiative .pilltag .pill-label{display:block;font-size:14px;color:rgba(11,42,27,.92)}
+    .initiative .pilltag::after{content:"";display:block;width:38px;height:2px;background:linear-gradient(90deg, var(--brand), var(--brand-2));margin-top:10px}
+
+    @media(max-width:920px){
+      .initiative .pillrow{justify-content:center}
+    }
+    @media(max-width:640px){
+      .initiative .pillrow{gap:18px}
+      .initiative .pilltag{width:150px;height:150px}
+      .initiative .pilltag .pill-ico{width:56px;height:56px}
+      .initiative .pilltag .pill-ico svg{width:30px;height:30px}
+    }
 
     .work-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px}
     .work-card{display:block;text-decoration:none;background:#fff;border:1px solid rgba(2,8,23,.06);border-radius:16px;
@@ -367,7 +416,16 @@
       .about-grid{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr}
       .work-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
-      .impact-shell{grid-template-columns:1fr;gap:22px;padding:22px 18px 22px}
+      .impact-shell{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto auto;
+        grid-template-areas:
+          "head"
+          "list"
+          "visuals";
+        gap:22px;
+        padding:22px 18px 22px;
+      }
       .impact-photo img{height:220px}
       .impact-photo--bottom img{height:200px}
     }
@@ -743,13 +801,13 @@
 
     <section class="section impact-feature" aria-label="Our impact">
       <div class="impact-shell" aria-label="Impact highlight">
-        <div class="impact-left">
-          <div class="section-head">
-            <span class="kicker">IMPACT</span>
-            <h2>Our Impact</h2>
-            <p class="section-lead">We measure success through stronger relationships, protected reputations, and outcomes that last beyond the event.</p>
-          </div>
+        <div class="section-head impact-head">
+          <span class="kicker">IMPACT</span>
+          <h2>Our Impact</h2>
+          <p class="section-lead">We measure success through stronger relationships, protected reputations, and outcomes that last beyond the event.</p>
+        </div>
 
+        <div class="impact-left">
           <ul class="impact-list" aria-label="Impact list">
             <li>
               <span class="impact-ico" aria-hidden="true">
@@ -827,10 +885,45 @@
         <h3>Focus Areas</h3>
         <p>We embed climate-conscious practices and responsible delivery into engagements—supporting partners seeking measurable sustainability outcomes.</p>
         <div class="pillrow" aria-label="Focus areas">
-          <div class="pilltag">Sustainable event practices</div>
-          <div class="pilltag">Blue economy advocacy</div>
-          <div class="pilltag">Climate-conscious diplomacy</div>
-          <div class="pilltag">Strategic environmental partnerships</div>
+          <div class="pilltag">
+            <span class="pill-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 20c-5 0-8-3.6-8-8.5C4 7.4 7 4 12 4c5 0 8 3.4 8 7.5 0 4.9-3 8.5-8 8.5Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M7.5 12.5c2.2 0 3.6-1.2 4.5-3.5 1 2.3 2.3 3.5 4.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="pill-label">Sustainable event practices</span>
+          </div>
+          <div class="pilltag">
+            <span class="pill-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".95"/>
+                <path d="M3 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+              </svg>
+            </span>
+            <span class="pill-label">Blue economy advocacy</span>
+          </div>
+          <div class="pilltag">
+            <span class="pill-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+                <path d="M12 3c3 3.5 3 14.5 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+                <path d="M12 3c-3 3.5-3 14.5 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+              </svg>
+            </span>
+            <span class="pill-label">Climate-conscious diplomacy</span>
+          </div>
+          <div class="pilltag">
+            <span class="pill-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <span class="pill-label">Strategic environmental partnerships</span>
+          </div>
         </div>
       </div>
     </section>
