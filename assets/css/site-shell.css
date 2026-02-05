@@ -31,8 +31,12 @@ header nav,
 body.nav-open{overflow:hidden}
 
 /* Ensure the close button/backdrop exist visually even on pages missing inline styles */
-.nav-backdrop{position:fixed;inset:0;background:rgba(2,8,23,.55);opacity:0;pointer-events:none;transition:.18s ease;z-index:75}
+/* Important: keep backdrop below the (sticky) header/nav so menu links remain clickable */
+.nav-backdrop{position:fixed;inset:0;background:rgba(2,8,23,.55);opacity:0;pointer-events:none;transition:.18s ease;z-index:60}
 body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
+
+/* Avoid floating UI covering the drawer */
+body.nav-open .chat-widget{display:none}
 
 .nav-close{display:none}
 @media(max-width:980px){
@@ -45,8 +49,21 @@ body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
 
   /* Normalize drawer stacking + motion (some pages define different z-index/transform) */
   header{z-index:70}
+  /* Override desktop mega-menu positioning (header nav is forced to static above) */
+  header nav[aria-label="Primary"],
+  nav#primary-nav{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    width:min(340px, 88vw);
+    background:#fff;
+    box-shadow:-20px 0 60px rgba(2,8,23,.18);
+    padding:calc(env(safe-area-inset-top, 0px) + 72px) 18px 18px;
+  }
   nav#primary-nav{z-index:90;transform:translate3d(105%,0,0);transition:transform .22s ease;
-    visibility:hidden;pointer-events:none;will-change:transform
+    visibility:hidden;pointer-events:none;will-change:transform;
+    overflow:auto;-webkit-overflow-scrolling:touch
   }
   body.nav-open nav#primary-nav{transform:translate3d(0,0,0);visibility:visible;pointer-events:auto}
 }
