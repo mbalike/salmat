@@ -1,4 +1,60 @@
 (function () {
+  function normalizePhone(raw) {
+    if (!raw) return "";
+    return String(raw).trim().replace(/[^\d+]/g, "");
+  }
+
+  function setupTopbarPhoneAndCleanup() {
+    // 1) Remove language options from the topbar
+    var lang = document.querySelector(".topbar .topbar-lang");
+    if (lang && lang.parentNode) lang.parentNode.removeChild(lang);
+
+    // 2) Remove 'Consultation by appointment' from header actions
+    var headerContact = document.querySelector("header .header-actions .contact");
+    if (headerContact && headerContact.parentNode) headerContact.parentNode.removeChild(headerContact);
+
+    // 3) Add phone number to the topbar (before social icons)
+    var topbarRight = document.querySelector(".topbar .topbar-right");
+    var social = document.querySelector(".topbar .topbar-social");
+    if (!topbarRight || !social) return;
+
+    // Avoid duplicates if multiple pages/scripts run.
+    if (document.querySelector(".topbar [data-topbar-phone]")) return;
+
+    // Prefer an existing phone number from the site, otherwise fall back.
+    var existingTel = document.querySelector('a[href^="tel:"]');
+    var phoneText = existingTel ? (existingTel.textContent || "").trim() : "+255 742 398 600";
+    var phoneHref = existingTel ? existingTel.getAttribute("href") : ("tel:" + normalizePhone(phoneText) || "tel:+255742398600");
+
+    var item = document.createElement("div");
+    item.className = "topbar-item";
+    item.setAttribute("data-topbar-phone", "true");
+
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "topbar-ico");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("aria-hidden", "true");
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute(
+      "d",
+      "M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z"
+    );
+    path.setAttribute("stroke", "currentColor");
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+
+    var a = document.createElement("a");
+    a.href = phoneHref || "tel:+255742398600";
+    a.textContent = phoneText || "+255 742 398 600";
+
+    item.appendChild(svg);
+    item.appendChild(a);
+
+    topbarRight.insertBefore(item, social);
+  }
+
   function setupMobileDrawer() {
     // Avoid double-binding if multiple scripts try to wire the drawer.
     if (document.documentElement && document.documentElement.hasAttribute("data-nav-drawer-wired")) return;
@@ -656,15 +712,46 @@
       trigger.setAttribute("aria-haspopup", "true");
       trigger.setAttribute("aria-expanded", "false");
 
+      function ensureOverviewLink() {
+        if (panel.hasAttribute("data-mobile-overview")) return;
+
+        var href = trigger.getAttribute("href") || "#";
+        var label = (trigger.textContent || "").trim() || "Overview";
+
+        var a = document.createElement("a");
+        a.href = href;
+        a.className = "nav-overview-link";
+        a.textContent = "View all " + label;
+
+        var firstCol = panel.querySelector(".nav-col");
+        if (firstCol) {
+          firstCol.insertBefore(a, firstCol.firstChild);
+        } else {
+          panel.insertBefore(a, panel.firstChild);
+        }
+
+        panel.setAttribute("data-mobile-overview", "true");
+      }
+
       trigger.addEventListener("click", function (e) {
         if (!media.matches) return; // desktop: allow navigation
-        // On mobile, first tap opens submenu; second tap navigates
-        if (!li.classList.contains("submenu-open")) {
-          e.preventDefault();
+        e.preventDefault();
+
+        var willOpen = !li.classList.contains("submenu-open");
+        // Close any other open submenus.
+        items.forEach(function (other) {
+          if (other !== li) {
+            other.classList.remove("submenu-open");
+            var otherTrigger = other.querySelector(":scope > a");
+            if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        if (willOpen) {
+          ensureOverviewLink();
           li.classList.add("submenu-open");
           trigger.setAttribute("aria-expanded", "true");
         } else {
-          // allow navigation
           li.classList.remove("submenu-open");
           trigger.setAttribute("aria-expanded", "false");
         }
@@ -731,6 +818,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    setupTopbarPhoneAndCleanup();
     setupMobileDrawer();
     hydrateMegaMenus();
     markActiveLinks();

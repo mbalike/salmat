@@ -46,9 +46,9 @@ header{background:#fff;padding:12px 40px;display:flex;align-items:center;justify
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo img{height:52px;width:auto;display:block}
 nav ul{list-style:none;display:flex;gap:26px;font-weight:500}
-nav a{text-decoration:none;color:var(--ink);font-size:14px}
-nav li.has-submenu a{display:inline-flex;align-items:center;gap:6px}
-nav li.has-submenu a::after{content:'▾';font-size:12px;opacity:.7;transform:translateY(-1px)}
+nav#primary-nav a{text-decoration:none;color:var(--ink);font-size:14px}
+nav#primary-nav li.has-submenu > a{display:inline-flex;align-items:center;gap:6px}
+nav#primary-nav li.has-submenu > a::after{content:'▾';font-size:12px;opacity:.7;transform:translateY(-1px)}
 
 .header-actions{display:flex;align-items:center;gap:16px}
 .contact{display:flex;align-items:center;gap:10px}
@@ -66,7 +66,7 @@ nav li.has-submenu a::after{content:'▾';font-size:12px;opacity:.7;transform:tr
 @media(max-width:980px){
   .topbar{padding:10px 18px}
   header{padding:14px 18px}
-  nav{display:block}
+  nav#primary-nav{display:block}
 }
 
 /* ===== MOBILE NAV (uses existing <nav>) ===== */
@@ -74,13 +74,13 @@ nav li.has-submenu a::after{content:'▾';font-size:12px;opacity:.7;transform:tr
 body.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
 @media(max-width:980px){
   header{position:sticky;top:0;z-index:70;box-shadow:0 12px 30px rgba(2,8,23,.08)}
-  nav{position:fixed;top:0;right:0;bottom:0;width:min(340px, 88vw);background:#fff;z-index:70;
+  nav#primary-nav{position:fixed;top:0;right:0;bottom:0;width:min(340px, 88vw);background:#fff;z-index:70;
     transform:translateX(105%);transition:.2s ease;box-shadow:-20px 0 60px rgba(2,8,23,.18);
     padding:88px 18px 18px
   }
-  body.nav-open nav{transform:translateX(0)}
-  nav ul{flex-direction:column;gap:14px}
-  nav a{font-size:16px}
+  body.nav-open nav#primary-nav{transform:translateX(0)}
+  nav#primary-nav ul{flex-direction:column;gap:14px}
+  nav#primary-nav a{font-size:16px}
 }
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
