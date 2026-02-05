@@ -252,10 +252,10 @@
       whatsapp: "+255700000000",
       sms: "+255700000000",
       phone: "+255700000000",
-      email: "hello@salmat.example",
-      instagram: "salmatdiplomatichospitality",
+      email: "hello@salmart.example",
+      instagram: "salmartdiplomatichospitality",
       defaultMessage:
-        "Hello Salmat team, I’m reaching out from your website. I’d like to ask about your services.",
+        "Hello Salmart team, I’m reaching out from your website. I’d like to ask about your services.",
       emailSubject: "Website inquiry",
     };
 
