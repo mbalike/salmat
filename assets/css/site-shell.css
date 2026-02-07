@@ -1,5 +1,7 @@
 /* Shared site shell enhancements: mega dropdown + active link styling */
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap');
+
 /*
   Canonical header theming (matches index.html)
   Many pages define their own :root brand variables for page theming.
@@ -72,9 +74,47 @@ body.nav-open .chat-widget{display:none}
 html, body{max-width:100%}
 body{overflow-x:hidden}
 
+/* Global typography */
+html, body{font-family:'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif !important}
+button, input, select, textarea{font-family:inherit !important}
+
 /* Justify paragraph text for a cleaner editorial look */
 p{text-align:justify;text-justify:inter-word;hyphens:auto}
 @media(max-width:700px){p{text-align:left;hyphens:none}}
+
+/* ===== INNER PAGE BANNERS (match about.html styling) =====
+  Applies to all inner-page banners using .inner-hero.
+  Homepage hero is excluded (it uses .hero, not .inner-hero).
+*/
+.inner-hero{position:relative;min-height:380px;overflow:hidden;isolation:isolate;color:#fff;display:flex;align-items:center;justify-content:center;padding:120px 24px 110px;margin:0 auto}
+.inner-hero::before{content:'';position:absolute;inset:0;background:var(--hero-bg-image, url('https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2400&auto=format&fit=crop')) center/cover no-repeat;transform:scale(1.02);z-index:-2}
+.inner-hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg, rgba(11,42,27,.35), rgba(11,42,27,.05)),
+             linear-gradient(180deg, rgba(11,42,27,.55), rgba(11,42,27,.10));
+  mix-blend-mode:multiply;
+  z-index:-1
+}
+.inner-hero-inner{position:relative;z-index:1;text-align:center;display:grid;gap:12px;max-width:1200px}
+.inner-hero .breadcrumbs{color:rgba(255,255,255,.85);font-weight:500;font-size:14px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.inner-hero .breadcrumbs a{color:inherit;text-decoration:none}
+.inner-hero .breadcrumbs a:hover{text-decoration:underline}
+.inner-hero .crumb-sep{opacity:.85}
+.inner-hero .inner-hero-title,
+.inner-hero h1{color:#fff;font-size:46px;line-height:1.1;margin:0;font-weight:800;letter-spacing:-.02em}
+
+/* Banner content should be breadcrumb + heading only */
+.inner-hero .inner-hero-lead{display:none !important}
+
+@media(max-width:980px){
+  .inner-hero{padding:96px 18px 82px}
+  .inner-hero .inner-hero-title,
+  .inner-hero h1{font-size:40px}
+}
+@media(max-width:560px){
+  .inner-hero{min-height:320px;padding:84px 18px 72px}
+  .inner-hero .inner-hero-title,
+  .inner-hero h1{font-size:32px}
+}
 
 /* Active state (header + footer) */
 nav a[aria-current="page"],
