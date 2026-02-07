@@ -9,28 +9,30 @@
   <link rel="stylesheet" href="assets/css/service-detail.css" />
   <link rel="stylesheet" href="assets/css/site-shell.css" />
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
-    :root{--brand:#77c34f;--brand-dark:#1f6b35;--ink:#0b2a1b;--muted:#6b7280}
+    /* Ensure the inner-hero reads as a photo banner on this page */
+    .inner-hero::before{filter:saturate(1.12) contrast(1.06) brightness(.92)}
+    .inner-hero::after{background:linear-gradient(180deg, rgba(12,46,28,.52), rgba(12,46,28,.74))}
 
+    .why-kicker{display:inline-block;margin-top:2px;color:rgba(255,255,255,.82);font-weight:800;letter-spacing:.18em;font-size:12px}
 
-    .page{max-width:1100px;margin:auto;padding:56px 18px 86px}
-    .kicker{display:inline-block;color:var(--brand-dark);font-weight:800;letter-spacing:.18em;font-size:12px}
-    h1{font-size:44px;line-height:1.1;margin-top:12px}
-    .lead{margin-top:14px;color:var(--muted);line-height:1.8;max-width:940px}
+    .why-page .feature-body > h2:first-of-type{margin-top:12px}
+    .why-lead{margin:10px 0 0;color:#6b7280;line-height:1.85}
 
-    .card{background:#fff;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px;margin-top:18px}
-    .card h2{font-size:18px;margin-bottom:8px}
-    .card p{color:var(--muted);line-height:1.75}
-    .card ul{margin-top:12px;padding-left:18px;color:var(--muted);line-height:1.75}
-    .card li{margin:6px 0}
+    .why-page p{hyphens:none;text-justify:auto;text-align:left}
+    .why-page .article ul{margin-top:12px}
 
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-    .btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border:1px solid var(--brand)}
-    .btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid #e5e7eb;background:#fff;color:var(--ink);text-decoration:none;font-weight:700}
+    .why-link{color:var(--brand-dark);font-weight:800;text-decoration:none}
+    .why-link:hover{text-decoration:underline}
 
-    @media(max-width:920px){
-      h1{font-size:36px}
+    .why-aside-media{margin-top:16px;border-radius:14px;overflow:hidden;background:#eef2f7;box-shadow:0 18px 40px rgba(2,8,23,.08)}
+    .why-aside-media img{width:100%;height:190px;object-fit:cover;display:block}
+
+    .why-page .benefit-card h3{display:flex;align-items:center;gap:10px}
+    .why-page .benefit-ico{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;color:var(--brand-dark);opacity:.95;flex:0 0 auto}
+    .why-page .benefit-ico svg{width:20px;height:20px;display:block}
+
+    @media(max-width:560px){
+      .why-aside-media img{height:170px}
     }
   </style>
 </head>
@@ -161,47 +163,162 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<main id="main" class="page">
-    <span class="kicker">WHY Salmart</span>
-    <h1>Confidence, Clarity, Capability</h1>
-    <p class="lead">Choosing Salmart means choosing an integrated partner that combines diplomatic intelligence with world-class production, hospitality logistics, and storytelling—built for high-visibility engagements and complex stakeholder environments.</p>
+<section class="inner-hero" aria-label="Page header" style="--hero-bg-image:url('./assets/img/salmart/img-6.jpg');">
+  <div class="inner-hero-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html#home">Home</a>
+      <span class="crumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Why Salmart</span>
+    </nav>
 
-    <div class="cta">
-      <a class="btn-solid" href="contact.html">Start a conversation</a>
-      <a class="btn-outline" href="services.html">Explore services</a>
+    <span class="why-kicker">WHY SALMART</span>
+    <h1 class="inner-hero-title">Confidence, Clarity, Capability</h1>
+    <p class="inner-hero-lead">An integrated partner combining diplomatic intelligence with world-class production, hospitality logistics, and strategic storytelling—built for high-visibility engagements and complex stakeholder environments.</p>
+  </div>
+</section>
+
+<main id="main" class="why-page">
+  <section class="page-wrap" aria-label="Why Salmart content">
+    <div class="page-grid">
+
+      <article class="feature-card article" aria-label="Why Salmart">
+        <div class="feature-media">
+          <img src="./assets/img/salmart/img-10.jpg" alt="High-level event delivery" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="feature-body">
+          <h2>Why Choose Salmart Diplomatic Hospitality</h2>
+          <p class="why-lead">Choosing Salmart means choosing an integrated partner that combines diplomatic intelligence with world-class production, hospitality logistics, and storytelling—built for high-visibility engagements and complex stakeholder environments.</p>
+          <ul>
+            <li>End-to-end Destination Management expertise</li>
+            <li>Deep understanding of diplomacy, protocol, and culture</li>
+            <li>Integrated events, media, branding, and strategic storytelling</li>
+            <li>Global outlook with strong local execution</li>
+            <li>High standards of discretion, quality, and professionalism</li>
+            <li>A human-centered approach that values meaning over mechanics</li>
+          </ul>
+
+          <h2>Our DMC Partner Advantage</h2>
+          <p>As a full-service Destination Management Company, Salmart provides local intelligence with international standards. We act as your on-the-ground partner—coordinating across venues, suppliers, authorities, and cultural stakeholders.</p>
+          <div class="callout" aria-label="Standards link">
+            <strong>Standards, sustainability &amp; risk management</strong>
+            <span><a class="why-link" href="standards.html">Read our standards approach →</a></span>
+          </div>
+
+          <h2>Industries We Serve</h2>
+          <ul>
+            <li>Government &amp; Diplomatic Institutions</li>
+            <li>Multinational Corporations</li>
+            <li>Development Partners &amp; NGOs</li>
+            <li>Trade Associations &amp; Industry Bodies</li>
+            <li>Healthcare, Education &amp; Research Institutions</li>
+            <li>Luxury, Hospitality &amp; Tourism Brands</li>
+          </ul>
+          <p><a class="why-link" href="industries.html">View industries →</a></p>
+
+          <h2>What Makes Delivery Different</h2>
+          <div class="benefits" aria-label="Delivery strengths">
+            <div class="benefit-card">
+              <h3>
+                <span class="benefit-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2 19 5v6c0 6-4.2 10-7 11-2.8-1-7-5-7-11V5l7-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M9.5 12.2 11.2 14l3.6-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Protocol-ready execution</span>
+              </h3>
+              <p>We protect schedules, manage access, and align stakeholders—so high-level engagements remain calm, punctual, and respectful.</p>
+            </div>
+            <div class="benefit-card">
+              <h3>
+                <span class="benefit-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M9 3h6l1 2h3v16H5V5h3l1-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 8h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span>Disciplined operations</span>
+              </h3>
+              <p>Clear run-of-show planning, rehearsals, and command control keep delivery smooth even under pressure and tight timelines.</p>
+            </div>
+            <div class="benefit-card">
+              <h3>
+                <span class="benefit-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/>
+                  </svg>
+                </span>
+                <span>Premium hospitality</span>
+              </h3>
+              <p>Thoughtful guest experience design—arrival, movement, hosting, and care—delivered discreetly and consistently.</p>
+            </div>
+            <div class="benefit-card">
+              <h3>
+                <span class="benefit-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 6h16v10H7l-3 3V6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M8 10h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span>Strategic storytelling</span>
+              </h3>
+              <p>We help translate outcomes into narrative—capturing moments, key messages, and impact across channels.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="info-panel" aria-label="Why Salmart quick facts">
+        <div class="info-title">At a Glance</div>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v5l4 2-1 2-5-3V7h2z"/></svg>
+            </div>
+            <div><strong style="color:var(--ink)">End-to-end</strong><br/>Brief → delivery → reporting</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/></svg>
+            </div>
+            <div><strong style="color:var(--ink)">Protocol &amp; culture</strong><br/>Discretion • intelligence • care</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v12H4V6zm3 3v6h2V9H7zm4 0v6h2V9h-2zm4 0v6h2V9h-2z"/></svg>
+            </div>
+            <div><strong style="color:var(--ink)">Integrated</strong><br/>Events • branding • media</div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 4v6c0 5-3 9-8 10-5-1-8-5-8-10V6l8-4z"/></svg>
+            </div>
+            <div><strong style="color:var(--ink)">Risk-aware</strong><br/>Planning • readiness • protection</div>
+          </div>
+        </div>
+
+        <a class="btn-solid" href="contact.html" style="width:100%">Request a Proposal</a>
+        <div class="callout" style="margin-top:14px">
+          <strong>Tell us what you’re planning</strong>
+          <span>Share destination, dates, stakeholders, and objectives—Salmart will outline a delivery approach and next steps.</span>
+        </div>
+
+        <div class="why-aside-media" aria-label="Supporting image">
+          <img src="./assets/img/salmart/img-12.jpg" alt="Premium hospitality logistics" loading="lazy" decoding="async" />
+        </div>
+      </aside>
+
     </div>
-
-    <section class="card">
-      <h2>Why Choose Salmart Diplomatic Hospitality</h2>
-      <ul>
-        <li>End-to-end Destination Management expertise</li>
-        <li>Deep understanding of diplomacy, protocol, and culture</li>
-        <li>Integrated events, media, branding, and storytelling</li>
-        <li>Global outlook with strong local execution</li>
-        <li>High standards of discretion, quality, and professionalism</li>
-        <li>A human-centered approach that values meaning over mechanics</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Our DMC Partner Advantage</h2>
-      <p>As a full-service Destination Management Company, Salmart provides local intelligence with international standards. We act as your on-the-ground partner—coordinating across venues, suppliers, authorities, and cultural stakeholders.</p>
-      <p style="margin-top:10px"><a href="standards.html" style="color:var(--brand-dark);font-weight:800;text-decoration:none">Read about standards, sustainability &amp; risk management →</a></p>
-    </section>
-
-    <section class="card">
-      <h2>Industries We Serve</h2>
-      <ul>
-        <li>Government &amp; Diplomatic Institutions</li>
-        <li>Multinational Corporations</li>
-        <li>Development Partners &amp; NGOs</li>
-        <li>Trade Associations &amp; Industry Bodies</li>
-        <li>Healthcare, Education &amp; Research Institutions</li>
-        <li>Luxury, Hospitality &amp; Tourism Brands</li>
-      </ul>
-      <p style="margin-top:10px"><a href="industries.html" style="color:var(--brand-dark);font-weight:800;text-decoration:none">View industries →</a></p>
-    </section>
-  </main>
+  </section>
+</main>
 
   <footer class="site-footer" id="contact" aria-label="Footer">
     <div class="footer-inner">
