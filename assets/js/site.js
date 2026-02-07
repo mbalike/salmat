@@ -4,16 +4,141 @@
     return String(raw).trim().replace(/[^\d+]/g, "");
   }
 
+  var CANONICAL = {
+    phoneText: "+255 683 010 907",
+    phoneHref: "tel:+255683010907",
+    whatsappText: "+255 699 611 093",
+    whatsappHref: "https://wa.me/255699611093",
+    email: "relations@salmartdiplomatic.com",
+    addressText: "2115 Samora Avenue, Dar Es Salaam",
+    addressHref: "https://maps.app.goo.gl/Fn5G8LVwjNNeFJRi9",
+  };
+
+  function styleInlineLink(a) {
+    if (!a || !a.style) return;
+    a.style.color = "inherit";
+    a.style.textDecoration = "inherit";
+  }
+
+  function replaceExactTextNodesWithLink(root, exactText, href, linkText) {
+    if (!root || !root.ownerDocument) return;
+
+    var walker = root.ownerDocument.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node || !node.nodeValue) return NodeFilter.FILTER_REJECT;
+        if (String(node.nodeValue).trim() !== exactText) return NodeFilter.FILTER_REJECT;
+        // Skip if already inside a link.
+        var p = node.parentElement;
+        if (p && p.closest && p.closest("a")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (textNode) {
+      var doc = textNode.ownerDocument;
+      var a = doc.createElement("a");
+      a.href = href;
+      a.textContent = linkText;
+      styleInlineLink(a);
+      if (textNode.parentNode) textNode.parentNode.replaceChild(a, textNode);
+    });
+  }
+
+  function upsertTopbarWhatsApp() {
+    var socials = document.querySelector(".topbar .topbar-social");
+    if (!socials) return;
+
+    var existing = socials.querySelector('a[aria-label="WhatsApp"], a[href*="wa.me/255699611093"]');
+    if (existing) return;
+
+    var a = document.createElement("a");
+    a.href = CANONICAL.whatsappHref;
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    a.setAttribute("aria-label", "WhatsApp");
+
+    // WhatsApp icon (simple mark)
+    a.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<path d="M20.5 11.9c0 4.8-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.2-1.1l-3 1 .98-2.9A8.53 8.53 0 0 1 3.3 12c0-4.8 3.9-8.6 8.6-8.6 4.8 0 8.6 3.9 8.6 8.6Zm-8.6-7c-3.9 0-7.1 3.2-7.1 7.1 0 1.4.4 2.6 1.1 3.7l.18.29-.58 1.7 1.76-.56.28.17c1.1.7 2.4 1.1 3.7 1.1 3.9 0 7.1-3.2 7.1-7.1s-3.2-7.1-7.1-7.1Z"/>' +
+      '<path d="M15.6 13.9c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1.1-.6-.6-1.1-1.4-1.2-1.6-.1-.2 0-.4.1-.5l.5-.6c.1-.1.1-.3.1-.4l-.7-1.6c-.1-.2-.2-.3-.4-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4.6.2 1 .3 1.3.4.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3Z"/>' +
+      "</svg>";
+
+    // Insert before Instagram if present, otherwise append.
+    var insta = socials.querySelector('a[aria-label="Instagram"]');
+    if (insta && insta.parentNode) socials.insertBefore(a, insta);
+    else socials.appendChild(a);
+  }
+
+  function applyCanonicalLinks() {
+    // Phone calls: normalize every tel: link to the canonical phone.
+    var tels = document.querySelectorAll('a[href^="tel:"]');
+    tels.forEach(function (a) {
+      if (!a) return;
+      a.setAttribute("href", CANONICAL.phoneHref);
+      // Keep visible formatting consistent.
+      a.textContent = CANONICAL.phoneText;
+    });
+
+    // WhatsApp: normalize any existing WhatsApp links.
+    var was = document.querySelectorAll('a[href*="wa.me/"], a[href*="whatsapp.com/"]');
+    was.forEach(function (a) {
+      if (!a) return;
+      a.setAttribute("href", CANONICAL.whatsappHref);
+      if (!a.getAttribute("target")) a.setAttribute("target", "_blank");
+      if (!a.getAttribute("rel")) a.setAttribute("rel", "noreferrer");
+    });
+  }
+
+  function applyCanonicalHeaderAndFooterText() {
+    // Header contact line
+    var headerStrong = document.querySelector("header .header-actions .contact strong");
+    if (headerStrong) {
+      headerStrong.innerHTML = '';
+      var a = document.createElement('a');
+      a.href = CANONICAL.phoneHref;
+      a.textContent = CANONICAL.phoneText;
+      styleInlineLink(a);
+      headerStrong.appendChild(a);
+    }
+
+    // Use a text-node replacement for all occurrences (footer + elsewhere)
+    replaceExactTextNodesWithLink(document.body, CANONICAL.email, 'mailto:' + CANONICAL.email, CANONICAL.email);
+
+    // Replace the old label everywhere with a clickable phone number
+    replaceExactTextNodesWithLink(document.body, 'Consultation by appointment', CANONICAL.phoneHref, CANONICAL.phoneText);
+  }
+
+  function applyTopbarAddressLink() {
+    var item = document.querySelector('.topbar-left .topbar-item:nth-child(2)');
+    if (!item) return;
+
+    var span = item.querySelector('span');
+    var existingLink = item.querySelector('a[href]');
+
+    var a = document.createElement('a');
+    a.href = CANONICAL.addressHref;
+    a.target = '_blank';
+    a.rel = 'noreferrer';
+    a.textContent = CANONICAL.addressText;
+    styleInlineLink(a);
+
+    if (existingLink && existingLink.parentNode) {
+      existingLink.parentNode.replaceChild(a, existingLink);
+    } else if (span && span.parentNode) {
+      span.parentNode.replaceChild(a, span);
+    }
+  }
+
   function setupTopbarPhoneAndCleanup() {
     // 1) Remove language options from the topbar
     var lang = document.querySelector(".topbar .topbar-lang");
     if (lang && lang.parentNode) lang.parentNode.removeChild(lang);
 
-    // 2) Remove 'Consultation by appointment' from header actions
-    var headerContact = document.querySelector("header .header-actions .contact");
-    if (headerContact && headerContact.parentNode) headerContact.parentNode.removeChild(headerContact);
-
-    // 3) Add phone number to the topbar (before social icons)
+    // 2) Add phone number to the topbar (before social icons)
     var topbarRight = document.querySelector(".topbar .topbar-right");
     var social = document.querySelector(".topbar .topbar-social");
     if (!topbarRight || !social) return;
@@ -21,10 +146,8 @@
     // Avoid duplicates if multiple pages/scripts run.
     if (document.querySelector(".topbar [data-topbar-phone]")) return;
 
-    // Prefer an existing phone number from the site, otherwise fall back.
-    var existingTel = document.querySelector('a[href^="tel:"]');
-    var phoneText = existingTel ? (existingTel.textContent || "").trim() : "+255 742 398 600";
-    var phoneHref = existingTel ? existingTel.getAttribute("href") : ("tel:" + normalizePhone(phoneText) || "tel:+255742398600");
+    var phoneText = CANONICAL.phoneText;
+    var phoneHref = CANONICAL.phoneHref;
 
     var item = document.createElement("div");
     item.className = "topbar-item";
@@ -46,13 +169,19 @@
     svg.appendChild(path);
 
     var a = document.createElement("a");
-    a.href = phoneHref || "tel:+255742398600";
-    a.textContent = phoneText || "+255 742 398 600";
+    a.href = phoneHref;
+    a.textContent = phoneText;
 
     item.appendChild(svg);
     item.appendChild(a);
 
     topbarRight.insertBefore(item, social);
+
+    // Canonicalize contact info across the page.
+    applyCanonicalLinks();
+    applyCanonicalHeaderAndFooterText();
+    applyTopbarAddressLink();
+    upsertTopbarWhatsApp();
   }
 
   function setupMobileDrawer() {
@@ -249,10 +378,10 @@
     var root = existing || document.createElement("div");
 
     var defaults = {
-      whatsapp: "+255700000000",
-      sms: "+255700000000",
-      phone: "+255700000000",
-      email: "hello@salmart.example",
+      whatsapp: CANONICAL.whatsappText,
+      sms: CANONICAL.phoneText,
+      phone: CANONICAL.phoneText,
+      email: CANONICAL.email,
       instagram: "salmartdiplomatichospitality",
       defaultMessage:
         "Hello Salmart team, I’m reaching out from your website. I’d like to ask about your services.",

@@ -117,19 +117,43 @@ p{text-align:justify;text-justify:inter-word;hyphens:auto}
 }
 
 /* Active state (header + footer) */
-nav a[aria-current="page"],
-nav a.is-active{
-  color:var(--brand-dark);
+header nav a[aria-current="page"],
+header nav a.is-active{
+  color:var(--brand) !important;
   font-weight:800;
 }
-nav a[aria-current="page"]::after,
-nav a.is-active::after{
+header nav a[aria-current="page"]::after,
+header nav a.is-active::after{
   opacity:1;
+  background:var(--brand) !important;
+}
+
+/* Footer titles should use theme green (some pages set these to white inline) */
+.site-footer .footer-title{
+  color:var(--brand) !important;
+}
+
+/* Keep the main footer CTA heading white */
+.site-footer .footer-cta h3{
+  color:#fff !important;
+}
+
+/* Hover color: header + footer links should turn theme green */
+header nav a:hover{
+  color:var(--brand) !important;
+}
+
+/* Footer: keep underline on hover, add green color */
+.site-footer .footer-links a:hover,
+.site-footer .footer-contact a:hover,
+.site-footer .footer-bottom a:hover{
+  color:var(--brand) !important;
+  text-decoration:underline !important;
 }
 
 .site-footer a[aria-current="page"],
 .site-footer a.is-active{
-  color:#fff;
+  color:var(--site-brand);
   text-decoration:underline;
   text-underline-offset:4px;
 }
@@ -152,7 +176,7 @@ nav a.is-active::after{
 }
 .site-footer .footer-contact a:hover{text-decoration:underline}
 .site-footer .footer-contact a:focus-visible{
-  outline:3px solid rgba(119,195,79,.6);
+  outline:3px solid rgba(117,191,83,.6);
   outline-offset:4px;
   border-radius:8px;
 }
