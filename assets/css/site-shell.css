@@ -8,11 +8,11 @@
   We lock the header + topbar to site-wide values so the header looks identical everywhere.
 */
 :root{
-  --site-brand:#77c34f;
-  --site-brand-2:#67b744;
-  --site-brand-dark:#1f6b35;
-  --site-brand-900:#0b2a1b;
-  --site-brand-soft:#e9f6e7;
+  --site-brand:#75bf53;
+  --site-brand-2:#65b143;
+  --site-brand-dark:#304857;
+  --site-brand-900:#1b2c36;
+  --site-brand-soft:#e8f5e2;
   --site-ink:var(--site-brand-900);
 }
 
@@ -47,7 +47,7 @@ body.nav-open .chat-widget{display:none}
     width:44px;height:44px;border:none;border-radius:12px;cursor:pointer;
     background:rgba(2,8,23,.06);color:var(--ink);font-size:24px;line-height:1
   }
-  .nav-close:focus-visible{outline:3px solid rgba(119,195,79,.55);outline-offset:3px}
+  .nav-close:focus-visible{outline:3px solid rgba(117,191,83,.55);outline-offset:3px}
 
   /* Normalize drawer stacking + motion (some pages define different z-index/transform) */
   header{z-index:70}
