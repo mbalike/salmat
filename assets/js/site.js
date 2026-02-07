@@ -422,7 +422,7 @@
         '    </div>' +
         '    <div class="chat-convo chat-hidden" data-chat-convo>' +
         '      <div class="chat-messages" aria-label="Message preview" data-chat-messages>' +
-        '        <div class="chat-bubble them">Hello — share a few details and we’ll open the right app with your message.</div>' +
+        '        <div class="chat-bubble them">Hello, share a few details and we’ll open the right app with your message.</div>' +
         '      </div>' +
         '      <form class="chat-compose" data-chat-form>' +
         '        <textarea class="chat-input" rows="2" aria-label="Message" data-chat-input></textarea>' +
