@@ -149,8 +149,9 @@
     .hero-video-btn:focus-visible{outline:3px solid rgba(119,195,79,.6);outline-offset:4px}
     .hero-video-label{font-weight:600;opacity:.95}
 
-    .hero h1{font-size:72px;line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;max-width:980px}
-    .hero p{opacity:.9;margin-bottom:34px;font-weight:500;max-width:980px}
+    .hero h1{font-size:clamp(40px, 5.6vw, 68px);line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;max-width:min(1200px, 96vw);white-space:nowrap}
+    .hero p{opacity:.95;margin-bottom:34px;font-weight:500;max-width:62ch;line-height:1.65;text-align:center;text-align-last:center;text-justify:auto;hyphens:none;margin-left:auto;margin-right:auto;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+    .hero-lead .hero-lead-bg{display:inline;padding:.26em .55em;border-radius:14px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
     @media (prefers-reduced-motion: reduce){
       .hero::after{animation:none;transform:scale(1)}
@@ -307,13 +308,12 @@
     }
 
     @media(max-width:900px){
-      .hero h1{font-size:52px}
       .section{grid-template-columns:1fr}
     }
     @media(max-width:560px){
       .hero{min-height:78vh}
       .hero-content{min-height:78vh}
-      .hero h1{font-size:40px}
+      .hero h1{white-space:normal}
       .search-box{flex-direction:column}
       .search-field{width:100%;padding:0 16px}
       .search-box button{min-width:0;padding:16px 18px}
@@ -692,7 +692,7 @@
       <div class="hero-video-label">Our Approach</div>
     </div>
     <h1>Diplomacy Meets Excellence</h1>
-    <p>Diplomatic hospitality, destination management, high-level events, and strategic storytelling—delivered with protocol, precision, and cultural intelligence.</p>
+    <p class="hero-lead"><span class="hero-lead-bg">Diplomatic hospitality, destination management, high level events, and strategic storytelling delivered with protocol, precision, and cultural intelligence.</span></p>
 
     <form class="search-box" role="search" action="services.html" method="get" aria-label="Search services">
       <div class="search-field">
@@ -710,7 +710,7 @@
     <div class="ceo-inner">
       <div class="ceo-image-wrap">
         <div class="ceo-image">
-          <img src="./assets/img/salmart/salmart_ceo.jpg" alt="Chief Executive Officer portrait" loading="lazy" />
+          <img src="./assets/img/salmart/ceo.jpeg" alt="Chief Executive Officer portrait" loading="lazy" />
         </div>
         <div class="ceo-quote">
           <div class="ceo-quote-icon flaticon flaticon-quotation" aria-hidden="true"></div>
@@ -754,7 +754,7 @@
         
         <div class="ceo-signature">
           <div class="ceo-signature-photo">
-            <img src="./assets/img/salmart/salmart_ceo.jpg" alt="Chief Executive Officer" loading="lazy" />
+            <img src="./assets/img/salmart/ceo.jpeg" alt="Chief Executive Officer" loading="lazy" />
           </div>
           <div class="ceo-signature-sign">
             <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" style="width:180px;height:auto">
