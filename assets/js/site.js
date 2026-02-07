@@ -94,22 +94,20 @@
   }
 
   function applyCanonicalHeaderAndFooterText() {
-    // Header contact line
-    var headerStrong = document.querySelector("header .header-actions .contact strong");
-    if (headerStrong) {
-      headerStrong.innerHTML = '';
-      var a = document.createElement('a');
-      a.href = CANONICAL.phoneHref;
-      a.textContent = CANONICAL.phoneText;
-      styleInlineLink(a);
-      headerStrong.appendChild(a);
-    }
-
     // Use a text-node replacement for all occurrences (footer + elsewhere)
     replaceExactTextNodesWithLink(document.body, CANONICAL.email, 'mailto:' + CANONICAL.email, CANONICAL.email);
 
     // Replace the old label everywhere with a clickable phone number
     replaceExactTextNodesWithLink(document.body, 'Consultation by appointment', CANONICAL.phoneHref, CANONICAL.phoneText);
+
+    // Footer copyright line should not be a link.
+    var bottomLinks = document.querySelectorAll('.site-footer .footer-bottom a');
+    bottomLinks.forEach(function (link) {
+      if (!link || !link.parentNode) return;
+      var span = document.createElement('span');
+      span.textContent = (link.textContent || '').trim();
+      link.parentNode.replaceChild(span, link);
+    });
   }
 
   function applyTopbarAddressLink() {
@@ -124,6 +122,7 @@
     a.target = '_blank';
     a.rel = 'noreferrer';
     a.textContent = CANONICAL.addressText;
+    a.setAttribute('data-topbar-location', 'true');
     styleInlineLink(a);
 
     if (existingLink && existingLink.parentNode) {
@@ -138,44 +137,47 @@
     var lang = document.querySelector(".topbar .topbar-lang");
     if (lang && lang.parentNode) lang.parentNode.removeChild(lang);
 
-    // 2) Add phone number to the topbar (before social icons)
+    // 2) Add phone number to the topbar (prefer before social icons, but don't fail if socials are missing)
     var topbarRight = document.querySelector(".topbar .topbar-right");
-    var social = document.querySelector(".topbar .topbar-social");
-    if (!topbarRight || !social) return;
+    if (topbarRight && !document.querySelector(".topbar [data-topbar-phone]")) {
+      var social = document.querySelector(".topbar .topbar-social");
 
-    // Avoid duplicates if multiple pages/scripts run.
-    if (document.querySelector(".topbar [data-topbar-phone]")) return;
+      var phoneText = CANONICAL.phoneText;
+      var phoneHref = CANONICAL.phoneHref;
 
-    var phoneText = CANONICAL.phoneText;
-    var phoneHref = CANONICAL.phoneHref;
+      var item = document.createElement("div");
+      item.className = "topbar-item";
+      item.setAttribute("data-topbar-phone", "true");
 
-    var item = document.createElement("div");
-    item.className = "topbar-item";
-    item.setAttribute("data-topbar-phone", "true");
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("class", "topbar-ico");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("aria-hidden", "true");
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute(
+        "d",
+        "M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z"
+      );
+      path.setAttribute("stroke", "currentColor");
+      path.setAttribute("stroke-width", "2");
+      path.setAttribute("stroke-linejoin", "round");
+      svg.appendChild(path);
 
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("class", "topbar-ico");
-    svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("fill", "none");
-    svg.setAttribute("aria-hidden", "true");
-    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute(
-      "d",
-      "M7.5 3.5h.9c.6 0 1.1.4 1.2 1l.6 3c.1.6-.2 1.2-.7 1.4l-1.4.6c1 2.2 2.8 4 5 5l.6-1.4c.2-.6.8-.8 1.4-.7l3 .6c.6.1 1 .6 1 1.2v.9c0 1.1-.9 2-2 2C11 18.5 5.5 13 5.5 6.5c0-1.1.9-2 2-2Z"
-    );
-    path.setAttribute("stroke", "currentColor");
-    path.setAttribute("stroke-width", "2");
-    path.setAttribute("stroke-linejoin", "round");
-    svg.appendChild(path);
+      var a = document.createElement("a");
+      a.href = phoneHref;
+      a.textContent = phoneText;
 
-    var a = document.createElement("a");
-    a.href = phoneHref;
-    a.textContent = phoneText;
+      item.appendChild(svg);
+      item.appendChild(a);
 
-    item.appendChild(svg);
-    item.appendChild(a);
+      if (social && social.parentNode === topbarRight) topbarRight.insertBefore(item, social);
+      else topbarRight.appendChild(item);
+    }
 
-    topbarRight.insertBefore(item, social);
+    // 3) Remove the phone from the header navigation area (keep phone only in the topbar)
+    var headerContact = document.querySelector("header .header-actions .contact");
+    if (headerContact && headerContact.parentNode) headerContact.parentNode.removeChild(headerContact);
 
     // Canonicalize contact info across the page.
     applyCanonicalLinks();
@@ -326,12 +328,7 @@
     var metaWrap = document.createElement('div');
     metaWrap.className = 'mobile-meta';
 
-    var contactText = document.querySelector('header .header-actions .contact strong');
-    if (contactText && contactText.textContent) {
-      var contactLine = document.createElement('div');
-      contactLine.textContent = contactText.textContent.trim();
-      metaWrap.appendChild(contactLine);
-    }
+    // Intentionally do not add phone/contact line inside the navigation drawer.
 
     var email = document.querySelector('.topbar a[href^="mailto:"]');
     if (email) {
