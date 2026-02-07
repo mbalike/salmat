@@ -157,6 +157,15 @@ nav a.is-active::after{
   border-radius:8px;
 }
 
+/* Footer contact icons should be white (some pages set them to brand green). */
+.site-footer .footer-contact .ico{
+  color:rgba(255,255,255,.9) !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.site-footer .footer-contact .ico svg{color:inherit}
+
 /* iOS Safari auto-detected phone/email links */
 .site-footer a[x-apple-data-detectors],
 .site-footer a[x-apple-data-detectors-type],
