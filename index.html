@@ -15,16 +15,16 @@
     :root{
       /* SDH brand palette — primary #75bf53, secondary #304857 */
       --brand:#75bf53;
-      --brand-2:#65b143;
-      --brand-dark:#304857;
+      --brand-2:#75bf53;
+      --brand-dark:#75bf53;
       --brand-900:#1b2c36;
-      --brand-soft:#e8f5e2;
+      --brand-soft:rgba(117,191,83,.16);
 
       --ink:#1b2c36;
       --surface:#f6f8fb;
 
-      --footer-bg:#263a47;
-      --footer-bg-2:#1e3240;
+      --footer-bg:#304857;
+      --footer-bg-2:#304857;
       --footer-text:rgba(255,255,255,.82);
       --footer-muted:rgba(255,255,255,.60);
       --footer-line:rgba(255,255,255,.12);
@@ -172,12 +172,12 @@
     .ceo-image-wrap{position:relative}
     .ceo-image{position:relative;width:100%;overflow:hidden}
     .ceo-image img{width:100%;height:auto;display:block;object-fit:cover}
-    .ceo-quote{position:absolute;bottom:-30px;right:-30px;background:#304857;color:#fff;padding:42px 38px;max-width:380px;box-shadow:0 20px 50px rgba(48,72,87,.35)}
+    .ceo-quote{position:absolute;bottom:-30px;right:-30px;background:#75bf53;color:#fff;padding:42px 38px;max-width:380px;box-shadow:0 20px 50px rgba(117,191,83,.35)}
     .ceo-quote-icon{width:44px;height:34px;margin-bottom:12px}
     .ceo-quote-icon::before{content:'';display:block;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 44' fill='none'%3E%3Cpath d='M22 6c-8 2-12 9-12 16 0 8 5 14 12 14 4 0 8-3 8-8s-3-8-8-8c-2 0-3 .4-4 1 0-5 3-9 9-12l-5-3Z' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M42 6c-8 2-12 9-12 16 0 8 5 14 12 14 4 0 8-3 8-8s-3-8-8-8c-2 0-3 .4-4 1 0-5 3-9 9-12l-5-3Z' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
     .ceo-quote-text{font-size:18px;line-height:1.4;font-weight:600}
     
-    .ceo-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:800;color:#304857;margin-bottom:14px}
+    .ceo-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;font-weight:800;color:var(--brand);margin-bottom:14px}
     .ceo-title{font-size:48px;line-height:1.08;font-weight:800;color:var(--ink);margin-bottom:8px}
     .ceo-subtitle{font-size:22px;line-height:1.25;font-weight:700;color:var(--ink);margin-bottom:24px}
     .ceo-text{color:#6b7280;line-height:1.8;margin-bottom:22px;font-size:15px}
@@ -250,7 +250,7 @@
     }
 
     /* ===== DEPARTMENTS ===== */
-    .dept-section{position:relative;padding:110px 40px 140px;background:linear-gradient(180deg, #304857 0%, #304857 56%, #ffffff 56%, #ffffff 100%)}
+    .dept-section{position:relative;padding:110px 40px 140px;background:linear-gradient(180deg, #75bf53 0%, #75bf53 56%, #ffffff 56%, #ffffff 100%)}
     .dept-section::before{content:'';position:absolute;inset:0;
       background:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='520' viewBox='0 0 1200 520'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='2'%3E%3Cpath d='M80 420h180v-60h-40v-30h-80v30h-60z'/%3E%3Cpath d='M330 420h160v-120h-50v-30h-60v30h-50z'/%3E%3Cpath d='M560 420h140v-180h-30v-40h-80v40h-30z'/%3E%3Cpath d='M760 420h220v-90h-60v-40h-100v40h-60z'/%3E%3Cpath d='M1030 420h120v-150h-40v-40h-40v40h-40z'/%3E%3Cpath d='M160 180c30-24 64-24 94 0'/%3E%3Cpath d='M420 140c34-26 72-26 106 0'/%3E%3Cpath d='M820 170c34-26 72-26 106 0'/%3E%3C/g%3E%3Cg fill='rgba(255,255,255,0.06)'%3E%3Ccircle cx='1050' cy='90' r='3'/%3E%3Ccircle cx='1120' cy='140' r='2'/%3E%3Ccircle cx='960' cy='120' r='2'/%3E%3Ccircle cx='180' cy='120' r='2'/%3E%3Ccircle cx='250' cy='80' r='3'/%3E%3Ccircle cx='520' cy='90' r='2'/%3E%3C/g%3E%3C/svg%3E") center 110px/1200px 520px no-repeat;
@@ -266,7 +266,7 @@
     .dept-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:26px}
     .dept-card{position:relative;background:#fff;border-radius:0;box-shadow:0 18px 40px rgba(2,8,23,.20);padding:34px 28px 28px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.2s ease;text-decoration:none;color:inherit}
     .dept-card:hover{transform:translateY(-3px)}
-    .dept-num{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;background:#e8f5e2;color:#304857;font-weight:700}
+    .dept-num{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;background:rgba(117,191,83,.18);color:#75bf53;font-weight:700}
     .dept-ico{width:54px;height:54px;display:grid;place-items:center;color:var(--brand);margin-bottom:16px}
     .dept-ico svg{width:52px;height:52px}
     .dept-card h3{font-size:18px;color:var(--ink);font-weight:700;line-height:1.3}
@@ -340,7 +340,7 @@
     .guide-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.45) 100%);opacity:0;transition:.18s ease}
 
     .guide-social{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(10px);opacity:0;pointer-events:none;display:flex;gap:10px;align-items:center;justify-content:center;background:var(--brand);padding:10px 14px;border-radius:999px;box-shadow:0 14px 30px rgba(0,0,0,.25);transition:.18s ease}
-    .guide-social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#304857;text-decoration:none;transition:.18s ease}
+    .guide-social a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#75bf53;text-decoration:none;transition:.18s ease}
     .guide-social a:hover{transform:translateY(-1px);background:#fff}
     .guide-social svg{width:16px;height:16px;display:block}
 
@@ -472,7 +472,7 @@
 
     /* ===== LOGO STRIP ===== */
     .logo-strip{background:#fff;padding:44px 40px}
-    .logo-strip-inner{max-width:1140px;margin:auto;background:#e8f5e2;padding:34px 26px}
+    .logo-strip-inner{max-width:1140px;margin:auto;background:rgba(117,191,83,.18);padding:34px 26px}
     .logo-marquee{position:relative;overflow:hidden}
 
     .logo-marquee-track{display:flex;width:max-content;will-change:transform;animation:logoMarquee 22s linear infinite}
@@ -497,7 +497,7 @@
     }
 
     /* ===== FOOTER ===== */
-    .site-footer{position:relative;background:radial-gradient(1100px 620px at 86% 25%, rgba(255,255,255,.08), transparent 60%), #263a47;color:#fff;overflow:hidden}
+    .site-footer{position:relative;background:radial-gradient(1100px 620px at 86% 25%, rgba(255,255,255,.08), transparent 60%), var(--footer-bg);color:#fff;overflow:hidden}
     .site-footer::before{content:'';position:absolute;inset:0;background:
       radial-gradient(480px 380px at 78% 55%, rgba(255,255,255,.06), transparent 62%),
       linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.06));
@@ -1312,8 +1312,8 @@
         <a href="#" aria-label="Facebook">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22v-8h2.7l.5-3h-3.2V9.1c0-.9.3-1.6 1.7-1.6H17V4.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.7v8h3.8z"/></svg>
         </a>
-        <a href="#" aria-label="Twitter">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+        <a href="https://wa.me/255699611093" aria-label="WhatsApp" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 11.9c0 4.8-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.2-1.1l-3 1 .98-2.9A8.53 8.53 0 0 1 3.3 12c0-4.8 3.9-8.6 8.6-8.6 4.8 0 8.6 3.9 8.6 8.6Zm-8.6-7c-3.9 0-7.1 3.2-7.1 7.1 0 1.4.4 2.6 1.1 3.7l.18.29-.58 1.7 1.76-.56.28.17c1.1.7 2.4 1.1 3.7 1.1 3.9 0 7.1-3.2 7.1-7.1s-3.2-7.1-7.1-7.1Z"/><path d="M15.6 13.9c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1.1-.6-.6-1.1-1.4-1.2-1.6-.1-.2 0-.4.1-.5l.5-.6c.1-.1.1-.3.1-.4l-.7-1.6c-.1-.2-.2-.3-.4-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4.6.2 1 .3 1.3.4.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3Z"/></svg>
         </a>
         <a href="#" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>
