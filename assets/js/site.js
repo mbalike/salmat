@@ -284,11 +284,25 @@
     if (document.documentElement && document.documentElement.hasAttribute("data-nav-drawer-wired")) return;
 
     var toggleBtn = document.querySelector(".menu-toggle");
-    var backdrop = document.querySelector("[data-nav-backdrop]");
-    var closeBtn = document.querySelector("[data-nav-close]");
+    var backdrop = document.querySelector("[data-nav-backdrop], .nav-backdrop");
+    var closeBtn = document.querySelector("[data-nav-close], .nav-close");
     var nav = document.getElementById("primary-nav") || document.querySelector('header nav[aria-label="Primary"]');
 
     if (!toggleBtn || !nav) return;
+
+    // Ensure a backdrop exists so taps outside the drawer reliably close it.
+    if (!backdrop && document.body) {
+      backdrop = document.createElement("a");
+      backdrop.className = "nav-backdrop";
+      backdrop.href = "#";
+      backdrop.setAttribute("aria-label", "Close menu");
+      backdrop.setAttribute("data-nav-backdrop", "");
+      document.body.appendChild(backdrop);
+    } else if (backdrop && backdrop.getAttribute && !backdrop.hasAttribute("data-nav-backdrop")) {
+      try {
+        backdrop.setAttribute("data-nav-backdrop", "");
+      } catch (e) {}
+    }
 
     function isMobile() {
       if (!window.matchMedia) return false;
@@ -303,6 +317,7 @@
       // Keep ARIA attributes aligned.
       if (nav && nav.id) toggleBtn.setAttribute("aria-controls", nav.id);
       toggleBtn.setAttribute("aria-expanded", isOpen() ? "true" : "false");
+      toggleBtn.setAttribute("aria-label", isOpen() ? "Close menu" : "Open menu");
     }
 
     function open() {
@@ -315,10 +330,40 @@
       sync();
     }
 
-    toggleBtn.addEventListener("click", function (e) {
-      e.preventDefault();
+    function handleToggle(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+
+      // Drawer only applies to mobile layouts.
+      if (!isMobile()) {
+        close();
+        return;
+      }
       if (isOpen()) close();
       else open();
+    }
+
+    // iOS Safari can be finicky with click; use pointer/touch as primary.
+    var swallowClick = false;
+    if (window.PointerEvent) {
+      toggleBtn.addEventListener("pointerup", function (e) {
+        swallowClick = true;
+        handleToggle(e);
+      });
+    } else {
+      toggleBtn.addEventListener("touchend", function (e) {
+        swallowClick = true;
+        handleToggle(e);
+      });
+    }
+
+    toggleBtn.addEventListener("click", function (e) {
+      if (swallowClick) {
+        swallowClick = false;
+        if (e && e.preventDefault) e.preventDefault();
+        return;
+      }
+      handleToggle(e);
     });
 
     if (backdrop) {
@@ -411,12 +456,7 @@
     var ctaWrap = document.createElement('div');
     ctaWrap.className = 'mobile-cta';
 
-    var proposal = document.querySelector('header .header-actions a.btn');
-    if (proposal) {
-      var proposalClone = proposal.cloneNode(true);
-      proposalClone.removeAttribute('style');
-      ctaWrap.appendChild(proposalClone);
-    }
+    // Do not include the "Request a Proposal" CTA in the mobile drawer.
 
     var metaWrap = document.createElement('div');
     metaWrap.className = 'mobile-meta';
