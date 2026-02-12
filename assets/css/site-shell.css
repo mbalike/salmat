@@ -307,15 +307,18 @@ nav li.has-submenu > a::after{
   position:absolute;
   left:50%;
   right:auto;
-  top:calc(100% + 14px);
+  top:100%;
   transform:translate(-50%, 8px);
   width:min(1100px, calc(100vw - 32px));
-  background:#fff;
-  border:1px solid rgba(148,163,184,.45);
-  box-shadow:0 22px 55px rgba(2,8,23,.14);
+  /* Hover bridge: prevents the menu from disappearing while moving the cursor
+     from the trigger down to the panel. */
+  padding-top:14px;
+  background:transparent;
+  border:none;
+  box-shadow:none;
   opacity:0;
   pointer-events:none;
-  transition:.18s ease;
+  transition:opacity .28s ease, transform .28s ease;
   z-index:90;
 }
 
@@ -384,23 +387,60 @@ header .header-actions .btn{white-space:nowrap}
 }
 
 .nav-mega::before{
-  content:"";
-  position:absolute;
-  top:-10px;
-  left:50%;
-  transform:translateX(-50%) rotate(45deg);
-  width:18px;
-  height:18px;
-  background:#fff;
-  border-left:1px solid rgba(148,163,184,.45);
-  border-top:1px solid rgba(148,163,184,.45);
+  /* Remove the pointer/arrow entirely (requested). */
+  content:none;
+  display:none;
 }
 
-.nav-mega-inner{padding:22px 22px}
+.nav-mega-inner{
+  padding:22px 22px;
+  background:#fff;
+  border:1px solid rgba(148,163,184,.45);
+  border-radius:14px;
+  box-shadow:0 22px 55px rgba(2,8,23,.14);
+}
 .nav-mega-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
   gap:26px;
+}
+
+/* Desktop: distribute items evenly (9 services => 3 per column) without needing
+   per-page HTML edits. */
+@media(min-width:981px){
+  /* Flatten existing column wrappers so links become direct grid items. */
+  .nav-mega-grid .nav-col{display:contents}
+
+  .nav-mega-grid{
+    grid-template-columns:repeat(3, minmax(240px, 1fr));
+    grid-template-rows:repeat(3, auto);
+    grid-auto-flow:column;
+    gap:6px 26px;
+    padding:0 18px;
+
+    /* Column dividers (replaces the old per-.nav-col borders). */
+    background-image:
+      linear-gradient(
+        to right,
+        transparent calc(33.333% - .5px),
+        rgba(148,163,184,.35) calc(33.333% - .5px),
+        rgba(148,163,184,.35) calc(33.333% + .5px),
+        transparent calc(33.333% + .5px)
+      ),
+      linear-gradient(
+        to right,
+        transparent calc(66.666% - .5px),
+        rgba(148,163,184,.35) calc(66.666% - .5px),
+        rgba(148,163,184,.35) calc(66.666% + .5px),
+        transparent calc(66.666% + .5px)
+      );
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+  }
+
+  /* Neutralize old column spacing rules (wrappers are now display:contents). */
+  .nav-col{padding:0}
+  .nav-col + .nav-col{border-left:none}
 }
 
 /* Dropdown links should wrap naturally for long names */

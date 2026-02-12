@@ -1049,6 +1049,72 @@
     });
   }
 
+  function setupDesktopMegaArrowAlignment() {
+    // Align the small pointer (diamond) to the center of the hovered trigger.
+    // Uses CSS variable: --nav-mega-arrow-left on the `.nav-mega` element.
+    function isDesktop() {
+      if (!window.matchMedia) return true;
+      return !window.matchMedia("(max-width: 980px)").matches;
+    }
+
+    function clamp(min, value, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function updateForItem(li) {
+      if (!li) return;
+      if (!isDesktop()) return;
+
+      var trigger = li.querySelector("a");
+      var mega = li.querySelector(".nav-mega");
+      if (!trigger || !mega) return;
+
+      // Measure in a rAF to ensure layout is current.
+      window.requestAnimationFrame(function () {
+        try {
+          var triggerRect = trigger.getBoundingClientRect();
+          var megaRect = mega.getBoundingClientRect();
+          if (!megaRect || !megaRect.width) return;
+
+          var triggerCenterX = triggerRect.left + triggerRect.width / 2;
+          var leftPx = triggerCenterX - megaRect.left;
+
+          // Keep arrow within the panel bounds.
+          var inset = 22; // roughly aligns with .nav-mega-inner padding
+          var safe = clamp(inset, leftPx, megaRect.width - inset);
+          mega.style.setProperty("--nav-mega-arrow-left", safe + "px");
+        } catch (e) {}
+      });
+    }
+
+    var items = document.querySelectorAll("nav li.has-submenu");
+    if (!items || !items.length) return;
+
+    items.forEach(function (li) {
+      if (!li || li.hasAttribute("data-mega-arrow-wired")) return;
+      li.setAttribute("data-mega-arrow-wired", "true");
+
+      li.addEventListener("mouseenter", function () {
+        updateForItem(li);
+      });
+      li.addEventListener("focusin", function () {
+        updateForItem(li);
+      });
+    });
+
+    // Recompute on resize (debounced-ish).
+    var t = null;
+    window.addEventListener("resize", function () {
+      if (t) window.clearTimeout(t);
+      t = window.setTimeout(function () {
+        items.forEach(function (li) {
+          // Only update if this submenu is currently active/visible.
+          if (li && (li.matches(":hover") || li.matches(":focus-within"))) updateForItem(li);
+        });
+      }, 120);
+    });
+  }
+
   function setupCounters() {
     var counters = document.querySelectorAll("[data-count]");
     if (!counters.length) return;
@@ -1114,6 +1180,7 @@
     removeLinksToMissingPages();
     markActiveLinks();
     setupMobileSubmenus();
+    setupDesktopMegaArrowAlignment();
     setupCounters();
     setupMobileNavExtras();
     setupChatWidget();
