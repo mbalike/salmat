@@ -201,7 +201,6 @@
       '  </div>' +
       '' +
       '  <div class="footer-bottom">© ' + year + ' Salmart Diplomatic Hospitality. All rights reserved.</div>';
-      '        <div class="footer-title">Our Services</div>' +
 
   function applyTopbarAddressLink() {
     var item = document.querySelector('.topbar-left .topbar-item:nth-child(2)');
@@ -833,38 +832,114 @@
     });
   }
 
+  function normalizeLocalHtmlHref(href) {
+    if (!href) return "";
+    var clean = String(href).trim().split("#")[0];
+    clean = clean.replace(/^\.\//, "");
+    return clean;
+  }
+
+  function setMegaLinksByIndex(mega, linksByColumn) {
+    if (!mega) return;
+    var cols = mega.querySelectorAll(".nav-col");
+    if (!cols || !cols.length) return;
+
+    for (var i = 0; i < cols.length; i++) {
+      var col = cols[i];
+      // Clear only links; keep any non-link nodes if they exist.
+      Array.from(col.querySelectorAll(":scope > a")).forEach(function (a) {
+        a.remove();
+      });
+
+      var links = linksByColumn[i] || [];
+      links.forEach(function (item) {
+        var a = document.createElement("a");
+        a.href = item.href;
+        a.textContent = item.label;
+        col.appendChild(a);
+      });
+    }
+  }
+
+  function removeLinksToMissingPages() {
+    // Pages removed from the site; keep navigation and side-navs clean.
+    var removed = {
+      "service-production-branding-venue.html": true,
+      "service-conference-support-coverage.html": true,
+      "service-luxury-accommodation-logistics.html": true,
+      "service-cultural-tourism-experiences.html": true,
+      "department-creative-production-unit.html": true,
+    };
+
+    var anchors = document.querySelectorAll('a[href$=".html"], a[href*=".html#"]');
+    anchors.forEach(function (a) {
+      var href = normalizeLocalHtmlHref(a.getAttribute("href"));
+      if (!removed[href]) return;
+
+      // Remove whole cards/tiles when the link is the card itself.
+      var card = a.closest(".service-tile, .directory-card, .dept-card");
+      if (card) {
+        card.remove();
+        return;
+      }
+
+      // Remove list items cleanly where applicable.
+      if (a.parentElement && a.parentElement.tagName === "LI") {
+        a.parentElement.remove();
+        return;
+      }
+
+      a.remove();
+    });
+  }
+
   function hydrateMegaMenus() {
     var servicesMega = document.querySelector('.nav-mega[aria-label="Services menu"]');
     var departmentsMega = document.querySelector('.nav-mega[aria-label="Departments menu"]');
 
-    // Keep the exact set of pages in sync with the workspace naming.
-    var serviceLinks = [
-      { href: "service-event-management-production.html", label: "Event Management & Production" },
-      { href: "service-production-branding-venue.html", label: "Production, Branding & Venue" },
-      { href: "service-conference-support-coverage.html", label: "Conference Support & Coverage" },
-      { href: "service-mice-delivery.html", label: "MICE Delivery" },
-      { href: "service-cruise-line-services.html", label: "Cruise Line Services" },
-      { href: "service-sports-tourism-services.html", label: "Sports Tourism Service" },
-      { href: "service-cultural-tourism-experiences.html", label: "Cultural & Tourism Experiences" },
-      { href: "service-luxury-accommodation-logistics.html", label: "Luxury Accommodation & Logistics" },
-      { href: "service-media-management-strategic-storytelling.html", label: "Media Management & Strategic Storytelling" },
-      { href: "service-protocol-diplomatic.html", label: "Protocol & Diplomatic Services" },
+    // Primary mega menu links (kept in sync with existing pages).
+    var serviceLinksByCol = [
+      [
+        { href: "service-event-management-production.html", label: "Event Management Services" },
+        { href: "service-mice-delivery.html", label: "MICE Services" },
+        { href: "service-protocol-diplomatic.html", label: "Protocol & Diplomatic Services" },
+      ],
+      [
+        { href: "service-destination-management-hospitality.html", label: "Destination Management & Hospitality" },
+        { href: "service-tours-experiences.html", label: "Tours & Experiences Services" },
+        { href: "service-sports-tourism-services.html", label: "Sports Tourism Services" },
+      ],
+      [
+        { href: "service-cruise-line-services.html", label: "Cruise Line Services" },
+        { href: "service-maritime-services.html", label: "Maritime Services" },
+        { href: "service-media-management-strategic-storytelling.html", label: "Media Management Services" },
+      ],
     ];
 
-    var departmentLinks = [
-      { href: "department-business-development-partnerships.html", label: "Business Development & Partnerships" },
-      { href: "department-tours-experiences.html", label: "Tours & Experiences" },
-      { href: "department-destination-management-hospitality.html", label: "Destination Management & Hospitality" },
-      { href: "department-event-conference-management.html", label: "Event & Conference Management" },
-      { href: "department-finance-administration.html", label: "Finance & Administration" },
-      { href: "department-media-communications.html", label: "Media & Communications" },
-      { href: "department-training-capacity-building.html", label: "Training & Capacity Building" },
+    var departmentLinksByCol = [
+      [
+        { href: "department-business-development-partnerships.html", label: "Business Development & Partnerships" },
+        { href: "department-tours-experiences.html", label: "Tours & Experiences" },
+        { href: "department-destination-management-hospitality.html", label: "Destination Management & Hospitality" },
+        { href: "department-event-conference-management.html", label: "Event & Conference Management" },
+        { href: "department-protocol-diplomatic-services.html", label: "Protocol & Diplomatic Services" },
+      ],
+      [
+        { href: "department-media-communications.html", label: "Media & Communications" },
+        { href: "department-strategic-affairs-scientific-engagement.html", label: "Strategic Affairs & Scientific Engagement" },
+        { href: "department-training-capacity-building.html", label: "Training & Capacity Building" },
+        { href: "department-finance-administration.html", label: "Finance & Administration" },
+      ],
     ];
 
-    setColumnLinks(servicesMega, "Core Services", serviceLinks);
-    setColumnLinks(departmentsMega, "Departments", [
-      { href: "departments.html", label: "Departments Overview" },
-    ].concat(departmentLinks));
+    // Prefer the current HTML structure (columns by index). If a page uses titled columns,
+    // the older title-based hydrator can still work.
+    setMegaLinksByIndex(servicesMega, serviceLinksByCol);
+    setMegaLinksByIndex(departmentsMega, departmentLinksByCol);
+
+    // Backward-compatible hydration for older templates (no-op when titles are missing).
+    setColumnLinks(servicesMega, "Core Services", [].concat.apply([], serviceLinksByCol));
+    setColumnLinks(departmentsMega, "Departments", [].concat.apply([], departmentLinksByCol));
   }
 
   function currentFile() {
@@ -1036,6 +1111,7 @@
     setupTopbarPhoneAndCleanup();
     setupMobileDrawer();
     hydrateMegaMenus();
+    removeLinksToMissingPages();
     markActiveLinks();
     setupMobileSubmenus();
     setupCounters();
