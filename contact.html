@@ -10,56 +10,81 @@
   <link rel="stylesheet" href="assets/css/site-shell.css" />
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;background:#f6f8fb;color:#0b2a1b}
-    :root{--brand:#75bf53;--brand-dark:#75bf53;--ink:#0b2a1b;--muted:#6b7280}
 
-    .contact-container{max-width:1200px;margin:0 auto;padding:40px 18px 96px}
+    /* Contact page theme only (do not affect other pages) */
+    :root{
+      --c-brand:var(--site-brand, #75bf53);
+      --c-ink:var(--site-ink, #1b2c36);
+      --c-muted:#64748b;
+      --c-bg:#ffffff;
+      --c-surface:#ffffff;
+      --c-line:#e5e7eb;
+      --c-soft:#f3f4f6;
+      --c-shadow:0 18px 40px rgba(2,8,23,.08);
+    }
+
+    body{font-family:'Poppins',sans-serif;background:var(--c-bg);color:var(--c-ink)}
+
+    .contact-container{max-width:1200px;margin:0 auto;padding:58px 18px 70px}
 
     .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    .contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:28px;align-items:stretch}
-    .contact-side{display:flex;flex-direction:column;gap:18px;height:100%}
+    .c-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:44px;align-items:start}
 
-    .panel{background:#fff;border-radius:18px;box-shadow:0 18px 40px rgba(2,8,23,.08);padding:22px 22px 20px}
-    .panel h3{font-size:18px;margin-bottom:12px}
-    .panel .muted{color:var(--muted);line-height:1.75}
+    .c-left h2{font-size:44px;line-height:1.15;letter-spacing:-.02em;color:var(--c-ink);margin-top:4px}
+    .c-left p{margin-top:14px;color:var(--c-muted);line-height:1.85;max-width:640px}
 
-    .contact-list{margin-top:12px;display:grid;gap:12px}
-    .contact-item{display:flex;gap:12px;align-items:flex-start;color:var(--ink)}
-    .contact-item .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#f3f6f9;color:var(--brand-dark);flex:0 0 auto}
-    .contact-item .val{line-height:1.5}
-    .contact-item a{color:inherit;text-decoration:none}
-    .contact-item a:hover{text-decoration:underline}
-    .subline{margin-top:14px;padding-top:14px;border-top:1px solid #eef2f7;color:var(--muted);line-height:1.7}
+    .c-tiles{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .c-tile{display:flex;gap:18px;align-items:flex-start}
+    .c-tile-ico{width:62px;height:62px;border-radius:0;display:grid;place-items:center;background:var(--c-brand);color:#fff;flex:0 0 auto}
+    .c-tile-title{font-weight:900;color:var(--c-ink);font-size:18px;line-height:1.2}
+    .c-tile-text{margin-top:6px;color:var(--c-muted);line-height:1.6}
+    .c-tile-text a{color:inherit;text-decoration:none}
+    .c-tile-text a:hover{text-decoration:underline}
 
-    .map-frame{border-radius:16px;overflow:hidden;background:#eef2f7;border:1px solid #eef2f7}
-    .map-frame iframe{width:100%;height:330px;border:0;display:block}
-    .map-link{margin-top:12px;display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:700}
+    .c-social{margin-top:44px;padding-top:34px;border-top:1px solid rgba(2,8,23,.10)}
+    .c-social h3{font-size:22px;font-weight:900;color:var(--c-ink)}
+    .c-social p{margin-top:12px;color:var(--c-muted);line-height:1.85;max-width:640px}
+    .c-social-links{margin-top:22px;display:flex;flex-wrap:wrap;gap:16px}
+    .c-social-links a{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;background:var(--c-brand);color:#fff;text-decoration:none;transition:.16s ease}
+    .c-social-links a:hover{transform:translateY(-1px);filter:saturate(1.05)}
+    .c-social-links svg{width:18px;height:18px;display:block}
+
+    .c-form-card{background:var(--c-bg);border:1px solid rgba(2,8,23,.07);box-shadow:var(--c-shadow);padding:42px 42px 40px}
+
+    .c-form{display:grid;gap:22px}
+    .c-form input,.c-form select,.c-form textarea{width:100%;padding:16px 16px;border:1px solid var(--c-line);background:#fff;font:500 15px/1.4 'Poppins',sans-serif;outline:0}
+    .c-form textarea{min-height:180px;resize:vertical}
+    .c-form .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .c-form select{appearance:none;background-image:linear-gradient(45deg, transparent 50%, rgba(27,44,54,.7) 50%), linear-gradient(135deg, rgba(27,44,54,.7) 50%, transparent 50%);background-position:calc(100% - 22px) calc(1em + 4px), calc(100% - 16px) calc(1em + 4px);background-size:6px 6px, 6px 6px;background-repeat:no-repeat;padding-right:44px}
+    .c-form input:focus,.c-form select:focus,.c-form textarea:focus{border-color:rgba(117,191,83,.55);box-shadow:0 0 0 4px rgba(117,191,83,.18)}
+
+    .c-form button{justify-self:start;background:var(--c-brand);color:#fff;border:1px solid var(--c-brand);padding:16px 22px;min-width:220px;font-weight:900;cursor:pointer}
+    .c-form button:hover{filter:saturate(1.05)}
+
+    .c-meta{margin-top:18px;color:var(--c-muted);font-size:14px;line-height:1.7}
+    .c-meta a{color:inherit;text-decoration:none}
+    .c-meta a:hover{text-decoration:underline}
+
+    /* Full-bleed map with top spacing only */
+    .c-map{max-width:none;margin:44px 0 0;padding:0}
+    .map-frame{position:relative;border-radius:0;overflow:hidden;background:#eef2f7;border-top:1px solid rgba(2,8,23,.08);border-left:0;border-right:0;border-bottom:0}
+    .map-frame iframe{width:100%;height:440px;border:0;display:block}
+    .map-link{position:absolute;top:16px;left:16px;margin:0;display:inline-flex;align-items:center;gap:10px;color:var(--c-ink);text-decoration:none;font-weight:900;background:rgba(255,255,255,.92);border:1px solid rgba(2,8,23,.12);border-radius:999px;padding:10px 12px;box-shadow:0 12px 30px rgba(2,8,23,.14)}
     .map-link:hover{text-decoration:underline}
-    .map-link svg{color:var(--brand-dark)}
+    .map-link svg{color:var(--c-brand)}
 
-    .contact-form{height:100%}
-    .form-kicker{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.18em;font-size:12px;text-transform:uppercase;color:var(--brand-dark)}
-    .form-kicker::before{content:"";width:44px;height:2px;background:var(--brand-dark);display:inline-block}
-    .contact-form h2{font-size:54px;line-height:1.05;margin-top:14px;color:#0b1f3a}
-    .contact-form p{margin-top:14px;color:var(--muted);line-height:1.75;max-width:760px}
-
-    .message-form{margin-top:26px;display:grid;gap:18px}
-    .message-form .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .message-form input,.message-form select,.message-form textarea{width:100%;border:1px solid #f3f4f6;background:#f3f4f6;padding:18px 18px;font:500 15px/1.4 'Poppins',sans-serif;outline:0}
-    .message-form select{appearance:none;background-image:linear-gradient(45deg, transparent 50%, rgba(11,42,27,.65) 50%), linear-gradient(135deg, rgba(11,42,27,.65) 50%, transparent 50%);background-position:calc(100% - 22px) calc(1em + 6px), calc(100% - 16px) calc(1em + 6px);background-size:6px 6px, 6px 6px;background-repeat:no-repeat;padding-right:44px}
-    .message-form textarea{min-height:240px;resize:vertical}
-    .message-form input:focus,.message-form textarea:focus{border-color:rgba(117,191,83,.35);box-shadow:0 0 0 4px rgba(117,191,83,.18)}
-    .message-form button{justify-self:start;background:var(--brand-dark);color:#fff;border:1px solid var(--brand-dark);padding:16px 22px;min-width:240px;font-weight:800;cursor:pointer}
-    .message-form button:hover{filter:saturate(1.05)}
-
-    @media(max-width:920px){
-      .contact-form h2{font-size:40px}
-      .contact-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:640px){
-      .message-form .row{grid-template-columns:1fr}
-      .message-form button{width:100%}
+    @media(max-width:980px){
+      .contact-container{padding:44px 18px 56px}
+      .c-grid{grid-template-columns:1fr;gap:30px}
+      .c-left h2{font-size:34px}
+      .c-tiles{grid-template-columns:1fr;gap:18px}
+      .c-form-card{padding:28px 18px 24px}
+      .c-form .row{grid-template-columns:1fr}
+      .c-form button{width:100%}
+      .c-map{margin-top:34px}
+      .map-frame iframe{height:360px}
+      .map-link{top:12px;left:12px}
     }
   </style>
 </head>
@@ -198,111 +223,131 @@
     </section>
 
     <div class="contact-container">
-      <section class="contact-grid" aria-label="Contact content">
-        <section class="panel contact-form" aria-label="Contact form">
-          <div class="form-kicker">Leave your message</div>
-          <h2>Get In Touch</h2>
-          <p>Tell us what you’re planning and we’ll get back with next steps.</p>
+      <section class="c-grid" aria-label="Contact content">
+        <div class="c-left">
+          <h2>Get In Touch With Us To Get Better Information</h2>
+          <p>Tell us what you’re planning and we’ll get back with next steps. Visit us at <a href="https://maps.app.goo.gl/ujfckgu73GVmVyuDA" target="_blank" rel="noreferrer">2115 Samora Avenue, Dar Es Salaam</a>.</p>
 
-          <form class="message-form" action="#" method="post">
-            <div class="row">
-              <div>
-                <label class="sr-only" for="name">Your name</label>
-                <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+          <div class="c-tiles" aria-label="Key contact information">
+            <div class="c-tile">
+              <div class="c-tile-ico" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
               </div>
               <div>
-                <label class="sr-only" for="email">Email address</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
-              </div>
-            </div>
-            <div class="row">
-              <div>
-                <label class="sr-only" for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number" />
-              </div>
-              <div>
-                <label class="sr-only" for="company">Company</label>
-                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company / Organization" />
+                <div class="c-tile-title">Office Hours</div>
+                <div class="c-tile-text">Tue to Fri · 10:00 to 16:00</div>
               </div>
             </div>
-            <div class="row">
-              <div>
-                <label class="sr-only" for="interest">Service interested in</label>
-                <select id="interest" name="interest">
-                  <option value="" selected>Service interested in</option>
-                  <option>Event Management Services</option>
-                  <option>Branding &amp; Venue Transformation</option>
-                  <option>Conference Support &amp; Coverage</option>
-                  <option>MICE Services</option>
-                  <option>Cruise Line Services</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label class="sr-only" for="date">Preferred date</label>
-                <input id="date" name="date" type="date" placeholder="Preferred date" />
-              </div>
-            </div>
-            <div>
-              <label class="sr-only" for="message">Write message</label>
-              <textarea id="message" name="message" placeholder="Write message" required></textarea>
-            </div>
-            <button type="submit">Send a Message</button>
-          </form>
-        </section>
 
-        <div class="contact-side">
-          <section class="panel" aria-label="Contact Details">
-          <h3>Contact Details</h3>
-          <div class="contact-list">
-            <div class="contact-item">
-              <div class="ico" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/><path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/></svg>
+            <div class="c-tile">
+              <div class="c-tile-ico" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.56 3.5.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.56 3.5a1 1 0 0 1-.25 1L6.6 10.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
               </div>
-              <div class="val">Dar es Salaam, Tanzania</div>
-            </div>
-            <div class="contact-item">
-              <div class="ico" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.56 3.5.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.56 3.5a1 1 0 0 1-.25 1L6.6 10.8Z" fill="currentColor"/></svg>
+              <div>
+                <div class="c-tile-title">Call Us</div>
+                <div class="c-tile-text"><a href="tel:+255742398600">+255 742 398 600</a></div>
               </div>
-              <div class="val"><a href="tel:+255742398600">+255 742 398 600</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="ico" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" fill="currentColor"/></svg>
-              </div>
-              <div class="val"><a href="mailto:relations@salmartdiplomatic.com">relations@salmartdiplomatic.com</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="ico" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.1 4.9A10 10 0 0 0 3.3 16.7L2 22l5.5-1.3A10 10 0 0 0 22 12a10 10 0 0 0-2.9-7.1ZM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.7.8-3.1-.2-.3A8 8 0 1 1 12 20Zm4.5-5.7c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3-2.6c-.2-.2 0-.4.1-.5l.5-.6c.1-.2.2-.3.1-.5 0-.2-.6-1.4-.7-1.6-.1-.2-.3-.2-.4-.2h-.4c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.6 4 3.6 2.4 1.1 2.4.7 2.8.6.4-.1 1.2-.5 1.4-.9.2-.4.2-.8.1-.9-.1-.1-.2-.1-.4-.2Z" fill="currentColor"/></svg>
-              </div>
-              <div class="val"><a href="https://wa.me/255742398600" target="_blank" rel="noreferrer">WhatsApp</a></div>
             </div>
           </div>
-          <div class="subline">Office hours: Tue to Fri · 10:00 to 16:00</div>
 
-          </section>
+          <div class="c-social" aria-label="Official social media">
+            <h3>Official Social Media</h3>
+            <p>Follow us for updates, stories, and announcements. For quick responses, WhatsApp is the fastest channel.</p>
 
-          <section class="panel" aria-label="Find Us">
-          <h3>Find Us</h3>
-          <div class="map-frame" aria-label="Map">
-            <iframe
-              title="Google Map"
-              loading="lazy"
-              allowfullscreen=""
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d495.2042507291215!2d39.292248!3d-6.8142929!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4b110f000001%3A0xdb939df3b352a604!2sNIC%20Investment%20House!5e0!3m2!1sen!2stz!4v1770744300118!5m2!1sen!2stz">
-            </iframe>
+            <div class="c-social-links">
+              <a href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.6l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5Z"/></svg>
+              </a>
+              <a href="#" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.9 7.6c0 .2 0 .4-.1.6-.5 6.2-4.7 10.7-10.6 10.7-2.1 0-4-.6-5.7-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2.1.5.1.8.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v-.1c.5.3 1.1.5 1.8.6-1-.7-1.6-1.8-1.6-3.1 0-.7.2-1.3.5-1.9 1.8 2.2 4.6 3.7 7.7 3.8-.1-.3-.1-.6-.1-1 0-2 1.6-3.6 3.6-3.6 1 0 2 .4 2.6 1.1.8-.2 1.5-.4 2.2-.8-.3.8-.8 1.4-1.5 1.8.7-.1 1.4-.3 2-.5-.5.7-1 1.3-1.7 1.8z"/></svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm6.2-2.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 9H3.8v12h2.7V9zM5.2 3.6a1.6 1.6 0 10.1 3.2 1.6 1.6 0 000-3.2zM20.5 14.2c0-3.2-1.7-5.2-4.5-5.2-2 0-3 1.1-3.5 1.9V9H9.9v12h2.7v-6.3c0-1.7.3-3.4 2.4-3.4s2.1 2 2.1 3.5V21h2.7v-6.8z"/></svg>
+              </a>
+              <a href="https://wa.me/255742398600" aria-label="WhatsApp" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 11.9c0 4.8-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.2-1.1l-3 1 .98-2.9A8.53 8.53 0 0 1 3.3 12c0-4.8 3.9-8.6 8.6-8.6 4.8 0 8.6 3.9 8.6 8.6Zm-8.6-7c-3.9 0-7.1 3.2-7.1 7.1 0 1.4.4 2.6 1.1 3.7l.18.29-.58 1.7 1.76-.56.28.17c1.1.7 2.4 1.1 3.7 1.1 3.9 0 7.1-3.2 7.1-7.1s-3.2-7.1-7.1-7.1Z"/><path d="M15.6 13.9c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1.1-.6-.6-1.1-1.4-1.2-1.6-.1-.2 0-.4.1-.5l.5-.6c.1-.1.1-.3.1-.4l-.7-1.6c-.1-.2-.2-.3-.4-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4.6.2 1 .3 1.3.4.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3Z"/></svg>
+              </a>
+            </div>
+
           </div>
-          <a class="map-link" href="https://www.google.com/maps/place/NIC+Investment+House/@-6.8142929,39.292248,20z/data=!4m15!1m8!3m7!1s0x185c492bb03fa317:0x3067ed157d644400!2sUbungo,+Dar+es+Salaam!3b1!8m2!3d-6.7934373!4d39.2104195!16zL20vMDl4czRi!3m5!1s0x185c4b110f000001:0xdb939df3b352a604!8m2!3d-6.8144747!4d39.2925666!16s%2Fg%2F11kj902p2k?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/><path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/></svg>
-            Open in Google Maps
-          </a>
-          </section>
         </div>
+
+        <aside class="c-right" aria-label="Contact form">
+          <div class="c-form-card">
+            <form class="c-form" action="#" method="post">
+              <div>
+                <label class="sr-only" for="name">Your Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Your Name" required />
+              </div>
+              <div>
+                <label class="sr-only" for="email">Your Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="Your Email" required />
+              </div>
+
+              <div class="row">
+                <div>
+                  <label class="sr-only" for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone Number" />
+                </div>
+                <div>
+                  <label class="sr-only" for="company">Company</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company / Organization" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <label class="sr-only" for="interest">Service interested in</label>
+                  <select id="interest" name="interest">
+                    <option value="" selected>Service interested in</option>
+                    <option>Event Management Services</option>
+                    <option>Branding &amp; Venue Transformation</option>
+                    <option>Conference Support &amp; Coverage</option>
+                    <option>MICE Services</option>
+                    <option>Cruise Line Services</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="sr-only" for="date">Preferred date</label>
+                  <input id="date" name="date" type="date" placeholder="Preferred date" />
+                </div>
+              </div>
+
+              <div>
+                <label class="sr-only" for="subject">Your Subject</label>
+                <input id="subject" name="subject" type="text" placeholder="Your Subject" />
+              </div>
+
+              <div>
+                <label class="sr-only" for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </aside>
       </section>
     </div>
+
+    <section class="c-map" aria-label="Find us">
+      <div class="map-frame" aria-label="Map">
+        <a class="map-link" href="https://www.google.com/maps/place/NIC+Investment+House/@-6.8142929,39.292248,20z/data=!4m15!1m8!3m7!1s0x185c492bb03fa317:0x3067ed157d644400!2sUbungo,+Dar+es+Salaam!3b1!8m2!3d-6.7934373!4d39.2104195!16zL20vMDl4czRi!3m5!1s0x185c4b110f000001:0xdb939df3b352a604!8m2!3d-6.8144747!4d39.2925666!16s%2Fg%2F11kj902p2k?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2"/><path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" opacity=".95"/></svg>
+          Open in Google Maps
+        </a>
+        <iframe
+          title="Google Map"
+          loading="lazy"
+          allowfullscreen=""
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d495.2042507291215!2d39.292248!3d-6.8142929!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4b110f000001%3A0xdb939df3b352a604!2sNIC%20Investment%20House!5e0!3m2!1sen!2stz!4v1770744300118!5m2!1sen!2stz">
+        </iframe>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer" id="contact" aria-label="Footer">
