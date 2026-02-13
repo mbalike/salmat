@@ -309,6 +309,11 @@ header .header-actions .contact{display:none !important;}
 /* Default: injected mobile-only content should never affect desktop layout */
 .mobile-nav-extras{display:none}
 
+:root{
+  --mega-fade:220ms;
+  --mega-hide-delay:280ms;
+}
+
 /* Make the mega panel position relative to the full header so the dropdown never overflows
   when the <nav> only takes the width of its items. */
 header{position:relative}
@@ -344,8 +349,13 @@ nav li.has-submenu > a::after{
   border:none;
   box-shadow:none;
   opacity:0;
-  pointer-events:none;
-  transition:opacity .28s ease, transform .28s ease;
+  visibility:hidden;
+  /* Keep interactive while fading out; visibility prevents "ghost" hover/clicks once hidden. */
+  pointer-events:auto;
+  transition:
+    opacity var(--mega-fade) ease var(--mega-hide-delay),
+    transform var(--mega-fade) ease var(--mega-hide-delay),
+    visibility 0s linear calc(var(--mega-fade) + var(--mega-hide-delay));
   z-index:90;
 }
 
@@ -509,7 +519,8 @@ header .header-actions .btn{white-space:nowrap}
 nav li.has-submenu:hover .nav-mega,
 nav li.has-submenu:focus-within .nav-mega{
   opacity:1;
-  pointer-events:auto;
+  visibility:visible;
+  transition-delay:0s, 0s, 0s;
   transform:translate(-50%, 0);
 }
 
@@ -524,6 +535,7 @@ nav li.has-submenu:focus-within .nav-mega{
     max-width:100%;
     transform:none !important;
     opacity:1;
+    visibility:visible;
     pointer-events:auto;
     border:none;
     box-shadow:none;
