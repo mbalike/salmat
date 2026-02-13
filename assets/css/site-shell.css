@@ -98,6 +98,17 @@ button, input, select, textarea{font-family:inherit !important}
 p{text-align:justify;text-justify:inter-word;hyphens:auto}
 @media(max-width:700px){p{text-align:left;hyphens:none}}
 
+/* ===== KICKERS / EYEBROWS (site-wide) =====
+  Many pages define kicker sizes inline (often 12px).
+  This rule standardizes all kickers across the site.
+*/
+:root{--kicker-size:20px}
+/* Targets common kicker patterns: .kicker, .ceo-kicker, .directory-kicker, .pd-nav-kicker, etc. */
+[class*="kicker"],
+.eyebrow{
+  font-size:var(--kicker-size) !important;
+}
+
 /* ===== INNER PAGE BANNERS (match about.html styling) =====
   Applies to all inner-page banners using .inner-hero.
   Homepage hero is excluded (it uses .hero, not .inner-hero).
