@@ -9,6 +9,8 @@
     phoneHref: "tel:+255683010907",
     whatsappText: "+255 699 611 093",
     whatsappHref: "https://wa.me/255699611093",
+    instagramHandle: "salmart_diplomatic",
+    instagramHref: "https://www.instagram.com/salmart_diplomatic/",
     email: "relations@salmartdiplomatic.com",
     addressText: "2115 Samora Avenue, Dar Es Salaam",
     addressHref: "https://maps.app.goo.gl/Fn5G8LVwjNNeFJRi9",
@@ -91,6 +93,17 @@
       if (!a.getAttribute("target")) a.setAttribute("target", "_blank");
       if (!a.getAttribute("rel")) a.setAttribute("rel", "noreferrer");
     });
+
+    // Instagram: normalize any Instagram links (topbar, footer, contact cards, etc.).
+    var instas = document.querySelectorAll(
+      'a[aria-label="Instagram"], a[href*="instagram.com/"]'
+    );
+    instas.forEach(function (a) {
+      if (!a) return;
+      a.setAttribute("href", CANONICAL.instagramHref);
+      if (!a.getAttribute("target")) a.setAttribute("target", "_blank");
+      if (!a.getAttribute("rel")) a.setAttribute("rel", "noreferrer");
+    });
   }
 
   function applyCanonicalHeaderAndFooterText() {
@@ -136,7 +149,7 @@
       '            <path d="M15.6 13.9c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.7c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1.1-.6-.6-1.1-1.4-1.2-1.6-.1-.2 0-.4.1-.5l.5-.6c.1-.1.1-.3.1-.4l-.7-1.6c-.1-.2-.2-.3-.4-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.4.6.2 1 .3 1.3.4.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.4-.3Z"/>' +
       '          </svg>' +
       '        </a>' +
-      '        <a href="#" aria-label="Instagram">' +
+      '        <a href="' + CANONICAL.instagramHref + '" aria-label="Instagram" target="_blank" rel="noreferrer">' +
       '          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4.5A3.5 3.5 0 1112 19a3.5 3.5 0 010-7zm0 2A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5zM18 6.8a.7.7 0 11-.7.7.7.7 0 01.7-.7z"/></svg>' +
       '        </a>' +
       '        <a href="#" aria-label="LinkedIn">' +
@@ -514,7 +527,7 @@
       sms: CANONICAL.phoneText,
       phone: CANONICAL.phoneText,
       email: CANONICAL.email,
-      instagram: "salmartdiplomatichospitality",
+      instagram: CANONICAL.instagramHandle,
       defaultMessage:
         "Hello Salmart team, I’m reaching out from your website. I’d like to ask about your services.",
       emailSubject: "Website inquiry",
@@ -799,7 +812,15 @@
         menu.addEventListener("click", function (e) {
           var btn = e.target.closest("[data-chat-channel]");
           if (!btn) return;
-          showConvo(btn.getAttribute("data-chat-channel"));
+          var channel = btn.getAttribute("data-chat-channel");
+
+          // Calling should go straight to the dialer (no preloaded message UI).
+          if (channel === "call") {
+            openTarget("call", "");
+            return;
+          }
+
+          showConvo(channel);
         });
       }
 
