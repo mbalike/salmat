@@ -202,6 +202,8 @@
       '' +
       '  <div class="footer-bottom">© ' + year + ' Salmart Diplomatic Hospitality. All rights reserved.</div>';
 
+  }
+
   function applyTopbarAddressLink() {
     var item = document.querySelector('.topbar-left .topbar-item:nth-child(2)');
     if (!item) return;
@@ -1214,15 +1216,45 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    setupTopbarPhoneAndCleanup();
-    setupMobileDrawer();
-    hydrateMegaMenus();
-    removeLinksToMissingPages();
-    markActiveLinks();
-    setupMobileSubmenus();
-    setupDesktopMegaArrowAlignment();
-    setupCounters();
-    setupMobileNavExtras();
-    setupChatWidget();
+    // Ensure the hamburger drawer is always wired even if other initializers fail.
+    try {
+      setupMobileDrawer();
+    } catch (e) {}
+
+    try {
+      setupTopbarPhoneAndCleanup();
+    } catch (e) {}
+
+    try {
+      hydrateMegaMenus();
+    } catch (e) {}
+
+    try {
+      removeLinksToMissingPages();
+    } catch (e) {}
+
+    try {
+      markActiveLinks();
+    } catch (e) {}
+
+    try {
+      setupMobileSubmenus();
+    } catch (e) {}
+
+    try {
+      setupDesktopMegaArrowAlignment();
+    } catch (e) {}
+
+    try {
+      setupCounters();
+    } catch (e) {}
+
+    try {
+      setupMobileNavExtras();
+    } catch (e) {}
+
+    try {
+      setupChatWidget();
+    } catch (e) {}
   });
 })();
