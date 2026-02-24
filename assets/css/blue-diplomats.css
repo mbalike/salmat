@@ -24,8 +24,8 @@
 .bd-main p{font-size:15px}
 .bd-main li{font-size:14px}
 
-.bd-kicker{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--bd-accent)}
-.bd-kicker::before{content:"";width:28px;height:2px;background:var(--bd-accent);border-radius:999px;display:inline-block;opacity:.95}
+.bd-kicker{display:inline-flex;flex-direction:column;align-items:flex-start;gap:8px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--bd-accent)}
+.bd-kicker::before{content:"";width:28px;height:2px;background:var(--bd-accent);display:block;opacity:.95}
 
 .bd-h2{font-size:44px;line-height:1.1;letter-spacing:-.02em;margin:14px 0 14px;color:var(--bd-ink)}
 .bd-lead{max-width:75ch;color:rgba(27,44,54,.72);line-height:1.8;font-size:15px}
@@ -177,6 +177,241 @@
 .bd-cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 .bd-btn.bd-btn--ghost{background:rgba(255,255,255,.10);box-shadow:none;border:1px solid rgba(255,255,255,.18)}
 
+/* Approach v2 — full-bleed split (image-left + dark panel-right) */
+.bd-approach-split{
+  padding:0;
+  display:grid;
+  grid-template-columns:42% 58%;
+  min-height:640px;
+  overflow:hidden;
+}
+.bd-approach-img{
+  position:relative;
+  overflow:hidden;
+}
+.bd-approach-img::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(7,26,43,.0),rgba(7,26,43,.28));
+  pointer-events:none;
+  z-index:1;
+}
+.bd-approach-img img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.bd-approach-panel{
+  background:#75bf53;
+  color:var(--bd-ink);
+  display:flex;
+  align-items:center;
+}
+.bd-approach-inner{
+  padding:72px 64px;
+  width:100%;
+}
+.bd-approach-inner .bd-kicker{color:#fff}
+.bd-approach-inner .bd-kicker::before{background:rgba(255,255,255,.9)}
+.bd-approach-inner h2{
+  color:#fff;
+  font-size:40px;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  margin:14px 0 18px;
+}
+.bd-approach-inner .bd-lead{
+  color:rgba(255,255,255,.82);
+  max-width:68ch;
+  margin:0 0 36px;
+}
+.bd-approach-cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.bd-approach-card{
+  background:#fff;
+  border:1px solid rgba(2,8,23,.08);
+  border-radius:0;
+  padding:22px 20px;
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  transition:.18s ease;
+}
+.bd-approach-card:hover{
+  box-shadow:0 12px 36px rgba(2,8,23,.12);
+  transform:translateY(-2px);
+}
+.bd-approach-card-ico{
+  width:52px;
+  height:52px;
+  border-radius:0;
+  background:var(--bd-accent);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  flex:0 0 52px;
+}
+.bd-approach-card-ico svg{
+  width:24px;
+  height:24px;
+  display:block;
+}
+.bd-approach-card h3{
+  margin:0 0 5px;
+  font-size:15px;
+  line-height:1.25;
+  color:rgba(2,8,23,.92);
+  font-weight:800;
+}
+.bd-approach-card p{
+  margin:0;
+  color:rgba(27,44,54,.68);
+  line-height:1.65;
+  font-size:13px;
+}
+
+/* Strategic focus — panel cards */
+.bd-sf-card{
+  background:#fff;
+  border:1px solid rgba(2,8,23,.07);
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+  transition:.18s ease;
+}
+.bd-sf-card:hover{box-shadow:0 18px 55px rgba(2,8,23,.10);transform:translateY(-2px)}
+.bd-sf-card-ico{
+  width:52px;height:52px;
+  background:var(--bd-accent);
+  color:#fff;
+  display:grid;place-items:center;
+  margin-bottom:18px;
+  flex:0 0 52px;
+}
+.bd-sf-card-ico svg{width:22px;height:22px;display:block}
+.bd-sf-card h3{
+  margin:0 0 14px;
+  font-size:16px;line-height:1.25;
+  color:rgba(2,8,23,.92);font-weight:850;
+}
+.bd-sf-divider{width:100%;height:1px;background:rgba(2,8,23,.10);margin-bottom:16px}
+.bd-sf-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.bd-sf-list li{
+  display:flex;gap:10px;align-items:flex-start;
+  color:rgba(27,44,54,.72);font-size:13.5px;line-height:1.55;
+}
+.bd-sf-list li::before{
+  content:"";
+  width:8px;height:8px;
+  background:var(--bd-accent);
+  flex:0 0 8px;margin-top:5px;
+}
+
+/* Global South — testimonial layout */
+.bd-gs-section{
+  background:var(--bd-surface);
+  color:var(--bd-ink);
+  padding:94px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.bd-gs-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.25fr;
+  gap:80px;align-items:center;
+}
+.bd-gs-left h2{
+  color:rgba(2,8,23,.92);font-size:46px;line-height:1.1;
+  letter-spacing:-.02em;margin:14px 0 24px;
+}
+.bd-gs-divider{width:60px;height:2px;background:var(--bd-accent);margin-bottom:22px}
+.bd-gs-left p{color:var(--bd-muted);line-height:1.8;font-size:15px;margin:0}
+.bd-gs-widget{position:relative;padding-left:44px}
+.bd-gs-widget::before{
+  content:"";
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:70px;height:270px;
+  background:var(--bd-accent);
+  border-radius:0 999px 999px 0;
+  z-index:0;
+}
+.bd-gs-card{
+  background:#fff;
+  border:1px solid rgba(2,8,23,.07);
+  box-shadow:0 8px 40px rgba(2,8,23,.09);
+  padding:38px 34px;
+  position:relative;z-index:1;
+}
+.bd-gs-quote{
+  font-size:15px;line-height:1.85;
+  color:rgba(27,44,54,.78);
+  margin:0 0 22px;font-style:italic;
+}
+.bd-gs-author strong{
+  display:block;font-size:17px;color:rgba(2,8,23,.92);
+  font-weight:850;margin-bottom:3px;
+}
+.bd-gs-author span{font-size:13px;color:var(--bd-accent)}
+.bd-gs-qmark{
+  position:absolute;bottom:12px;right:18px;
+  font-size:72px;line-height:1;
+  color:var(--bd-accent);
+  font-family:Georgia,serif;
+  opacity:.85;
+}
+
+/* Strategic Focus — image band + overlap cards */
+.bd-sf-section{padding:0;background:var(--bd-surface)}
+.bd-sf-band{
+  background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat;
+  position:relative;
+  padding:94px 40px 180px;
+}
+.bd-sf-band::after{
+  content:"";
+  position:absolute;inset:0;
+  background:rgba(7,26,43,.62);
+  pointer-events:none;
+}
+.bd-sf-band-inner{
+  max-width:1200px;margin:0 auto;
+  position:relative;z-index:1;
+  text-align:center;
+}
+.bd-sf-band-inner .bd-kicker{color:#fff;align-items:center}
+.bd-sf-band-inner .bd-kicker::before{background:rgba(255,255,255,.9)}
+.bd-sf-band-inner h2{color:#fff;font-size:46px;line-height:1.1;letter-spacing:-.02em;margin:14px 0 18px}
+.bd-sf-band-inner .bd-lead{color:rgba(255,255,255,.78);margin:0 auto}
+.bd-sf-featured{
+  max-width:1200px;
+  margin:-130px auto 0;
+  padding:0 40px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  position:relative;z-index:2;
+}
+.bd-sf-featured .bd-sf-card{
+  box-shadow:0 20px 60px rgba(2,8,23,.16);
+}
+.bd-sf-rest{
+  max-width:1200px;
+  margin:0 auto;
+  padding:36px 40px 94px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+}
+
+/* ── Zero border-radius on page body content ── */
+:root{--bd-radius:0;--bd-radius-lg:0}
+.bd-highlight,.bd-btn,.bd-step,.bd-chip,.bd-approach-card,.bd-approach-card-ico,.bd-sf-card,.bd-gs-card,.bd-panel{border-radius:0 !important}
+
 /* Responsive */
 @media(max-width:980px){
   .bd-section{padding:82px 18px}
@@ -190,7 +425,20 @@
   .bd-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
 
   .bd-approach{grid-template-columns:1fr}
+  .bd-approach-split{grid-template-columns:1fr;min-height:auto}
+  .bd-approach-img{min-height:340px}
+  .bd-approach-inner{padding:52px 28px}
+  .bd-approach-inner h2{font-size:34px}
   .bd-feature{grid-template-columns:1fr}
+  .bd-gs-section{padding:72px 18px}
+  .bd-gs-inner{grid-template-columns:1fr;gap:40px}
+  .bd-gs-left h2{font-size:38px}
+  .bd-gs-widget{padding-left:38px}
+  .bd-gs-widget::before{height:200px;width:58px}
+  .bd-gs-card{padding:28px 24px}
+  .bd-sf-band{padding:72px 18px 140px}
+  .bd-sf-featured{margin:-90px auto 0;padding:0 18px;grid-template-columns:1fr}
+  .bd-sf-rest{padding:24px 18px 72px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .bd-two{grid-template-columns:1fr}
   .bd-cta h2{font-size:40px}
 }
@@ -198,6 +446,13 @@
 @media(max-width:560px){
   .bd-h2{font-size:34px}
   .bd-grid{grid-template-columns:1fr}
+  .bd-approach-cards{grid-template-columns:1fr}
+  .bd-gs-section{padding:60px 14px}
+  .bd-gs-left h2{font-size:30px}
+  .bd-gs-widget{padding-left:32px}
+  .bd-gs-widget::before{height:180px;width:50px}
+  .bd-gs-card{padding:24px 18px}
+  .bd-sf-rest{grid-template-columns:1fr}
   .bd-panel h2{font-size:34px}
   .bd-cta h2{font-size:34px}
 }

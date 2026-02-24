@@ -528,6 +528,41 @@
       .values-band{padding:36px 22px}
     }
 
+    /* ===== SQUARE CORNERS (ABOUT PAGE) =====
+      Remove border radius from all components on this page,
+      while keeping the footer styling intact.
+    */
+    .topbar,
+    header,
+    .nav-backdrop,
+    .skip-link,
+    .inner-hero,
+    main#main{
+      border-radius:0 !important;
+    }
+    .topbar *,
+    header *,
+    .nav-backdrop *,
+    .skip-link *,
+    .inner-hero *,
+    main#main *{
+      border-radius:0 !important;
+    }
+    .topbar *::before,
+    header *::before,
+    .nav-backdrop *::before,
+    .skip-link *::before,
+    .inner-hero *::before,
+    main#main *::before,
+    .topbar *::after,
+    header *::after,
+    .nav-backdrop *::after,
+    .skip-link *::after,
+    .inner-hero *::after,
+    main#main *::after{
+      border-radius:0 !important;
+    }
+
   </style>
 </head>
 <body>
