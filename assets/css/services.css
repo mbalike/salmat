@@ -37,10 +37,10 @@
 .service-showcase .center-card{position:absolute;left:18px;right:18px;bottom:18px;background:#fff;z-index:2;box-shadow:0 16px 36px rgba(2,8,23,.10)}
 .service-showcase .center-card .inner{padding:22px 22px 18px}
 .service-showcase .center-card h3{margin:0;font-size:20px;line-height:1.2;font-weight:800;color:var(--ink)}
-.service-showcase .center-card p{margin:10px 0 16px;color:#6b7280;line-height:1.7;font-size:13px;max-width:44ch}
+.service-showcase .center-card p{margin:10px 0 16px;color:#6b7280;line-height:1.7;font-size:14px;max-width:44ch}
 
 .service-showcase .center-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-top:1px solid #eef2f7;background:#f8fafc}
-.service-showcase .center-cta a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;color:#6b7280;font-size:13px}
+.service-showcase .center-cta a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;color:#6b7280;font-size:14px}
 .service-showcase .center-cta a:hover{color:#334155}
 .service-showcase .center-cta .arr{font-size:18px;line-height:1;opacity:.8}
 
@@ -60,7 +60,7 @@
 
 .service-tile .tile-panel{position:absolute;left:0;right:0;bottom:0;background:#fff;padding:20px 22px;z-index:2;max-width:90%;box-shadow:0 -1px 0 rgba(15,23,42,.05)}
 .service-tile .tile-panel h3{margin:0;font-size:20px;line-height:1.2;font-weight:800;color:var(--ink)}
-.service-tile .tile-cta{margin-top:14px;padding-top:12px;border-top:1px solid #eef2f7;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#6b7280;font-weight:800;font-size:13px}
+.service-tile .tile-cta{margin-top:14px;padding-top:12px;border-top:1px solid #eef2f7;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#6b7280;font-weight:800;font-size:14px}
 
 /* All services cards */
 .services-list-wrap{max-width:1200px;margin:0 auto;padding:40px 40px 90px}

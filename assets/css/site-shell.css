@@ -14,6 +14,13 @@
   --site-brand-900:#1b2c36;
   --site-brand-soft:rgba(117,191,83,.16);
   --site-ink:var(--site-brand-900);
+
+  /* Typography standards (mirrors index.html sizing) */
+  --ui-topbar:12px;
+  --ui-nav:14px;
+  --ui-nav-mobile:16px;
+  --ui-kicker:16px;
+  --ui-kicker-lg:20px;
 }
 
 /* Force header/topbar to always use the site palette (even if the page theme overrides --brand*) */
@@ -102,12 +109,15 @@ p{text-align:justify;text-justify:inter-word;hyphens:auto}
   Many pages define kicker sizes inline (often 12px).
   This rule standardizes all kickers across the site.
 */
-:root{--kicker-size:20px}
+:root{--kicker-size:var(--ui-kicker)}
 /* Targets common kicker patterns: .kicker, .ceo-kicker, .directory-kicker, .pd-nav-kicker, etc. */
 [class*="kicker"],
 .eyebrow{
   font-size:var(--kicker-size) !important;
 }
+
+/* Homepage uses a larger section kicker for departments; keep it consistent everywhere */
+.dept-kicker{font-size:var(--ui-kicker-lg) !important;}
 
 /* ===== INNER PAGE BANNERS (match about.html styling) =====
   Applies to all inner-page banners using .inner-hero.
@@ -396,9 +406,18 @@ header .header-actions .btn{white-space:nowrap}
 @media(min-width:981px) and (max-width:1240px){
   header{gap:14px}
   header nav[aria-label="Primary"] ul{gap:14px}
-  header nav[aria-label="Primary"] a{font-size:13px;white-space:nowrap}
+  header nav[aria-label="Primary"] a{font-size:var(--ui-nav);white-space:nowrap}
   header .header-actions strong{font-size:14px}
-  header .header-actions .btn{font-size:13px;padding:10px 14px}
+  header .header-actions .btn{font-size:inherit;padding:12px 22px}
+}
+
+/* Header link sizing: lock to the homepage scale */
+@media(min-width:981px){
+  header nav[aria-label="Primary"] a,
+  nav#primary-nav > ul > li > a{font-size:var(--ui-nav)}
+}
+@media(max-width:980px){
+  nav#primary-nav a{font-size:var(--ui-nav-mobile)}
 }
 
 /* Mobile: hide topbar + proposal CTA; keep hamburger visible */
