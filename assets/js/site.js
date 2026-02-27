@@ -1244,6 +1244,77 @@
     });
   }
 
+  function setupContentProtection() {
+    // Best-effort UX deterrents (cannot fully prevent copying/downloading in a browser).
+
+    // 1) Prevent selecting/highlighting text (keep inputs editable/selectable).
+    document.addEventListener(
+      "selectstart",
+      function (e) {
+        var t = e && e.target;
+        if (!t) return;
+        var tag = (t.tagName || "").toLowerCase();
+        if (tag === "input" || tag === "textarea") return;
+        if (t.isContentEditable) return;
+        e.preventDefault();
+      },
+      true
+    );
+
+    // 2) Prevent right-click context menu on images/SVGs (common download path).
+    document.addEventListener(
+      "contextmenu",
+      function (e) {
+        var t = e && e.target;
+        if (!t || !t.closest) return;
+        if (t.closest("img, picture, svg")) e.preventDefault();
+      },
+      true
+    );
+
+    // 3) Prevent dragging images out of the page.
+    document.addEventListener(
+      "dragstart",
+      function (e) {
+        var t = e && e.target;
+        if (!t) return;
+        if ((t.tagName || "").toLowerCase() === "img") e.preventDefault();
+      },
+      true
+    );
+
+    // Mark all images as non-draggable as an extra hint.
+    try {
+      var imgs = document.querySelectorAll("img");
+      imgs.forEach(function (img) {
+        try {
+          img.setAttribute("draggable", "false");
+        } catch (e) {}
+      });
+    } catch (e) {}
+
+    // 4) Block View Source shortcut: Ctrl+U (Win/Linux) and Cmd+Opt+U (macOS).
+    document.addEventListener(
+      "keydown",
+      function (e) {
+        if (!e) return;
+        var key = String(e.key || "").toLowerCase();
+        var keyCode = e.keyCode || e.which;
+        var isU = key === "u" || keyCode === 85;
+        if (!isU) return;
+
+        var isCtrlU = e.ctrlKey && !e.shiftKey && !e.altKey;
+        var isMacViewSource = e.metaKey && e.altKey;
+
+        if (isCtrlU || isMacViewSource) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true
+    );
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     // Ensure the hamburger drawer is always wired even if other initializers fail.
     try {
@@ -1276,6 +1347,10 @@
 
     try {
       setupCounters();
+    } catch (e) {}
+
+    try {
+      setupContentProtection();
     } catch (e) {}
 
     try {

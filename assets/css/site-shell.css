@@ -719,3 +719,23 @@ nav li.has-submenu:focus-within .nav-mega{
 }
 
 @media print{.chat-widget{display:none}}
+
+/* --- Content interaction protection (site-wide) ---
+   Note: This is a best-effort UX deterrent (not a security boundary). */
+html,body{
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
+}
+
+input,textarea,[contenteditable="true"]{
+  -webkit-user-select:text;
+  user-select:text;
+  -webkit-touch-callout:default;
+}
+
+img{
+  -webkit-user-drag:none;
+  user-drag:none;
+  -webkit-touch-callout:none;
+}
