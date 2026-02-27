@@ -5,8 +5,8 @@
   }
 
   var CANONICAL = {
-    phoneText: "+255 683 010 907",
-    phoneHref: "tel:+255683010907",
+    phoneText: "+255 699 611 093",
+    phoneHref: "tel:+255699611093",
     whatsappText: "+255 699 611 093",
     whatsappHref: "https://wa.me/255699611093",
     instagramHandle: "salmart_diplomatic",
@@ -243,6 +243,14 @@
     // 1) Remove language options from the topbar
     var lang = document.querySelector(".topbar .topbar-lang");
     if (lang && lang.parentNode) lang.parentNode.removeChild(lang);
+
+    // If a phone link is already present in the topbar markup, mark it so we don't inject a duplicate.
+    var existingTopbarTel = document.querySelector('.topbar .topbar-right a[href^="tel:"]');
+    if (existingTopbarTel) {
+      var existingItem = (existingTopbarTel.closest && existingTopbarTel.closest('.topbar-item')) || existingTopbarTel.parentElement;
+      if (existingItem && existingItem.setAttribute) existingItem.setAttribute('data-topbar-phone', 'true');
+      else if (existingTopbarTel.setAttribute) existingTopbarTel.setAttribute('data-topbar-phone', 'true');
+    }
 
     // 2) Add phone number to the topbar (prefer before social icons, but don't fail if socials are missing)
     var topbarRight = document.querySelector(".topbar .topbar-right");
