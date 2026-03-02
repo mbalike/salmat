@@ -9,17 +9,15 @@
     {
       title: "ALC 2024 & 10th FFT Anniversary",
       category: "Events",
-      image:
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
+      image: "assets/img/events/alc (1).jpeg",
+      count: 23,
       href: "portfolio-detail-alc-2024-fft.html",
     },
     {
       title: "Ijuka Omuka Festival 2024",
       category: "Culture",
-      image:
-        "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
+      image: "assets/img/events/ijuka (1).jpeg",
+      count: 12,
       href: "portfolio-detail-ijuka-omuka-2024.html",
     },
     {
@@ -49,9 +47,8 @@
     {
       title: "Korean Delegation Visit to Tanzania",
       category: "Government",
-      image:
-        "https://images.unsplash.com/photo-1521737604893-cfcf42c1c1c5?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
+      image: "assets/img/events/korea-1.jpeg",
+      count: 37,
       href: "portfolio-detail-kiost-delegation.html",
     },
     {
