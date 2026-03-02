@@ -997,7 +997,7 @@
       ],
       [
         { href: "department-media-communications.html", label: "Media & Communications" },
-        { href: "department-strategic-affairs-scientific-engagement.html", label: "Strategic Affairs & Scientific Engagement" },
+        { href: "department-strategic-affairs-scientific-engagement.html", label: "Strategic Affairs & Government Engagement" },
         { href: "department-training-capacity-building.html", label: "Training & Capacity Building" },
         { href: "department-finance-administration.html", label: "Finance & Administration" },
       ],
