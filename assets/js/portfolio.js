@@ -39,9 +39,8 @@
     {
       title: "MarCOSIO Fisheries Exchange Workshop 2025",
       category: "Conference",
-      image:
-        "https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80",
-      count: 6,
+      image: "assets/img/events/MarCOSIO (1).jpeg",
+      count: 22,
       href: "portfolio-detail-marcosio-2025.html",
     },
     {
