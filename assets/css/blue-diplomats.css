@@ -31,7 +31,7 @@
 .bd-lead{max-width:75ch;color:rgba(27,44,54,.72);line-height:1.8;font-size:15px}
 
 /* Hero tweaks for this page (uses shared .inner-hero) */
-.inner-hero.bd-hero{--hero-bg-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2400&auto=format&fit=crop');}
+.inner-hero.bd-hero{--hero-bg-image:url('../img/events/beach-cleaning (5).jpg');--hero-bg-position:center 45%}
 .inner-hero.bd-hero::after{background:linear-gradient(0deg, rgba(7,26,43,.50), rgba(7,26,43,.08)),
                              linear-gradient(180deg, rgba(7,26,43,.70), rgba(7,26,43,.12));mix-blend-mode:normal}
 
@@ -365,7 +365,7 @@
 /* Strategic Focus — image band + overlap cards */
 .bd-sf-section{padding:0;background:var(--bd-surface)}
 .bd-sf-band{
-  background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat;
+  background:url('../img/events/beach-cleaning (2).jpg') center 30%/cover no-repeat;
   position:relative;
   padding:94px 40px 180px;
 }
