@@ -32,7 +32,7 @@
       title: "Regenerative Ocean Week (ROW) 2025",
       category: "Conference",
       image:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+        "assets/img/events/ROW25 (2).jpg",
       count: 6,
       href: "portfolio-detail-row-2025.html",
     },
@@ -54,7 +54,7 @@
       title: "Nane Nane, Uvuvi & Mifugo Day",
       category: "Events",
       image:
-        "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=1200&q=80",
+        "assets/img/events/NaneNane (10).jpg",
       count: 6,
       href: "portfolio-detail-nane-nane-summary.html",
     },
