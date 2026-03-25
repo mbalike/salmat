@@ -132,7 +132,7 @@
     footer.innerHTML =
       '  <div class="footer-inner">' +
       '    <div class="footer-top">' +
-      '      <a class="footer-brand" href="index.html#home" aria-label="Salmart Diplomatic Hospitality">' +
+      '      <a class="footer-brand" href="index.html" aria-label="Salmart Diplomatic Hospitality">' +
       '        <picture>' +
       '          <source media="(max-width: 980px)" srcset="assets/img/salmart-diplomatic-hospitality-logo.png" />' +
       '          <img src="assets/img/salmart-logo.png" alt="Salmart Diplomatic Hospitality" decoding="async" loading="lazy" />' +

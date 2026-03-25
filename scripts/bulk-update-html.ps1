@@ -76,7 +76,7 @@ function Set-ActiveInNav([string]$NavBlock, [string]$ActiveKey) {
 
   switch ($ActiveKey) {
     'home' {
-      $nav = [regex]::Replace($nav, '<li><a href="index\.html#home">Home</a></li>', '<li><a href="index.html#home" aria-current="page" class="is-active">Home</a></li>', 1)
+      $nav = [regex]::Replace($nav, '<li><a href="index\.html#home">Home</a></li>', '<li><a href="index.html" aria-current="page" class="is-active">Home</a></li>', 1)
     }
     'about' {
       $nav = [regex]::Replace($nav, '<li><a href="about\.html">About Us</a></li>', '<li><a href="about.html" aria-current="page" class="is-active">About Us</a></li>', 1)
