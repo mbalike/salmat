@@ -24,7 +24,7 @@
       title: "3rd FAR4ViBE Conference 2024",
       category: "Conference",
       image:
-        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
+        "assets/img/events/FAR4VIBE (2).jpeg",
       count: 6,
       href: "portfolio-detail-far4vibe-2024.html",
     },
