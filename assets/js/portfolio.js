@@ -7,7 +7,7 @@
 
   const ITEMS = [
     {
-      title: "ALC 2024 & 10th FFT Anniversary",
+      title: "ALC 2025 & 10th FFT Anniversary",
       category: "Events",
       image: "assets/img/events/alc (1).jpeg",
       count: 23,
