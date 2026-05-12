@@ -9,8 +9,8 @@
     {
       title: "Oryx Energy Iftar Gala 2026",
       category: "Events",
-      image: "assets/img/salmart/img-10.jpg",
-      count: 6,
+      image: "assets/img/events/oryx.jpeg",
+      count: 10,
       href: "portfolio-detail-oryx-energy-iftar-gala-2026.html",
     },
     {
