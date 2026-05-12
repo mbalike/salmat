@@ -7,6 +7,13 @@
 
   const ITEMS = [
     {
+      title: "Oryx Energy Iftar Gala 2026",
+      category: "Events",
+      image: "assets/img/salmart/img-10.jpg",
+      count: 6,
+      href: "portfolio-detail-oryx-energy-iftar-gala-2026.html",
+    },
+    {
       title: "ALC 2025 & 10th FFT Anniversary",
       category: "Events",
       image: "assets/img/events/alc (1).jpeg",
