@@ -1,6 +1,27 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Salmart Diplomatic Hospitality')
+@section('title', 'Salmart Diplomatic Hospitality — Protocol, Events & Destination Management')
+@section('meta_description', 'Salmart Diplomatic Hospitality delivers protocol excellence, world-class events, and seamless destination management for governments, diplomatic missions, and global organizations in Tanzania and beyond.')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Salmart Diplomatic Hospitality",
+  "url": "{{ url('/') }}",
+  "logo": "{{ asset('img/salmart-diplomatic-hospitality-logo.png') }}",
+  "description": "Salmart Diplomatic Hospitality delivers protocol excellence, world-class events, and seamless destination management for governments, diplomatic missions, and global organizations.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "areaServed": "TZ",
+    "availableLanguage": ["English", "Swahili"]
+  },
+  "sameAs": []
+}
+</script>
+@endpush
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}" />

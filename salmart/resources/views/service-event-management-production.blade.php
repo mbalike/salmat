@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Event Management Services • Salmart Diplomatic Hospitality')
+@section('title', 'Event Management & Production • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Professional event management and production by Salmart — from concept to delivery, covering conferences, state dinners, galas, cultural events, and international productions in Tanzania.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

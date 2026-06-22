@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Protocol &amp; Diplomatic Services • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Protocol & Diplomatic Services Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Protocol & Diplomatic Services department manages state visits, diplomatic receptions, VIP handling, and ceremonial protocol for governments, embassies, and international missions.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

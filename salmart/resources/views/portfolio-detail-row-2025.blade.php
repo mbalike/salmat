@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Regenerative Ocean Week (ROW) 2025 • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart managed Regenerative Ocean Week (ROW) 2025 — a landmark ocean sustainability summit bringing together diplomats, scientists, and conservationists in Tanzania for marine dialogue.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

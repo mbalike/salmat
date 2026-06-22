@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Oryx Energy Iftar Gala 2026 • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart produced the Oryx Energy Iftar Gala 2026 — an elegant corporate and diplomatic gala dinner blending Ramadan tradition with world-class event production and hospitality.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

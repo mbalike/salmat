@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'City Visitor Guide • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Discover Tanzania through Salmart\'s City Visitor Guide — curated experiences, cultural insights, and hospitality services for diplomats, delegates, and international visitors.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/city-visitors-guide.css') }}" />

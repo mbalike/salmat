@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Training &amp; Capacity Building • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Training & Capacity Building Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Training & Capacity Building department delivers professional development programs in diplomatic protocol, event management, hospitality, and leadership for individuals and organizations.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

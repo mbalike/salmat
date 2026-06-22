@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Contact • Salmart Diplomatic Hospitality')
+@section('title', 'Contact Us • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Get in touch with Salmart Diplomatic Hospitality. Reach out for inquiries on event management, diplomatic protocol, destination management, and hospitality services in Tanzania.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

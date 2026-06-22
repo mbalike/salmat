@@ -40,6 +40,53 @@ Route::get('/department-training-capacity-building', fn() => view('department-tr
 Route::get('/department-protocol-diplomatic-services', fn() => view('department-protocol-diplomatic-services'));
 Route::get('/department-strategic-affairs-scientific-engagement', fn() => view('department-strategic-affairs-scientific-engagement'));
 
+// Sitemap
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        ['loc' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
+        ['loc' => '/about', 'priority' => '0.9', 'changefreq' => 'monthly'],
+        ['loc' => '/services', 'priority' => '0.9', 'changefreq' => 'monthly'],
+        ['loc' => '/portfolio', 'priority' => '0.8', 'changefreq' => 'weekly'],
+        ['loc' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => '/why', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/how-we-work', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/departments', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/industries', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/standards', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/storytelling', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/city-visitors-guide', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/bluediplomats', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/service-event-management-production', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => '/service-mice-delivery', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => '/service-cruise-line-services', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/service-maritime-services', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/service-sports-tourism-services', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/service-tours-experiences', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/service-destination-management-hospitality', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => '/service-media-management-strategic-storytelling', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => '/service-protocol-diplomatic', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => '/department-business-development-partnerships', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-tours-experiences', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-destination-management-hospitality', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-event-conference-management', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-finance-administration', 'priority' => '0.5', 'changefreq' => 'monthly'],
+        ['loc' => '/department-media-communications', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-training-capacity-building', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-protocol-diplomatic-services', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/department-strategic-affairs-scientific-engagement', 'priority' => '0.6', 'changefreq' => 'monthly'],
+        ['loc' => '/portfolio-detail-alc-2024-fft', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-far4vibe-2024', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-ijuka-omuka-2024', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-kiost-delegation', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-marcosio-2025', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-nane-nane-summary', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-oryx-energy-iftar-gala-2026', 'priority' => '0.6', 'changefreq' => 'yearly'],
+        ['loc' => '/portfolio-detail-row-2025', 'priority' => '0.6', 'changefreq' => 'yearly'],
+    ];
+    return response()->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml');
+});
+
 // Portfolio
 Route::get('/portfolio', fn() => view('portfolio'));
 Route::get('/portfolio-detail-alc-2024-fft', fn() => view('portfolio-detail-alc-2024-fft'));

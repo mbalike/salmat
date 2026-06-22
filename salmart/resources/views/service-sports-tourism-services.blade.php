@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Sports Tourism Services • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart delivers sports tourism services for international sporting events, team delegations, and sports-related diplomatic exchanges and fan experiences in Tanzania.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

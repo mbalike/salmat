@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Ijuka Omuka Festival 2024 • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart produced the Ijuka Omuka Festival 2024 — a vibrant cultural celebration showcasing Tanzania\'s heritage, managed with full event logistics and hospitality excellence.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

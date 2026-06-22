@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Tours &amp; Experiences Services • Salmart Diplomatic Hospitality')
+@section('title', 'Tours & Experiences • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Curated tours and immersive experiences by Salmart — wildlife safaris, cultural tours, coastal getaways, and VIP excursions across Tanzania for diplomatic and corporate guests.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

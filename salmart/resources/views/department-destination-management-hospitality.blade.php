@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Destination Management &amp; Hospitality • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Destination Management & Hospitality Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Destination Management & Hospitality department oversees end-to-end logistics, accommodation, ground transfers, and curated experiences for visiting delegations and dignitaries in Tanzania.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

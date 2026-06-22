@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'How We Work • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Learn how Salmart Diplomatic Hospitality operates — from initial brief to flawless delivery. Our methodology ensures protocol precision, seamless logistics, and world-class event experiences.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

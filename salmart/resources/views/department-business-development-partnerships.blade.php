@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Business Development &amp; Partnerships • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Business Development & Partnerships • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Business Development & Partnerships department drives strategic relationships, client acquisition, and growth opportunities for diplomatic and hospitality services across Tanzania and East Africa.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

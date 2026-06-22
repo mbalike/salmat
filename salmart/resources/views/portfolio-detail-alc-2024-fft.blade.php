@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'ALC 2025 & 10th FFT Anniversary • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart managed the ALC 2025 and 10th FFT Anniversary — a landmark diplomatic and cultural celebration delivered with protocol excellence and world-class event production in Tanzania.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

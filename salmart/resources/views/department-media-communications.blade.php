@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Media &amp; Communications • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Media & Communications Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Media & Communications department manages brand storytelling, content production, media relations, and digital communications for diplomatic and corporate clients across East Africa.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

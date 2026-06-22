@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Departments • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Explore Salmart\'s specialized departments: Protocol & Diplomatic Services, Event & Conference Management, Destination Management, Tours & Experiences, Media & Communications, and more.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

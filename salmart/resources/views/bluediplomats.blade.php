@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'The Blue Diplomats Initiative • Salmart Diplomatic Hospitality')
+@section('meta_description', 'The Blue Diplomats Initiative by Salmart Diplomatic Hospitality — connecting diplomacy with ocean sustainability, maritime conservation, and Tanzania\'s blue economy development.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

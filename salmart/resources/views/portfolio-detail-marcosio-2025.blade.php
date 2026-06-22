@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'MarCOSIO Fisheries Exchange Workshop 2025 • Event • Salmart Diplomatic Hospitality')
+@section('title', 'MarCOSIO Fisheries Exchange Workshop 2025 • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart managed the MarCOSIO Fisheries Exchange Workshop 2025 — a high-level scientific and diplomatic gathering on East African fisheries, delivered with full event and protocol services.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

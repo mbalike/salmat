@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Standards • Salmart Diplomatic Hospitality')
+@section('title', 'Our Standards • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart Diplomatic Hospitality upholds the highest standards in diplomatic protocol, event management excellence, quality assurance, and world-class hospitality service delivery.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Strategic Affairs &amp; Government Engagement • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Strategic Affairs & Scientific Engagement Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Strategic Affairs & Scientific Engagement department facilitates government relations, scientific diplomacy, and policy engagement connecting Tanzania with international partners.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

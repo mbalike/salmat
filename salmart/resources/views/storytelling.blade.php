@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Storytelling • Salmart Diplomatic Hospitality')
+@section('title', 'Strategic Storytelling • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart\'s strategic storytelling and media management services help organizations craft compelling narratives for diplomatic, cultural, and brand communications across East Africa.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

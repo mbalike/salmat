@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Nane Nane, Uvuvi &amp; Mifugo Day • Event • Salmart Diplomatic Hospitality')
+@section('title', 'Nane Nane, Uvuvi & Mifugo Day • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart supported the Nane Nane Farmers, Fisheries & Livestock Day — Tanzania\'s premier agricultural celebration, providing event coordination and hospitality services.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

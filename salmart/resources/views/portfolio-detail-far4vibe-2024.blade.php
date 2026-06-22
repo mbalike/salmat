@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
 @section('title', '3rd FAR4ViBE Conference 2024 • Event • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart produced the 3rd FAR4ViBE Conference 2024 — an international festival celebrating Afro-Caribbean culture and vibrancy, managed with full event production and hospitality services.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Cruise Line Services • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart provides comprehensive cruise line services including shore excursions, port logistics, VIP reception, and hospitality management along Tanzania's Indian Ocean coastline.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

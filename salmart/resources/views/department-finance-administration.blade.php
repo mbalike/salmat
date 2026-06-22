@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Finance &amp; Administration • Departments • Salmart Diplomatic Hospitality')
+@section('title', 'Finance & Administration Department • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's Finance & Administration department ensures financial governance, operational efficiency, and administrative excellence supporting all divisions of Salmart Diplomatic Hospitality.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

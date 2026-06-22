@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Our Events • Salmart Diplomatic Hospitality')
+@section('title', 'Our Events & Portfolio • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Browse Salmart Diplomatic Hospitality\'s portfolio of events — conferences, diplomatic gatherings, cultural festivals, gala dinners, and international delegation visits across Tanzania and Africa.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

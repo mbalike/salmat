@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'MICE Services • Salmart Diplomatic Hospitality')
+@section('title', 'MICE Delivery Services • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's MICE services cover Meetings, Incentives, Conferences, and Exhibitions — delivering world-class experiences for corporate and diplomatic clients across Tanzania and East Africa.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

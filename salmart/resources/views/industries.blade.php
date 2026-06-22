@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Industries • Salmart Diplomatic Hospitality')
+@section('title', 'Industries We Serve • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart Diplomatic Hospitality serves governments, NGOs, diplomatic missions, maritime industries, sports tourism, cruise lines, and global organizations across East Africa and beyond.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

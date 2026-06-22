@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Maritime Services • Salmart Diplomatic Hospitality')
+@section('meta_description', "Salmart's maritime services support vessel operations, crew logistics, port hospitality, and maritime event management along Tanzania's coastline and East African waters.")
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

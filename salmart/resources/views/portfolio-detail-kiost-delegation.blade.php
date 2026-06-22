@@ -1,6 +1,8 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Korean Delegation Visit to Tanzania • Event • Salmart Diplomatic Hospitality')
+@section('title', 'Korean Institute of Ocean Science & Technology Delegation • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Salmart coordinated the KIOST delegation visit to Tanzania — full diplomatic protocol, ground logistics, and hospitality management for the Korean Institute of Ocean Science and Technology.')
+@section('og_type', 'article')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/portfolio-shell.css') }}" />

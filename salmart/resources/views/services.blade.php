@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'Services • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Explore Salmart\'s full range of services: event management, MICE delivery, protocol & diplomatic services, maritime services, destination management, tours & experiences, and strategic storytelling.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/service-detail.css') }}" />

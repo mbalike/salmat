@@ -1,6 +1,7 @@
 ﻿@extends('layouts.app')
 
 @section('title', 'About Us • Salmart Diplomatic Hospitality')
+@section('meta_description', 'Learn about Salmart Diplomatic Hospitality — a Tanzania-based firm specializing in diplomatic protocol, event management, destination management, and hospitality for governments and global organizations.')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/about.css') }}" />
