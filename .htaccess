@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Block the Laravel app and hidden files such as .env and .git
+    RewriteRule ^salmart(?:/|$) - [F,L]
+    RewriteRule (?:^|/)\.(?!well-known/) - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

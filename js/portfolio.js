@@ -6,6 +6,7 @@
   if (!grid || !loadMoreBtn || !tabs.length) return;
 
   const ITEMS = [
+    ...(window.ADMIN_EVENTS || []),
     {
       title: "Oryx Energy Iftar Gala 2026",
       category: "Events",

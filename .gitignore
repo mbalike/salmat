@@ -1,0 +1,2 @@
+# Event photos uploaded through the admin belong to each server, not the repo
+/img/events/uploads/
