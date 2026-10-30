@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -83,12 +84,15 @@ Route::get('/sitemap.xml', function () {
         ['loc' => '/portfolio-detail-oryx-energy-iftar-gala-2026', 'priority' => '0.6', 'changefreq' => 'yearly'],
         ['loc' => '/portfolio-detail-row-2025', 'priority' => '0.6', 'changefreq' => 'yearly'],
     ];
+    foreach (Event::newestFirst()->pluck('slug') as $slug) {
+        $urls[] = ['loc' => '/portfolio-detail-'.$slug, 'priority' => '0.6', 'changefreq' => 'yearly'];
+    }
     return response()->view('sitemap', ['urls' => $urls])
         ->header('Content-Type', 'application/xml');
 });
 
 // Portfolio
-Route::get('/portfolio', fn() => view('portfolio'));
+Route::get('/portfolio', fn() => view('portfolio', ['events' => Event::with('category')->newestFirst()->get()]));
 Route::get('/portfolio-detail-alc-2024-fft', fn() => view('portfolio-detail-alc-2024-fft'));
 Route::get('/portfolio-detail-far4vibe-2024', fn() => view('portfolio-detail-far4vibe-2024'));
 Route::get('/portfolio-detail-ijuka-omuka-2024', fn() => view('portfolio-detail-ijuka-omuka-2024'));
@@ -97,3 +101,4 @@ Route::get('/portfolio-detail-marcosio-2025', fn() => view('portfolio-detail-mar
 Route::get('/portfolio-detail-nane-nane-summary', fn() => view('portfolio-detail-nane-nane-summary'));
 Route::get('/portfolio-detail-oryx-energy-iftar-gala-2026', fn() => view('portfolio-detail-oryx-energy-iftar-gala-2026'));
 Route::get('/portfolio-detail-row-2025', fn() => view('portfolio-detail-row-2025'));
+Route::get('/portfolio-detail-{event:slug}', fn(Event $event) => view('portfolio-detail', ['event' => $event]));

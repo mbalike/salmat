@@ -32,6 +32,9 @@
         <button class="portfolio-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-portfolio-filter="Culture">Culture</button>
         <button class="portfolio-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-portfolio-filter="Events">Events</button>
         <button class="portfolio-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-portfolio-filter="Government">Government</button>
+        @foreach ($events->pluck('category.name')->unique()->diff(['Conference', 'Culture', 'Events', 'Government']) as $category)
+        <button class="portfolio-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-portfolio-filter="{{ $category }}">{{ $category }}</button>
+        @endforeach
       </div>
     </div>
 
@@ -44,5 +47,6 @@
 @endsection
 
 @push('scripts')
+<script>window.ADMIN_EVENTS = @json($events->map->toCard()->values());</script>
 <script src="{{ asset('js/portfolio.js') }}"></script>
 @endpush
